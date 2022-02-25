@@ -14,18 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 10) -> create() -> each(function($user) {
+        factory(User::class, 10) -> create();
+    //     -> each(function($user) {
 
-            $types = Type::inRandomOrder() -> limit(rand(1,5)) -> get();
-            $user -> types() -> attach($types);
+    //         $types = Type::inRandomOrder() -> limit(rand(1,5)) -> get();
+    //         $user -> types() -> attach($types);
 
-            $user -> save();
-
-            
-
-            
-        });
-
+    //         $user -> save();  
+    //     });
     }
 
     

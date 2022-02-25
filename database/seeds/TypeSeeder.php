@@ -13,13 +13,22 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        factory(Type::class, 5) -> create() -> each(function($type) {
+        factory(Type::class, 5) -> create();
+        for($i = 0; $i < 10; $i++) {
+            DB::table('type_user') -> insert([
+                ['type_id' => rand(1,5), 'user_id' => rand(1,10)]
+            ]);
+        }
 
-            $users = User::inRandomOrder() -> limit(rand(1,10)) -> get();
-            $type -> users() -> attach($users);
+        //  -> each(function($type) {
 
-            $type -> save();
-        });
+        //     $users = User::inRandomOrder() -> limit(rand(1,10)) -> get();
+        //     $type -> users() -> attach($users);
 
+        //     $type -> save();
+        // });
+            
     }
 }
+
+

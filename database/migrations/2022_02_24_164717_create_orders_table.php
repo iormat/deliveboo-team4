@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('customer_id')-> unsigned();
             $table->date("date");
             $table->decimal("total_price", 5,2) -> unsigned();
             $table->boolean("confirmed");
