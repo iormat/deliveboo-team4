@@ -15,7 +15,7 @@ class DishSeeder extends Seeder
     {
         factory(Dish::class, 10) -> make() -> each(function($dish) {
 
-            $user = User::inRandomOrder() -> limit(1);
+            $user = User::inRandomOrder() -> limit(1) -> first();
             $dish -> user() -> associate($user);
 
             $dish -> save();
