@@ -23,7 +23,7 @@ class AddForeignKeys extends Migration
         Schema::table('dishes', function (Blueprint $table) {
             
             $table -> foreign('user_id', 'dish_id_user') -> references('id') -> on('users');
-            $table -> foreign('category_id', 'category_id_dish') -> references('id') -> on('dishes');
+            $table -> foreign('category_id', 'category_id_dish') -> references('id') -> on('categories');
 
         });
 
