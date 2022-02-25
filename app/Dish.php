@@ -15,4 +15,7 @@ class Dish extends Model
         "available",
         "ingredients",
     ];
+    public function user() {
+        return $this -> belongsTo(User::class);
+    }
 }
