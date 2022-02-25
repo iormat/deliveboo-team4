@@ -16,7 +16,7 @@ class CreateDishesTable extends Migration
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("user_id") ->unsigned();
-            $table->bigInteger('category_id') -> nullable() -> unsigned();
+            $table->bigInteger('category_id') -> unsigned();
             $table->string("name", 50);
             $table->text("description") -> nullable();
             $table->decimal("price", 5,2) -> unsigned();
