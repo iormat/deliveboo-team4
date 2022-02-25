@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Dish;
+use App\User;
 
 class DishSeeder extends Seeder
 {
@@ -12,6 +13,13 @@ class DishSeeder extends Seeder
      */
     public function run()
     {
-        factory(Dish::class, 10) -> create();
+        factory(Dish::class, 10) -> make() -> each(function($dish) {
+
+            $user = User::inRandomOrder() -> limit(1);
+            $dish -> user() -> associate($user);
+
+            $dish -> save();
+        });
+
     }
 }

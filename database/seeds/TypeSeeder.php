@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Type;
+use App\User;
 
 class TypeSeeder extends Seeder
 {
@@ -12,6 +13,13 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        factory(Type::class, 10) -> create();
+        factory(Type::class, 5) -> create() -> each(function($type) {
+
+            $users = User::inRandomOrder() -> limit(rand(1,10)) -> get();
+            $type -> users() -> attach($users);
+
+            $type -> save();
+        });
+
     }
 }
