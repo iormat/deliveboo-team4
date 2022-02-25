@@ -15,4 +15,7 @@ class Customer extends Model
         "cap",
         "telephone",
     ];
+    public function order() {
+        return $this -> belongsTo(Order::class);
+    }
 }

@@ -14,4 +14,10 @@ class Order extends Model
         "payment_confirmation",
         "confirmation_date",
     ];
+    public function dishes() {
+        return $this -> belongsToMany(Dish::class);
+    }
+    public function customer() {
+        return $this -> belongsTo(Customer::class);
+    }
 }
