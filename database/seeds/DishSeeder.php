@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Dish;
 use App\User;
+use App\Category;
 
 class DishSeeder extends Seeder
 {
@@ -17,6 +18,9 @@ class DishSeeder extends Seeder
 
             $user = User::inRandomOrder() -> limit(1) -> first();
             $dish -> user() -> associate($user);
+
+            $category = Category::inRandomOrder() -> limit(1) -> first();
+            $dish -> category() -> associate($category);
 
             $dish -> save();
         });
