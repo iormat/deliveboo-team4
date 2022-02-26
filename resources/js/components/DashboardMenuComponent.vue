@@ -1,6 +1,8 @@
 <template>
     <div id="postcards">
-        <h1>Postcards</h1>
+        <h2>I tuoi menu</h2>
+
+        <div class="mb-2 btn btn-success">create</div>
         
         <table border="2">
             <tr>
@@ -8,7 +10,9 @@
                 <th>name</th>
                 <th>desciption</th>
                 <th>price</th>
-                <th>user id</th>   
+                <th>user id</th> 
+                <th>edit</th>  
+                <th>delete</th>
             </tr>
 
             <tr v-for="dish in dishes" :key="dish.id">
@@ -16,6 +20,9 @@
                 <td>{{dish.description}}</td>
                 <td>{{dish.price}}</td>
                 <td>{{dish.user_id}}</td>
+                <td><button class="m-2 btn btn-primary">edit</button></td>
+                <td><button class="m-2 btn btn-danger">delete</button></td>
+
                 <!-- <td><img :src="'storage/dishs/' + dish.image"></td> -->
             </tr>
         </table>
