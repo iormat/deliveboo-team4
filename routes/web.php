@@ -26,3 +26,9 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 Route::get('/dashboard', function(){
     return view('pages.dashboard');
 });
+
+Route::get('/api/dishes', 'ApiController@getMenu') -> name('api.dishes');
+
+// Route::prefix('/api') -> group(function() {
+   
+// })
