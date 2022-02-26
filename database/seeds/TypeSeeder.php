@@ -14,6 +14,7 @@ class TypeSeeder extends Seeder
     public function run()
     {
         factory(Type::class, 5) -> create();
+        
         for($i = 0; $i < 10; $i++) {
             DB::table('type_user') -> insert([
                 ['type_id' => rand(1,5), 'user_id' => rand(1,10)]
