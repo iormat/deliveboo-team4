@@ -13,6 +13,7 @@
                 <th>user id</th> 
                 <th>edit</th>  
                 <th>delete</th>
+                <th>category</th>
             </tr>
 
             <tr v-for="dish in dishes" :key="dish.id">
@@ -22,6 +23,10 @@
                 <td>{{dish.user_id}}</td>
                 <td><button class="m-2 btn btn-primary">edit</button></td>
                 <td><button class="m-2 btn btn-danger">delete</button></td>
+                <td><select name="" id="">
+                    <option value="" v-for="category in categories" :key="category.id">category name</option>
+                    </select>
+                </td>
 
                 <!-- <td><img :src="'storage/dishs/' + dish.image"></td> -->
             </tr>
@@ -32,7 +37,8 @@
 export default {
     data: function(){
         return{
-            dishes: []
+            dishes: [],
+            categories: []
         };
     },
     props: {
@@ -42,6 +48,10 @@ export default {
     mounted() {
         axios.get('/api/dishes/')
             .then(r=> this.dishes = r.data)
+            .catch(e=>console.error(e));
+
+        axios.get('/api/categories')
+            .then(r=> this.categories = r.data)
             .catch(e=>console.error(e));
     },
 

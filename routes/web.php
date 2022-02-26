@@ -29,6 +29,11 @@ Route::get('/dashboard', function(){
 
 Route::get('/api/dishes', 'ApiController@getMenu') -> name('api.dishes');
 
+Route::post('/create', 'HomeController@store')->name('store');
+
+Route::get('/api/categories', 'ApiController@getCategories') -> name('api.categories');
+
+
 // Route::prefix('/api') -> group(function() {
    
 // })
