@@ -16,8 +16,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username',
+        'name',
+        'surname',
+        'email',
+        'password',
+        'p_iva',
+        'img_rest',
+        'img_profile',
+        'business_description',
+        
     ];
+
+    public function types() {
+        return $this -> belongsToMany(Type::class);
+    }
+    public function dishes() {
+        return $this -> hasMany(Dish::class);
+    }
 
     /**
      * The attributes that should be hidden for arrays.
