@@ -106,7 +106,21 @@ export default {
         saveImg(img) {
 
             this.dishes_img = img.target.files[0];
-            console.log(this.dishes_img)
+
+            console.log("dishes_img:", this.dishes_img);
+
+            // const formData = new FormData();
+            // formData.append('dishes_img', this.dishes_img, this.dishes_img.name);
+
+            // console.log("formdata:", formData);
+
+            axios.post('/api/saveImg', this.dishes_img)
+            .then(function (response) {
+                console.log("api saveimg:", response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
 
         submitDish() {
@@ -116,16 +130,19 @@ export default {
                 description: this.description,
                 price: this.price,
                 ingredients: this.ingredients,
-                dishes_img: this.dishes_img,
+                // dishes_img: this.dishes_img,
             }
             console.log(this.data);
+
             axios.post('/api/create', this.data)
             .then(function (response) {
-                console.log(response);
+                console.log("api create:", response);
             })
             .catch(function (error) {
                 console.log(error);
             });
+
+            
         }
     },
     mounted() {

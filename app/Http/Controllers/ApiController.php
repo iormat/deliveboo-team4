@@ -36,9 +36,13 @@ class ApiController extends Controller
             'description' => 'required | string',
             'price' => 'required',
             'ingredients' => 'required | string',
-            'dishes_img' => 'required | image',
+            // 'dishes_img' => 'required | image',
         ]);
         $data['user_id'] = Auth::user() -> id;
+        
+        
+
+
         // $category = Category::findOrFail($request -> get('category_id'));
         // $dish = Dish::create($data);
         // $dish -> category() -> associate($category);
@@ -46,6 +50,18 @@ class ApiController extends Controller
         // $dish -> save();
 
 
+
+        return json_encode($data);
+    }
+
+    public function saveImg(Request $request) {
+
+        // $data = $request -> validate ([
+        //     'dishes_img' => 'required | image',
+        // ]);
+
+        // $file = $request -> file("dishes_img");
+            $data = $request;
         return json_encode($data);
     }
 }
