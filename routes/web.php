@@ -27,13 +27,13 @@ Route::get('/dashboard', function(){
     return view('pages.dashboard');
 });
 
-Route::get('/api/dishes', 'ApiController@getMenu') -> name('api.dishes');
 
 Route::post('/create', 'HomeController@store')->name('store');
 
-Route::get('/api/categories', 'ApiController@getCategories') -> name('api.categories');
+// api routes
+Route::prefix('/api') -> group(function() {  
+    Route::get('/dishes', 'ApiController@getMenu') -> name('api.dishes');
+    Route::get('/categories', 'ApiController@getCategories') -> name('api.categories');
+    Route::post('/create', 'ApiController@addDish');
+});
 
-
-// Route::prefix('/api') -> group(function() {
-   
-// })
