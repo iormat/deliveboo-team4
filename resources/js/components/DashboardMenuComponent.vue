@@ -30,7 +30,23 @@
                     <textarea v-model="ingredients" id="ingredients" cols="50" rows="5" required></textarea>
                 </label>
                 <br>
-                <button @click.prevent="submitDish()" class="mb-5 btn btn-success">Submit</button>
+
+                <label for="img">
+                    Aggiungi gli ingredienti
+                    <br>
+                    <input type="file" @change="saveImg" id="img" required>
+                </label>
+                <br>
+
+                <select class="my-3" name="" id="">
+                    <option v-for="category in categories" :key="category.id" :value="category.id">
+                        {{category.category_name}}
+                    </option>
+                </select>
+
+                <br>
+
+                <button @click.prevent="submitDish" class="mb-5 btn btn-success">Submit</button>
             </div>
         </section>
 
@@ -77,6 +93,7 @@ export default {
             description: '',
             price: 0,
             ingredients: '',
+            dishes_img: null,
             data: {},
         };
     },
@@ -86,12 +103,20 @@ export default {
             this.createForm = !this.createForm;
         },
 
+        saveImg(img) {
+
+            this.dishes_img = img.target.files[0];
+            console.log(this.dishes_img)
+        },
+
         submitDish() {
+
             this.data = {
                 dish_name: this.dish_name,
                 description: this.description,
                 price: this.price,
                 ingredients: this.ingredients,
+                dishes_img: this.dishes_img,
             }
             console.log(this.data);
             axios.post('/api/create', this.data)

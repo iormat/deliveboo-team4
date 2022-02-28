@@ -36,8 +36,14 @@ class ApiController extends Controller
             'description' => 'required | string',
             'price' => 'required',
             'ingredients' => 'required | string',
+            'dishes_img' => 'required | image',
         ]);
         $data['user_id'] = Auth::user() -> id;
+        // $category = Category::findOrFail($request -> get('category_id'));
+        // $dish = Dish::create($data);
+        // $dish -> category() -> associate($category);
+
+        // $dish -> save();
 
 
         return json_encode($data);
