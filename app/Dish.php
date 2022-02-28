@@ -8,7 +8,7 @@ class Dish extends Model
 {
     protected $fillable = [
 
-        "name",
+        "dish_name",
         "description",
         "price",
         "dishes_img",

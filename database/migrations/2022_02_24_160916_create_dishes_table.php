@@ -17,7 +17,7 @@ class CreateDishesTable extends Migration
             $table->id();
             $table->bigInteger("user_id") ->unsigned();
             $table->bigInteger('category_id') -> unsigned();
-            $table->string("name", 50);
+            $table->string("dish_name", 50);
             $table->text("description") -> nullable();
             $table->decimal("price", 5,2) -> unsigned();
             $table->string("dishes_img");

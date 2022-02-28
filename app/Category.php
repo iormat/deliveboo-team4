@@ -10,7 +10,7 @@ class Category extends Model
     public $timestamps = false;
     protected $fillable = [
 
-        "name",
+        "category_name",
     ];
     public function dishes() {
         return $this -> hasMany(Dish::class);

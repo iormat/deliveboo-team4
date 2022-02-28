@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Type::class, function (Faker $faker) {
     return [
-        "name" => $faker -> word(),
+        "type_name" => $faker -> word(),
     ];
 });
