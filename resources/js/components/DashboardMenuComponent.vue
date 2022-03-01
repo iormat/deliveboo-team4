@@ -1,7 +1,7 @@
 <template>
     <div id="postcards">
         <h2>I tuoi menu</h2>
-        <div @click="newDish()" class="mb-2 btn btn-success">create</div>        
+        <div @click="newDish" class="mb-2 btn btn-success">create</div>        
         <button @click="check" >CHECK</button>
 
         <section v-if="createForm" id="create">
@@ -24,7 +24,7 @@
                 <label for="price">
                     Inserisci il prezzo
                     <br>
-                    <input type="number" min="0.00" max="999.99" id="price" v-model="price" required>
+                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required>
                 </label>
                 <br>
                 <label for="ingredients">
@@ -36,9 +36,9 @@
                 
 
                  <label for="img">
-                    Aggiungi gli ingredienti
+                    Aggiungi immagine
                     <br>
-                    <input type="file" @change="saveImg" id="img" required>
+                    <input type="file" @change="saveImg" id="img">
                 </label> 
                 <br>
 
@@ -61,10 +61,12 @@
                 <th>name</th>
                 <th>desciption</th>
                 <th>price</th>
-                <th>user id</th> 
+                <th>user id</th>
+                <th>available</th> 
                 <th>edit</th>  
                 <th>delete</th>
                 <th>category</th>
+                <th>image</th>
             </tr>
 
             <tr v-for="dish in dishes" :key="dish.id">
@@ -72,7 +74,10 @@
                 <td>{{dish.description}}</td>
                 <td>{{dish.price}}</td>
                 <td>{{dish.user_id}}</td>
-                <td><button class="m-2 btn btn-primary">edit</button></td>
+                <td>{{dish.available}}</td>
+                <td>
+                    <button @click="changeDish" class="m-2 btn btn-primary">edit</button>
+                </td>
                 <td><button class="m-2 btn btn-danger">delete</button></td>
 
                 <td>
@@ -80,9 +85,66 @@
                         <span v-if="category.id == dish.category_id">{{category.category_name}}</span>
                     </div>
                 </td>
+                <td> <img v-if="dish.dishes_img"
+                         :src="'/storage/dishes/' + dish.dishes_img"
+                          alt=""><span v-else>image</span> </td>
 
                 <!-- <td><img :src="'storage/dishs/' + dish.image"></td> -->
             </tr>
+
+        <section v-if="changeForm" id="edit">
+            <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
+                <input type="hidden" name="_token" :value="csfr">
+                
+
+                <label for="name">
+                    Inserisci il nome
+                    <br>
+                    <input type="text" id="name" v-model="dish_name" min="4" max="50" required value="">
+                </label>
+                <br>
+                <label for="desription">
+                    Inserisci il una descrizione
+                    <br>
+                    <textarea v-model="description" id="desription" cols="50" rows="5" required></textarea>
+                </label>
+                <br>
+                <label for="price">
+                    Inserisci il prezzo
+                    <br>
+                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required>
+                </label>
+                <br>
+                <label for="ingredients">
+                    Aggiungi gli ingredienti
+                    <br>
+                    <textarea v-model="ingredients" id="ingredients" cols="50" rows="5" required></textarea>
+                </label>
+                <br>
+                
+
+                 <label for="img">
+                    Aggiungi immagine
+                    <br>
+                    <input type="file" @change="saveImg" id="img" required>
+                </label> 
+                <br>
+
+                <select v-model="category" class="my-3" name="category">
+                    <option v-for="category in categories" :key="category.id" :value="category.id" >
+                        {{category.category_name}}
+                        {{category.id}}
+                    </option>
+                </select>
+                
+                <br>
+
+                <input type="submit" class="mb-5 btn btn-success" value="submit">
+            </form>
+
+        </section>
+
+
         </table>
     </div>
 </template>
@@ -93,7 +155,9 @@ export default {
             dishes: [],
             categories: [],
             createForm: false,
+            changeForm: false,
             
+            available: true,
             dish_name: '',
             description: '',
             price: 0,
@@ -109,28 +173,20 @@ export default {
     ],
 
     methods: {
+        available(){
+            this.available = !this.available;
+        },
         newDish() {
             this.createForm = !this.createForm;
+        },
+        changeDish() {
+            this.changeForm = !this.changeForm;
         },
 
         saveImg(img) {
             this.dishes_img = img.target.files[0];
             console.log("dishes_img:", this.dishes_img);
 
-            //  let form = new FormData();
-            // form.set("dish_name",this.dish_name);
-            // form.set("description",this.description);
-            // form.set("price",this.price);
-            // form.set("ingredients",this.ingredients);
-            // form.set("dishes_img",this.dishes_img);
-
-            // axios.post('/api/saveImg',  form)
-            // .then(function (response) {
-            //     console.log("api saveimg:", response);
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // });
         },
 
         check() {
@@ -138,35 +194,33 @@ export default {
         },
 
         submitDish(e) {
-            var form = new FormData(e.target);
-            form.append("dish_name",this.dish_name);
-            form.append("description", this.description);
-            form.append("price", this.price);
-            form.append("ingredients", this.ingredients);
-            form.append("dishes_img",this.dishes_img);
-            form.append("category", this.category);
-            form.append("user_id", this.user_id);
-            
-            // this.data = {
-            //     dish_name: this.dish_name,
-            //     description: this.description,
-            //     price: this.price,
-            //     ingredients: this.ingredients,
-            //     category: this.category,
-            //     dishes_img: this.dishes_img,
-            //     user_id: this.user_id,
-            // }
-            // console.log("data", this.data);
+            let form = new FormData(e.target);
+                form.append("dish_name",this.dish_name);
+                form.append("description", this.description);
+                form.append("price", this.price);
+                form.append("ingredients", this.ingredients);
+                if(this.dishes_img = img.target.files[0]){
+                  form.append("dishes_img",this.dishes_img);  
+                };
+                form.append("category", this.category);
+                form.append("user_id", this.user_id);
+
+            let self = this;
 
             axios.post('/api/create', form)
             .then(function (response) {
+                self.dishes.push(response.data)
                 console.log("api create:", response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-            
+            this.dish_name =   this.description = this.ingredients = this.dishes_img ='';
+            this.price = this.category = 0;
+            this.data = {};
+            this.createForm = !this.createForm;
+
         }
     },
     mounted() {
@@ -181,3 +235,4 @@ export default {
 
 }
 </script>
+

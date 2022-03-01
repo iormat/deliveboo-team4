@@ -35,6 +35,6 @@ Route::prefix('/api') -> group(function() {
     Route::get('/dishes', 'ApiController@getMenu') -> name('api.dishes');
     Route::get('/categories', 'ApiController@getCategories') -> name('api.categories');
     Route::post('/create', 'ApiController@addDish');
-    Route::post('/saveImg', 'ApiController@saveImg');
+    Route::post('/edit', 'ApiController@edit');
 });
 

@@ -62,6 +62,7 @@ class ApiController extends Controller
         $imageFile = $request -> file('dishes_img');
 
         $data['dishes_img'] = $imageFile;
+        
 
 
         $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
