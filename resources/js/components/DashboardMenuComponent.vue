@@ -2,10 +2,13 @@
     <div id="postcards">
         <h2>I tuoi menu</h2>
         <div @click="newDish()" class="mb-2 btn btn-success">create</div>        
-
+        <button @click="check" >CHECK</button>
 
         <section v-if="createForm" id="create">
-            <div>
+            <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
+                <input type="hidden" name="_token" :value="csfr">
+                
+
                 <label for="name">
                     Inserisci il nome
                     <br>
@@ -30,24 +33,27 @@
                     <textarea v-model="ingredients" id="ingredients" cols="50" rows="5" required></textarea>
                 </label>
                 <br>
+                
 
-                <label for="img">
+                 <label for="img">
                     Aggiungi gli ingredienti
                     <br>
                     <input type="file" @change="saveImg" id="img" required>
-                </label>
+                </label> 
                 <br>
 
-                <select class="my-3" name="" id="">
-                    <option v-for="category in categories" :key="category.id" :value="category.id">
+                <select v-model="category" class="my-3" name="category">
+                    <!-- <option selected disabled>{{category}}</option> -->
+                    <option v-for="category in categories" :key="category.id" :value="category.id" >
                         {{category.category_name}}
+                        {{category.id}}
                     </option>
                 </select>
-
+                
                 <br>
 
-                <button @click.prevent="submitDish" class="mb-5 btn btn-success">Submit</button>
-            </div>
+                <input type="submit" class="mb-5 btn btn-success" value="submit">
+            </form>
         </section>
 
         <table border="2">
@@ -93,10 +99,15 @@ export default {
             description: '',
             price: 0,
             ingredients: '',
-            dishes_img: null,
-            data: {},
+            category: -1,
+            dishes_img: {},
+            data: {},        
         };
     },
+
+    props:[ 
+        "csfr",
+    ],
 
     methods: {
         newDish() {
@@ -104,35 +115,43 @@ export default {
         },
 
         saveImg(img) {
-
             this.dishes_img = img.target.files[0];
-
             console.log("dishes_img:", this.dishes_img);
 
-            // const formData = new FormData();
-            // formData.append('dishes_img', this.dishes_img, this.dishes_img.name);
+            //  let form = new FormData();
+            // form.set("dish_name",this.dish_name);
+            // form.set("description",this.description);
+            // form.set("price",this.price);
+            // form.set("ingredients",this.ingredients);
+            // form.set("dishes_img",this.dishes_img);
 
-            // console.log("formdata:", formData);
+            // axios.post('/api/saveImg',  form)
+            // .then(function (response) {
+            //     console.log("api saveimg:", response);
+            // })
+            // .catch(function (error) {
+            //     console.log(error);
+            // });
+        },
 
-            axios.post('/api/saveImg', this.dishes_img)
-            .then(function (response) {
-                console.log("api saveimg:", response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        check() {
+            console.log("check:", this.form);
         },
 
         submitDish() {
-
+            // let form = new FormData();
+            // form.set("dishes_img",this.dishes_img);
+            
             this.data = {
                 dish_name: this.dish_name,
                 description: this.description,
                 price: this.price,
                 ingredients: this.ingredients,
-                // dishes_img: this.dishes_img,
+                category: this.category,
+                dishes_img: this.dishes_img,
+                user_id: this.user_id,
             }
-            console.log(this.data);
+            console.log("data", this.data);
 
             axios.post('/api/create', this.data)
             .then(function (response) {

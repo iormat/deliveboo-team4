@@ -15,7 +15,8 @@
             </ul>
         </div>
     @endif
-    <dashboard-menu-component></ashboard-menu-component>
+    <dashboard-menu-component csrf="{{csrf_token()}}"></ashboard-menu-component>
+
     
 
    
