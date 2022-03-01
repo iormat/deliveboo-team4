@@ -85,9 +85,10 @@
                         <span v-if="category.id == dish.category_id">{{category.category_name}}</span>
                     </div>
                 </td>
-                <td> <img v-if="dish.dishes_img"
-                         :src="'/storage/dishes/' + dish.dishes_img"
-                          alt=""><span v-else>image</span> </td>
+                <td> <img class="w-25" v-if="dish.dishes_img"
+                        :src="'/storage/dishes/' + dish.dishes_img"
+                        alt=""><span v-else>image</span> 
+                </td>
 
                 <!-- <td><img :src="'storage/dishs/' + dish.image"></td> -->
             </tr>
@@ -199,7 +200,7 @@ export default {
                 form.append("description", this.description);
                 form.append("price", this.price);
                 form.append("ingredients", this.ingredients);
-                if(this.dishes_img = img.target.files[0]){
+                if(this.dishes_img != ''){
                   form.append("dishes_img",this.dishes_img);  
                 };
                 form.append("category", this.category);

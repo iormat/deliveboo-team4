@@ -54,21 +54,33 @@ class ApiController extends Controller
             'description' => 'required | string',
             'price' => 'required',
             'ingredients' => 'required | string',      
-            'dishes_img' => 'required',      
+            // 'dishes_img' => 'required',      
         ]);
-        
+
+        if ($request -> file('dishes_img') != '') {
+            $imageFile = $request -> file('dishes_img');
+            // $data['dishes_img'] = $imageFile;
+            $data['dishes_img'] = $request -> validate([
+                'dishes_img' => 'image',      
+            ]);
+            $data['dishes_img'] = $imageFile;
+
+            $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
+
+            $imageFile -> storeAs('/dishes/', $imageName, 'public');
+            $data['dishes_img'] = $imageName;
+        }
+
         $data['available'] = true;
-
-        $imageFile = $request -> file('dishes_img');
-
-        $data['dishes_img'] = $imageFile;
         
+        // $imageFile = $request -> file('dishes_img');
+        
+        // $data['dishes_img'] = $imageFile;
 
+        // $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
 
-        $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
-
-        $imageFile -> storeAs('/dishes/', $imageName, 'public');
-        $data['dishes_img'] = $imageName;
+        // $imageFile -> storeAs('/dishes/', $imageName, 'public');
+        // $data['dishes_img'] = $imageName;
 
         $dish = Dish::make($data);
 
@@ -83,8 +95,5 @@ class ApiController extends Controller
 
         return json_encode($dish);
 
-    }
-
-   
-    
+    } 
 }
