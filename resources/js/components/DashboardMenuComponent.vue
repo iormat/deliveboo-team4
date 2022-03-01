@@ -43,7 +43,6 @@
                 <br>
 
                 <select v-model="category" class="my-3" name="category">
-                    <!-- <option selected disabled>{{category}}</option> -->
                     <option v-for="category in categories" :key="category.id" :value="category.id" >
                         {{category.category_name}}
                         {{category.id}}
@@ -100,7 +99,7 @@ export default {
             price: 0,
             ingredients: '',
             category: -1,
-            dishes_img: {},
+            dishes_img: "",
             data: {},        
         };
     },
@@ -138,24 +137,30 @@ export default {
             console.log("check:", this.form);
         },
 
-        submitDish() {
-            // let form = new FormData();
-            // form.set("dishes_img",this.dishes_img);
+        submitDish(e) {
+            var form = new FormData(e.target);
+            form.append("dish_name",this.dish_name);
+            form.append("description", this.description);
+            form.append("price", this.price);
+            form.append("ingredients", this.ingredients);
+            form.append("dishes_img",this.dishes_img);
+            form.append("category", this.category);
+            form.append("user_id", this.user_id);
             
-            this.data = {
-                dish_name: this.dish_name,
-                description: this.description,
-                price: this.price,
-                ingredients: this.ingredients,
-                category: this.category,
-                dishes_img: this.dishes_img,
-                user_id: this.user_id,
-            }
-            console.log("data", this.data);
+            // this.data = {
+            //     dish_name: this.dish_name,
+            //     description: this.description,
+            //     price: this.price,
+            //     ingredients: this.ingredients,
+            //     category: this.category,
+            //     dishes_img: this.dishes_img,
+            //     user_id: this.user_id,
+            // }
+            // console.log("data", this.data);
 
-            axios.post('/api/create', this.data)
+            axios.post('/api/create', form)
             .then(function (response) {
-                console.log("api create:", response);
+                console.log("api create:", response.data);
             })
             .catch(function (error) {
                 console.log(error);

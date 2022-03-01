@@ -54,12 +54,15 @@ class ApiController extends Controller
             'description' => 'required | string',
             'price' => 'required',
             'ingredients' => 'required | string',      
-            'dishes_img' => 'required | image',      
+            'dishes_img' => 'required',      
         ]);
         
         $data['available'] = true;
 
         $imageFile = $request -> file('dishes_img');
+
+        $data['dishes_img'] = $imageFile;
+
 
         $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
 
