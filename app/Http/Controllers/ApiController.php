@@ -85,11 +85,10 @@ class ApiController extends Controller
             $data['dishes_img'] = $imageName;
         }
         // default to true dish availability
-        // $data['available'] = true;
-        if($request -> $data['available']) {
-            $data['available'] = true;
+        if($request -> get('available') === true) {
+            $data['available'] = 1;
         }else {
-            $data['available'] = false;
+            $data['available'] = 0;
         }
 
         $dish = Dish::findOrFail($id);
@@ -102,5 +101,12 @@ class ApiController extends Controller
         $dish -> category() -> associate($category);
         
         $dish -> update($data);
+
+        return json_encode($dish);
+    }
+
+    // delete dish
+    public function deleteDish() {
+        
     }
 }

@@ -64,7 +64,6 @@
         <!--  table to display user menu -->
         <table border="2">
             <tr>
-                <!-- <th>{{user.id}}</th> -->
                 <th>name</th>
                 <th>desciption</th>
                 <th>price</th>
@@ -85,7 +84,7 @@
                 <td>
                     <button @click="changeDish(dish.id)" class="m-2 btn btn-primary">edit</button>
                 </td>
-                <td><button class="m-2 btn btn-danger">delete</button></td>
+                <td><button class="m-2 btn btn-danger" @click="deleteDish(dish.id)">Delete</button></td>
 
                 <td>
                     <div v-for="category in categories" :key="category.id">
@@ -104,7 +103,6 @@
         <!-- edit existing dish - form -->
         <section v-if="changeForm" id="edit">
             <form 
-                v-for="editDish in editDishArr" :key="editDish.id"
                 method="POST" 
                 enctype="multipart/form-data" 
                 @submit.prevent="updateDish">
@@ -112,40 +110,40 @@
                 <label for="name">
                     Inserisci il nome&colon;
                     <br>
-                    <input type="text" id="name" min="4" max="50" required v-model="editDish.dish_name">
+                    <input type="text" id="name" min="4" max="50" required v-model="editDishArr[0].dish_name">
                 </label>
                 <br>
                 <!-- dish description - edit -->
                 <label for="desription">
                     Inserisci il una descrizione&colon;
                     <br>
-                    <textarea v-model="editDish.description" id="desription" cols="50" rows="5" required></textarea>
+                    <textarea v-model="editDishArr[0].description" id="desription" cols="50" rows="5" required></textarea>
                 </label>
                 <br>
                 <!-- dish price - edit -->
                 <label for="price">
                     Inserisci il prezzo&colon;
                     <br>
-                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editDish.price">
+                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editDishArr[0].price">
                 </label>
                 <br>
                 <!-- dish ingredients - edit -->
                 <label for="ingredients">
                     Aggiungi gli ingredienti&colon;
                     <br>
-                    <textarea v-model="editDish.ingredients" id="ingredients" cols="50" rows="5" required></textarea>
+                    <textarea v-model="editDishArr[0].ingredients" id="ingredients" cols="50" rows="5" required></textarea>
                 </label>
                 <br>
                 <!-- dish image - edit -->
                 <label for="img">
                     Aggiungi immagine&colon;
                     <br>
-                    <input type="file" @change="saveImg" id="img" required>
+                    <input type="file" @change="saveUpdatedImg" id="img">
                 </label> 
                 <br>
                 <!-- dish category - edit -->
-                <select v-model="editDish.category" class="my-3" name="category">
-                    <option selected disabled>{{editDish.category_id}}</option>
+                <select v-model="editDishArr[0].category" class="my-3" name="category">
+                    <option selected disabled>{{editDishArr[0].category_id}}</option>
                     <option v-for="category in categories" :key="category.id" :value="category.id" >
                         {{category.category_name}}
                         {{category.id}}
@@ -155,7 +153,7 @@
                 <!-- dish availabiliy - edit -->
                 <label for="available">
                     Disponibilit&agrave;&colon;
-                    <input @click="checkAvailable" v-model="editDish.available" type="checkbox" name="available" id="available">
+                    <input @click="checkAvailable" v-model="editDishArr[0].available" type="checkbox" name="available" id="available">
                 </label>
                 <br>
                 <!-- submit edit form -->
@@ -210,7 +208,7 @@ export default {
         toggleEditDish() {
             this.changeForm = !this.changeForm;
         },
-        // toggle open edit - form
+        // get selected dish open edit - form
         changeDish(id) {
             console.log(id);
             this.editDishArr = [];
@@ -228,6 +226,11 @@ export default {
             this.dishes_img = img.target.files[0];
             console.log("dishes_img:", this.dishes_img);
         },
+        // save updated user img - useful format
+        saveUpdatedImg(img) {
+            this.editDishArr[0].dishes_img = img.target.files[0];
+            console.log("updated dishes_img:", this.editDishArr[0].dishes_img);
+        },
         // test button
         check() {
             console.log("check:", this.dishesPull(dishess));
@@ -235,7 +238,7 @@ export default {
         // submit create dish - form
         submitDish(e) {
             let form = new FormData(e.target);
-                form.append("dish_name",this.dish_name);
+                form.append("dish_name", this.dish_name);
                 form.append("description", this.description);
                 form.append("price", this.price);
                 form.append("ingredients", this.ingredients);
@@ -268,17 +271,16 @@ export default {
         updateDish(event) {
             console.log('questo è event: ', event);
             let form = new FormData(event.target);
-
-                form.append("dish_name",this.editDishArr[4]);
-                form.append("description", this.editDishArr[3]);
-                form.append("price", this.editDishArr[8]);
-                form.append("ingredients", this.editDishArr[7]);
-                if(this.dishes_img != ''){
-                  form.append("dishes_img",this.editDishArr[5]);  
+                form.append("dish_name", this.editDishArr[0].dish_name);
+                form.append("description", this.editDishArr[0].description);
+                form.append("price", this.editDishArr[0].price);
+                form.append("ingredients", this.editDishArr[0].ingredients);
+                if(this.editDishArr[0].dishes_img != ''){
+                  form.append("dishes_img",this.editDishArr[0].dishes_img);  
                 };
-                form.append("category", this.editDishArr[1]);
-                form.append("user_id", this.editDishArr[10]);
-                if(this.available === true) {
+                form.append("category", this.editDishArr[0].category);
+                form.append("user_id", this.editDishArr[0].user_id);
+                if(this.editDishArr[0].available === true) {
                     form.append('available', true)
                 }
             // post form 
@@ -291,7 +293,13 @@ export default {
             .catch(function (error) {
                 console.error(error);
             });
+            this.changeForm = !this.changeForm;
         },
+        // delete dish
+        deleteDish(id) {
+            console.log(id)
+
+        }
     },
     mounted() {
         //  get all dishes
