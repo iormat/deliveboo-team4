@@ -298,7 +298,24 @@ export default {
         // delete dish
         deleteDish(id) {
             console.log(id)
+            let dishInd = this.getDishIndById(id);
+            this.dishes.splice(dishInd, 1);
+            axios.get(`/api/dishDelete/${id}`)
+            .then(res => { 
+                const dish = res.data;
+                let dishInd = this.getDishIndById(dish.id);
+                this.dishes.splice(dishInd, 1);
+            })
+        },
 
+        getDishIndById(id){
+            for (let i = 0; i < this.dishes.length; i++) {
+                const dish = this.dishes[i];
+                if (dish.id == id) {
+                    return i;
+                }
+                return -1;
+            }
         }
     },
     mounted() {

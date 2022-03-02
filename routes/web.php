@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
@@ -25,5 +27,6 @@ Route::prefix('/api') -> group(function() {
     Route::post('/store', 'ApiController@addDish');
     Route::post('/edit', 'ApiController@edit');
     Route::post('/updateDish/{id}', 'ApiController@updateDish') -> name('update');
+    Route::get('/dishDelete/{id}', 'ApiController@deleteDish') -> name('dalate');
 });
 

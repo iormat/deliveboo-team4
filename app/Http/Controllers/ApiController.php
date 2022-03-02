@@ -106,7 +106,9 @@ class ApiController extends Controller
     }
 
     // delete dish
-    public function deleteDish() {
-        
+    public function deleteDish($id) {
+        $dish = Dish::findOrFail($id);
+        $dish -> delete();
+        return json_encode($dish);
     }
 }
