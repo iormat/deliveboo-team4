@@ -101,7 +101,7 @@ export default {
 
             let self = this;
 
-            axios.post('/api/create', form)
+            axios.post('/api/store', form)
             .then(function (response) {
                 self.dishes.push(response.data)
                 console.log("api create:", response.data);

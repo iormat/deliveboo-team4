@@ -1,4 +1,4 @@
-@extends('layouts.dashboard-layout');
+@extends('layouts.dashboard-layout')
 
 @section('content')
     
@@ -15,7 +15,7 @@
             </ul>
         </div>
     @endif
-    <dashboard-menu-component csrf="{{csrf_token()}}"></ashboard-menu-component>
+    <dashboard-menu-component></ashboard-menu-component>
 
     
 
