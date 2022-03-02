@@ -93,7 +93,8 @@
                         <span v-if="category.id == dish.category_id">{{category.category_name}}</span>
                     </div>
                 </td>
-                <td> <img class="w-25" v-if="dish.dishes_img"
+                <td> 
+                    <img class="w-25" v-if="dish.dishes_img"
                         :src="'/storage/dishes/' + dish.dishes_img"
                         alt=""><span v-else>image</span> 
                 </td>
@@ -104,7 +105,7 @@
         <!-- edit existing dish - form -->
         <section v-if="changeForm" id="edit">
             <form 
-                v-for="editDish in editDishArr" :key="editDish.id" 
+                v-for="editDish in editDishArr" :key="editDish.id"
                 method="POST" 
                 enctype="multipart/form-data" 
                 @submit.prevent="updateDish(editDish.id)">
@@ -112,28 +113,28 @@
                 <label for="name">
                     Inserisci il nome&colon;
                     <br>
-                    <input type="text" id="name" min="4" max="50" required :value="editDish.dish_name">
+                    <input type="text" id="name" min="4" max="50" required v-model="editDish.dish_name">
                 </label>
                 <br>
                 <!-- dish description - edit -->
                 <label for="desription">
                     Inserisci il una descrizione&colon;
                     <br>
-                    <textarea :value="editDish.description" id="desription" cols="50" rows="5" required></textarea>
+                    <textarea v-model="editDish.description" id="desription" cols="50" rows="5" required></textarea>
                 </label>
                 <br>
                 <!-- dish price - edit -->
                 <label for="price">
                     Inserisci il prezzo&colon;
                     <br>
-                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" required :value="editDish.price">
+                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editDish.price">
                 </label>
                 <br>
                 <!-- dish ingredients - edit -->
                 <label for="ingredients">
                     Aggiungi gli ingredienti&colon;
                     <br>
-                    <textarea :value="editDish.ingredients" id="ingredients" cols="50" rows="5" required></textarea>
+                    <textarea v-model="editDish.ingredients" id="ingredients" cols="50" rows="5" required></textarea>
                 </label>
                 <br>
                 <!-- dish image - edit -->
@@ -144,7 +145,7 @@
                 </label> 
                 <br>
                 <!-- dish category - edit -->
-                <select :value="editDish.category" class="my-3" name="category">
+                <select v-model="editDish.category" class="my-3" name="category">
                     <option selected disabled>{{editDish.category_id}}</option>
                     <option v-for="category in categories" :key="category.id" :value="category.id" >
                         {{category.category_name}}
@@ -155,7 +156,7 @@
                 <!-- dish availabiliy - edit -->
                 <label for="available">
                     Disponibilit&agrave;&colon;
-                    <input @click="checkAvailable" :value="editDish.available" type="checkbox" name="available" id="available">
+                    <input @click="checkAvailable" v-model="editDish.available" type="checkbox" name="available" id="available">
                 </label>
                 <br>
                 <!-- submit edit form -->
@@ -210,15 +211,13 @@ export default {
         // toggle open edit - form
         changeDish(id) {
             console.log(id);
+            this.editDishArr = [];
+            this.dishes.forEach(dish => {
+                if(dish.id === id) {
+                    this.editDishArr.push(dish)
+                }
+            });
             this.changeForm = !this.changeForm;
-            // retrive selected dish info - edit
-            axios(`api/editDish/${id}`)
-                .then((res) => {
-                    this.editDishArr = [],
-                    this.editDishArr.push(res.data),
-                    console.log(res.data)
-                })
-                .catch(err=>console.error(err));
         },
         // save user img - useful format
         saveImg(img) {
@@ -251,8 +250,8 @@ export default {
             .catch(function (error) {
                 console.error(error);
             });
-            // reset all dish property
-            this.dish_name =   this.description = this.ingredients = this.dishes_img ='';
+            // reset all dish properties
+            this.dish_name = this.description = this.ingredients = this.dishes_img = '';
             this.price = this.category = 0;
             this.data = {};
             this.createForm = !this.createForm;

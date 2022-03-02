@@ -63,13 +63,6 @@ class ApiController extends Controller
         return json_encode($dish);
     } 
 
-    // return to edit selected dish info
-    public function editDish($id) {
-        $dish = Dish::find($id);
-
-        return json_encode($dish);
-    }
-
     // update existing dish
     public function updateDish(Request $request, $id) {
         //  validate required dish data

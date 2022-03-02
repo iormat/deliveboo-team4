@@ -26,7 +26,6 @@ Route::prefix('/api') -> group(function() {
     Route::get('/categories', 'ApiController@getCategories') -> name('api.categories');
     Route::post('/create', 'ApiController@addDish');
     Route::post('/edit', 'ApiController@edit');
-    Route::get('/editDish/{id}', 'ApiController@editDish') -> name('edit');
     Route::get('/updateDish/{id}', 'ApiController@updateDish') -> name('update');
 });
 
