@@ -17,15 +17,13 @@ Route::get('/dashboard', function(){
     return view('pages.dashboard');
 });
 
-// store new dish
-Route::post('/store', 'HomeController@store')->name('store');
 
 // api routes
 Route::prefix('/api') -> group(function() {  
     Route::get('/dishes', 'ApiController@getMenu') -> name('api.dishes');
     Route::get('/categories', 'ApiController@getCategories') -> name('api.categories');
-    Route::post('/create', 'ApiController@addDish');
+    Route::post('/store', 'ApiController@addDish');
     Route::post('/edit', 'ApiController@edit');
-    Route::get('/updateDish/{id}', 'ApiController@updateDish') -> name('update');
+    Route::post('/updateDish/{id}', 'ApiController@updateDish') -> name('update');
 });
 

@@ -55,8 +55,7 @@
                         {{category.category_name}}
                         {{category.id}}
                     </option>
-                </select>
-                
+                </select> 
                 <br>
 
                 <input type="submit" class="mb-5 btn btn-success" value="submit">
@@ -108,7 +107,7 @@
                 v-for="editDish in editDishArr" :key="editDish.id"
                 method="POST" 
                 enctype="multipart/form-data" 
-                @submit.prevent="updateDish(editDish.id)">
+                @submit.prevent="updateDish">
                 <!-- dish name - edit -->
                 <label for="name">
                     Inserisci il nome&colon;
@@ -181,9 +180,11 @@ export default {
             // db data
             dishes: [],
             categories: [],
+
             // utility
             createForm: false,
             changeForm: false,
+
             // dish info
             available: true,
             dish_name: '',
@@ -193,9 +194,10 @@ export default {
             category: -1,
             dishes_img: "",
             available: false,
-            data: {},   
+
             // retrive for edit single dish info
-            editDishArr: [],     
+            editDishArr: [],  
+            dishEdit_id: -1,   
         };
     },
 
@@ -212,11 +214,13 @@ export default {
         changeDish(id) {
             console.log(id);
             this.editDishArr = [];
+            this.dishEdit_id = id;
             this.dishes.forEach(dish => {
                 if(dish.id === id) {
                     this.editDishArr.push(dish)
                 }
             });
+            console.log('questo è il piatto: ', this.editDishArr);
             this.changeForm = !this.changeForm;
         },
         // save user img - useful format
@@ -261,24 +265,25 @@ export default {
             this.available = !this.available
         },
         // update existing dish
-        updateDish(id) {
-            console.log(id);
-            let form = new FormData();
-                form.append("dish_name",this.dish_name);
-                form.append("description", this.description);
-                form.append("price", this.price);
-                form.append("ingredients", this.ingredients);
+        updateDish(event) {
+            console.log('questo è event: ', event);
+            let form = new FormData(event.target);
+
+                form.append("dish_name",this.editDishArr[4]);
+                form.append("description", this.editDishArr[3]);
+                form.append("price", this.editDishArr[8]);
+                form.append("ingredients", this.editDishArr[7]);
                 if(this.dishes_img != ''){
-                  form.append("dishes_img",this.dishes_img);  
+                  form.append("dishes_img",this.editDishArr[5]);  
                 };
-                form.append("category", this.category);
-                form.append("user_id", this.user_id);
+                form.append("category", this.editDishArr[1]);
+                form.append("user_id", this.editDishArr[10]);
                 if(this.available === true) {
                     form.append('available', true)
                 }
             // post form 
             let self = this;
-            axios.post(`/api/update/${id}`, form)
+            axios.post(`/api/updateDish/${this.dishEdit_id}`, form)
             .then(function (response) {
                 self.dishes.push(response.data)
                 console.log("api update:", response.data);
