@@ -3,8 +3,14 @@
         <h2>I tuoi menu</h2>
         <div @click="newDish" class="mb-2 btn btn-success">create</div>        
         <button @click="check" >CHECK</button>
+        <!-- <CreateComponent/> -->
+        <create-component                               
+                            v-bind:createForm.sync="createForm" 
+                            :categories="categories"
+                            @update:arrayPush="arrayPush">
+            </create-component>
 
-        <section v-if="createForm" id="create">
+        <!-- <section v-if="createForm" id="create">
             <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
                 <input type="hidden" name="_token" :value="csfr">
                 
@@ -53,7 +59,7 @@
 
                 <input type="submit" class="mb-5 btn btn-success" value="submit">
             </form>
-        </section>
+        </section> -->
 
         <table border="2">
             <tr>
@@ -150,7 +156,11 @@
     </div>
 </template>
 <script>
+import CreateComponent from './CreateComponent.vue';
 export default {
+  components: { 
+      'create-component' : CreateComponent
+       },
     data: function(){
         return{
             dishes: [],
@@ -172,11 +182,14 @@ export default {
     props:[ 
         "csfr",
     ],
+    computed:{
+        // arrayPush(dishes) {
+        //     this.dishes = dishes;
+        // },
+    },
 
     methods: {
-        available(){
-            this.available = !this.available;
-        },
+       
         newDish() {
             this.createForm = !this.createForm;
         },
@@ -191,7 +204,7 @@ export default {
         },
 
         check() {
-            console.log("check:", this.form);
+            console.log("check:", this.dishesPull(dishess));
         },
 
         submitDish(e) {
