@@ -301,11 +301,11 @@ export default {
             };
             form.append("category", this.editCategory);
             // form.append("user_id", this.editUser_id);
-            
+
             if (this.editAvailable === true || this.editAvailable === 1) {
-                this.editAvailable = true;
+                this.editAvailable = 1;
             } else {
-                this.editAvailable = false;
+                this.editAvailable = 0;
             }
             form.append("available", this.editAvailable);
             console.log("available", this.editAvailable);
