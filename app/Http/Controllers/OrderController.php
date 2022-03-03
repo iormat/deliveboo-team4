@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
-use App\Http\Requests\Orders\OrderRequest;
+use App\Http\Requests\OrderRequest;
 
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
     public function generate(Request $request, Gateway $gateway){
         $token = $gateway->clientToken()->generate();

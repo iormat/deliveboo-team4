@@ -23,3 +23,6 @@ Route::post('/login', 'Auth\LoginController@login') -> name('login');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
+
+Route::get('/orders/generate', 'OrderController@generate');
+Route::post('/orders/make/payment', 'OrderController@makePayment');
