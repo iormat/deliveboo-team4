@@ -71,6 +71,7 @@ class ApiController extends Controller
             'description' => 'required | string',
             'price' => 'required',
             'ingredients' => 'required | string',
+            'available' => 'boolean'
         ]);
         // validate dish img if present
         if ($request -> file('dishes_img') != '') {
@@ -85,11 +86,14 @@ class ApiController extends Controller
             $data['dishes_img'] = $imageName;
         }
         // dish availability
-        if($request -> get('available')) {
-            $data['available'] = 1;
-        }else {
-            $data['available'] = 0;
-        }
+        // if ($request -> get('available') == true || $request -> get('available') == 1) {
+        //     $data['available'] = 1;
+        // } else {
+        //     $data['available'] = 0;
+        // }
+
+        // dd($request -> get('available'));
+
 
         $dish = Dish::findOrFail($id);
         // relate dish to user

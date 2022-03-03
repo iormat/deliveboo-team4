@@ -102,6 +102,7 @@
                 <!-- <td><img :src="'storage/dishs/' + dish.image"></td> -->
             </tr>
         </table>
+
         <!-- edit existing dish - form -->
         <section v-if="changeForm" id="edit">
             <form 
@@ -145,7 +146,6 @@
                 <br>
                 <!-- dish category - edit -->
                 <select v-model="editCategory" class="my-3" name="category">
-                    <option selected disabled>{{editCategory}}</option>
                     <option v-for="category in categories" :key="category.id" :value="category.id" >
                         {{category.category_name}}
                         {{category.id}}
@@ -155,7 +155,7 @@
                 <!-- dish availabiliy - edit -->
                 <label for="available">
                     Disponibilit&agrave;&colon;
-                    <input @click="checkAvailable" v-model="editAvailable" type="checkbox" name="available" id="available">
+                    <input type="checkbox" name="available" v-model="editAvailable" id="available">
                 </label>
                 <br>
                 <!-- submit edit form -->
@@ -166,6 +166,7 @@
                 </div>
             </form>
         </section>
+
     </div>
 </template>
 
@@ -194,7 +195,7 @@ export default {
             category: -1,
             dishes_img: "",
             
-            editAvailable: true,
+            editAvailable: false,
             editDish_name: '',
             editDescription: '',
             editPrice: 0,
@@ -208,7 +209,6 @@ export default {
         };
     },
 
-
     methods: {
         // toggle create - form
         createNewDish() {
@@ -220,7 +220,7 @@ export default {
         },
         // get selected dish open edit - form
         editDish(id) {
-            console.log(id);
+            // console.log(id);
             // this.editDishArr = [];
             // this.dishes.forEach(dish => {
                 //     if(dish.id === id) {
@@ -230,9 +230,9 @@ export default {
 
             this.dishEdit_id = id;
             let selectedDish = this.dishes[this.getDishIndById(id)];
-            console.log("selectedDish",selectedDish);
+            // console.log("selectedDish",selectedDish);
 
-            this.editAvailable = selectedDish.available; 
+            this.editAvailable = selectedDish.available;
             this.editDish_name = selectedDish.dish_name;
             this.editDescription = selectedDish.description; 
             this.editPrice = selectedDish.price;
@@ -241,7 +241,7 @@ export default {
             this.editDishes_img = selectedDish.dishes_img; 
             
 
-            console.log('questo è il piatto: ', selectedDish.available);
+            // console.log('questo è il piatto: ', selectedDish.available);
             this.changeForm = !this.changeForm;
         },
         // save user img - useful format
@@ -251,12 +251,14 @@ export default {
         },
         // save updated user img - useful format
         saveUpdatedImg(img) {
-            this.editdishes_img = img.target.files[0];
-            console.log("updated dishes_img:", this.editdishes_img);
+            this.editDishes_img = img.target.files[0];
+            console.log("updated dishes_img:", this.editDishes_img);
         },
         // test button
         check() {
-            console.log("check:", this.dishes);
+            let x = document.getElementById("prova").checked;
+            console.log("check", x);
+
         },
         // submit create dish - form
         submitDish(e) {
@@ -285,16 +287,12 @@ export default {
             this.price = this.category = 0;
             this.createForm = !this.createForm;
         },
-        // toggle availability
-        checkAvailable() {
-            this.available = !this.available
-        },
+    
         // update existing dish
         updateDish(event) {
-            console.log('questo è event: ', event);
+
             let form = new FormData(event.target);
             form.append("dish_name", this.editDish_name);
-            console.log("dish_name", this.editDish_name);
             form.append("description", this.editDescription);
             form.append("price", this.editPrice);
             form.append("ingredients", this.editIngredients);
@@ -303,21 +301,26 @@ export default {
             };
             form.append("category", this.editCategory);
             // form.append("user_id", this.editUser_id);
+            
+            if (this.editAvailable === true || this.editAvailable === 1) {
+                this.editAvailable = true;
+            } else {
+                this.editAvailable = false;
+            }
             form.append("available", this.editAvailable);
             console.log("available", this.editAvailable);
+
+
             // post form 
             axios.post(`/api/updateDish/${this.dishEdit_id}`, form)
-            .then(function (response) {
-                // let dish = response.data;
-                // self.dishes = response.data;
-                // console.log("api update:", response.data);
-                // console.log("dishes:", self.dishes);
+            .then( response => {
+                let ind = this.getDishIndById(this.dishEdit_id);
+                this.dishes.splice(ind, 1, response.data)             
             })
             .catch(function (error) {
                 console.error(error);
             });
             this.changeForm = !this.changeForm;
-            
         },
         // delete dish
         deleteDish(id) {
