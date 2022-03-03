@@ -84,8 +84,8 @@ class ApiController extends Controller
             $imageFile -> storeAs('/dishes/', $imageName, 'public');
             $data['dishes_img'] = $imageName;
         }
-        // default to true dish availability
-        if($request -> get('available') === true) {
+        // dish availability
+        if($request -> get('available')) {
             $data['available'] = 1;
         }else {
             $data['available'] = 0;
