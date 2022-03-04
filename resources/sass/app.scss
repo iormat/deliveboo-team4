@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    text-align: center;
+}
+
+#edit{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.137);
+    display: grid;
+    place-content: center;
+    form{
+        border: 2px solid black;
+        padding: 20px;
+        background-color: white;
+        text-align: center;
+
+    }
+
+
+
+}
