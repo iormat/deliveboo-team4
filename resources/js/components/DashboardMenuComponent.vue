@@ -4,20 +4,14 @@
         <!-- button to toggle create - form -->
         <div @click="createNewDish" class="mb-2 btn btn-success">Create</div>        
         <button @click="check" >CHECK</button>
-        <!-- <create-component                               
-            v-bind:createForm.sync="createForm" 
-            :categories="categories"
-            @update:arrayPush="arrayPush">
-        </create-component> -->
+ 
         <create-component 
-        :dishes="dishes"
-        :categories="categories"
-        v-if="createForm"
-        @createNewDish="createNewDish"
-        @getNewDishes="getNewDishes"
-
-        >
-        </create-component>
+                        :dishes="dishes"
+                        :categories="categories"
+                        v-if="createForm"
+                        @createNewDish="createNewDish"
+                        @getNewDishes="getNewDishes"
+        ></create-component>
 
         <!-- create new dish - form -->
         
@@ -64,77 +58,33 @@
         </table>
 
         <!-- edit existing dish - form -->
-        <section v-if="changeForm" id="edit">
-            <form 
-                method="POST" 
-                enctype="multipart/form-data" 
-                @submit.prevent="updateDish">
-                <!-- dish name - edit -->
-                <label for="name">
-                    Inserisci il nome&colon;
-                    <br>
-                    <input type="text" id="name" min="4" max="50" required v-model="editDish_name" name="dish_name">
-                </label>
-                <br>
-                <!-- dish description - edit -->
-                <label for="desription">
-                    Inserisci il una descrizione&colon;
-                    <br>
-                    <textarea v-model="editDescription" id="desription" cols="50" rows="5" required></textarea>
-                </label>
-                <br>
-                <!-- dish price - edit -->
-                <label for="price">
-                    Inserisci il prezzo&colon;
-                    <br>
-                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice">
-                </label>
-                <br>
-                <!-- dish ingredients - edit -->
-                <label for="ingredients">
-                    Aggiungi gli ingredienti&colon;
-                    <br>
-                    <textarea v-model="editIngredients" id="ingredients" cols="50" rows="5" required></textarea>
-                </label>
-                <br>
-                <!-- dish image - edit -->
-                <label for="img">
-                    Aggiungi immagine&colon;
-                    <br>
-                    <input type="file" @change="saveUpdatedImg" id="img">
-                </label> 
-                <br>
-                <!-- dish category - edit -->
-                <select v-model="editCategory" class="my-3" name="category">
-                    <option v-for="category in categories" :key="category.id" :value="category.id" >
-                        {{category.category_name}}
-                        {{category.id}}
-                    </option>
-                </select>
-                <br>
-                <!-- dish availabiliy - edit -->
-                <label for="available">
-                    Disponibilit&agrave;&colon;
-                    <input type="checkbox" name="available" v-model="editAvailable" id="available">
-                </label>
-                <br>
-                <!-- submit edit form -->
-                <input type="submit" class="mb-5 btn btn-success" value="submit">
-                <!-- close edit form -->
-                <div class="text-right">
-                    <button class="btn btn-danger" @click="toggleEditDish">Chiudi</button>
-                </div>
-            </form>
-        </section>
+        
+        <edit-component 
+                        v-if="changeForm"
+                        :editAvailable   ="editAvailable"  
+                        :editDish_name   ="editDish_name"   
+                        :editDescription ="editDescription" 
+                        :editPrice       ="editPrice"   
+                        :editIngredients ="editIngredients"
+                        :editCategory    ="editCategory"        
+                        :editDishes_img  ="editDishes_img"      
+                        :dishEdit_id     ="dishEdit_id"         
+                        :categories      ="categories"      
+                        :dishes          ="dishes"
+
+        ></edit-component>
+
 
     </div>
 </template>
 
 <script>
 import CreateComponent from './CreateComponent.vue';
+import EditComponent from './EditComponent.vue';
 export default {
     components: { 
-        'create-component' : CreateComponent
+        'create-component' : CreateComponent,
+        'edit-component' : EditComponent,
     },
     data: function(){
         return{
@@ -164,7 +114,6 @@ export default {
             editDishes_img: "",
 
             // retrive for edit single dish info
-            editDishArr: [],  
             dishEdit_id: -1,   
         };
     },
@@ -187,20 +136,14 @@ export default {
         // toggle close edit - form
         toggleEditDish() {
             this.changeForm = !this.changeForm;
-        },
-        // get selected dish open edit - form
-        editDish(id) {
-            // console.log(id);
-            // this.editDishArr = [];
-            // this.dishes.forEach(dish => {
-                //     if(dish.id === id) {
-                    //         this.editDishArr.push(dish)
-            //     }
-            // });
+            },
 
+               // open create dish - form
+         editDish(id) {
             this.dishEdit_id = id;
             let selectedDish = this.dishes[this.getDishIndById(id)];
             // console.log("selectedDish",selectedDish);
+            
 
             this.editAvailable = selectedDish.available;
             this.editDish_name = selectedDish.dish_name;
@@ -214,13 +157,41 @@ export default {
             // console.log('questo è il piatto: ', selectedDish.available);
             this.changeForm = !this.changeForm;
         },
+
+        // get selected dish open edit - form
+        // editDish(id) {
+        //     // console.log(id);
+        //     // this.editDishArr = [];
+        //     // this.dishes.forEach(dish => {
+        //         //     if(dish.id === id) {
+        //             //         this.editDishArr.push(dish)
+        //     //     }
+        //     // });
+
+        //     this.dishEdit_id = id;
+        //     let selectedDish = this.dishes[this.getDishIndById(id)];
+        //     // console.log("selectedDish",selectedDish);
+
+        //     this.editAvailable = selectedDish.available;
+        //     this.editDish_name = selectedDish.dish_name;
+        //     this.editDescription = selectedDish.description; 
+        //     this.editPrice = selectedDish.price;
+        //     this.editIngredients = selectedDish.ingredients; 
+        //     this.editCategory = selectedDish.category; 
+        //     this.editDishes_img = selectedDish.dishes_img; 
+            
+
+        //     // console.log('questo è il piatto: ', selectedDish.available);
+        //     this.changeForm = !this.changeForm;
+        // },
         // save user img - useful format
         
         // save updated user img - useful format
-        saveUpdatedImg(img) {
-            this.editDishes_img = img.target.files[0];
-            console.log("updated dishes_img:", this.editDishes_img);
-        },
+        
+        // saveUpdatedImg(img) {
+        //     this.editDishes_img = img.target.files[0];
+        //     console.log("updated dishes_img:", this.editDishes_img);
+        // },
         // test button
         check() {
             console.log("check", this.dishes);
@@ -228,39 +199,39 @@ export default {
         },
     
         // update existing dish
-        updateDish(event) {
+        // updateDish(event) {
 
-            let form = new FormData(event.target);
-            form.append("dish_name", this.editDish_name);
-            form.append("description", this.editDescription);
-            form.append("price", this.editPrice);
-            form.append("ingredients", this.editIngredients);
-            if(this.editDishes_img != ''){
-                form.append("dishes_img",this.editDishes_img);  
-            };
-            form.append("category", this.editCategory);
-            // form.append("user_id", this.editUser_id);
+        //     let form = new FormData(event.target);
+        //     form.append("dish_name", this.editDish_name);
+        //     form.append("description", this.editDescription);
+        //     form.append("price", this.editPrice);
+        //     form.append("ingredients", this.editIngredients);
+        //     if(this.editDishes_img != ''){
+        //         form.append("dishes_img",this.editDishes_img);  
+        //     };
+        //     form.append("category", this.editCategory);
+        //     // form.append("user_id", this.editUser_id);
 
-            if (this.editAvailable === true || this.editAvailable === 1) {
-                this.editAvailable = 1;
-            } else {
-                this.editAvailable = 0;
-            }
-            form.append("available", this.editAvailable);
-            console.log("available", this.editAvailable);
+        //     if (this.editAvailable === true || this.editAvailable === 1) {
+        //         this.editAvailable = 1;
+        //     } else {
+        //         this.editAvailable = 0;
+        //     }
+        //     form.append("available", this.editAvailable);
+        //     console.log("available", this.editAvailable);
 
 
-            // post form 
-            axios.post(`/api/updateDish/${this.dishEdit_id}`, form)
-            .then( response => {
-                let ind = this.getDishIndById(this.dishEdit_id);
-                this.dishes.splice(ind, 1, response.data)             
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-            this.changeForm = !this.changeForm;
-        },
+        //     // post form 
+        //     axios.post(`/api/updateDish/${this.dishEdit_id}`, form)
+        //     .then( response => {
+        //         let ind = this.getDishIndById(this.dishEdit_id);
+        //         this.dishes.splice(ind, 1, response.data)             
+        //     })
+        //     .catch(function (error) {
+        //         console.error(error);
+        //     });
+        //     this.changeForm = !this.changeForm;
+        // },
         // delete dish
         deleteDish(id) {
             console.log(id)
@@ -281,6 +252,7 @@ export default {
                     return i;
                 }
             }
+            this.dish_id = id;
             return -1
         }
     },
