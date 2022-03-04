@@ -28,6 +28,7 @@ Route::prefix('/api') -> group(function() {
     Route::post('/edit', 'ApiController@edit');
     Route::post('/updateDish/{id}', 'ApiController@updateDish') -> name('update');
     Route::get('/dishDelete/{id}', 'ApiController@deleteDish') -> name('dalate');
+    Route::get('/get/restaurant/menu/{id}', 'ApiController@getRestaurantMenu') -> name('menu');
 });
 
 
@@ -36,3 +37,5 @@ Route::post('/orders/make/payment', 'OrderController@makePayment');
 
 
 Route::get('/all/dishes', 'DishController@index');
+
+Route::get('/restaurant/details/{id}', 'GuestController@getRestaurant') -> name('restaurant');
