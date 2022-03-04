@@ -30,3 +30,6 @@ Route::prefix('/api') -> group(function() {
     Route::get('/dishDelete/{id}', 'ApiController@deleteDish') -> name('dalate');
 });
 
+
+Route::get('/orders/generate', 'OrderController@generate');
+Route::post('/orders/make/payment', 'OrderController@makePayment');
