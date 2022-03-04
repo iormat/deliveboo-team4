@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
+
 // Auth::routes();
 
 // user login - register - logout
@@ -33,3 +34,5 @@ Route::prefix('/api') -> group(function() {
 
 Route::get('/orders/generate', 'OrderController@generate');
 Route::post('/orders/make/payment', 'OrderController@makePayment');
+
+Route::get('/all/dishes', 'ProductController@getDishes');
