@@ -1,57 +1,63 @@
 <template>
+    <!-- <section> -->
+    <section id="create">
+        <!-- display errors component -->
+        <form-error-component
+        v-if="validationErrors"
+        :errors='validationErrors'
+        ></form-error-component>
 
-        <!-- <section> -->
-        <section id="create">
-            <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
-                <!-- dish name - create -->
-                <label for="name">
-                    Inserisci il nome&colon;
-                    <br>
-                    <input type="text" id="name" v-model="dish_name" min="4" max="50" required>
-                </label>
+        <!-- edit - form -->
+        <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
+            <!-- dish name - create -->
+            <label for="name">
+                Inserisci il nome&colon;
                 <br>
-                <!-- dish description - create -->
-                <label for="desription">
-                    Inserisci il una descrizione&colon;
-                    <br>
-                    <textarea v-model="description" id="desription" cols="50" rows="5" required></textarea>
-                </label>
+                <input type="text" id="name" v-model="dish_name" min="4" max="50" required>
+            </label>
+            <br>
+            <!-- dish description - create -->
+            <label for="desription">
+                Inserisci il una descrizione&colon;
                 <br>
-                <!-- dish price - create -->
-                <label for="price">
-                    Inserisci il prezzo&colon;
-                    <br>
-                    <input type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required>
-                </label>
+                <textarea v-model="description" id="desription" cols="50" rows="5" required></textarea>
+            </label>
+            <br>
+            <!-- dish price - create -->
+            <label for="price">
+                Inserisci il prezzo&colon;
                 <br>
-                <!-- dish ingredients - create -->
-                <label for="ingredients">
-                    Aggiungi gli ingredienti&colon;
-                    <br>
-                    <textarea v-model="ingredients" id="ingredients" cols="50" rows="5" required></textarea>
-                </label>
+                <input type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required>
+            </label>
+            <br>
+            <!-- dish ingredients - create -->
+            <label for="ingredients">
+                Aggiungi gli ingredienti&colon;
                 <br>
-                <!-- dish img - create -->
-                <label for="img">
-                    Aggiungi immagine&colon;
-                    <br>
-                    <input type="file" @change="saveImg" id="img">
-                </label> 
+                <textarea v-model="ingredients" id="ingredients" cols="50" rows="5" required></textarea>
+            </label>
+            <br>
+            <!-- dish img - create -->
+            <label for="img">
+                Aggiungi immagine&colon;
                 <br>
-                <!-- categories select - create -->
-                <select v-model="category" class="my-3" name="category">
-                    <option v-for="category in categories" :key="category.id" :value="category.id" >
-                        {{category.category_name}}
-                        {{category.id}}
-                    </option>
-                </select> 
-                <br>
+                <input type="file" @change="saveImg" id="img">
+            </label> 
+            <br>
+            <!-- categories select - create -->
+            <select v-model="category" class="my-3" name="category">
+                <option v-for="category in categories" :key="category.id" :value="category.id" >
+                    {{category.category_name}}
+                    {{category.id}}
+                </option>
+            </select> 
+            <br>
 
-                <input type="submit" class="mb-5 btn btn-success" value="submit">
-            </form>
-        </section>
-
+            <input type="submit" class="mb-5 btn btn-success" value="submit">
+        </form>
+    </section>
 </template>
+
 <script>
 export default {
     data: function(){
@@ -65,6 +71,7 @@ export default {
             dishes_img: "",
 
             newDishes: [],
+            validationErrors: '',
         };
     },
 
@@ -100,8 +107,19 @@ export default {
                 self.newDishes.push(response.data);
                 // console.log("api create:", self.newDishes);
                 self.$emit("getNewDishes", self.newDishes);
+
+                // reset all dish properties
+                // this.dish_name = this.description = this.ingredients = this.dishes_img = '';
+                // this.price = this.category = 0;
+                // this.createForm = !this.createForm;
+
+                this.$emit("createNewDish");
+
             })
-            .catch(function (error) {
+            .catch(error => {
+                if(error.response.status == 422) {
+                    this.validationErrors = error.response.data.errors;
+                }
                 console.error(error);
             });
 
@@ -110,7 +128,7 @@ export default {
             this.price = this.category = 0;
             this.createForm = !this.createForm;
 
-            this.$emit("createNewDish");
+            // this.$emit("createNewDish");
         },
     },
 }

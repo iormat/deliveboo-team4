@@ -1,6 +1,12 @@
 <template>
     <div id="dishes_menu">
         <h2>I tuoi menu</h2>
+        <!-- display errors component -->
+        <form-error-component
+        v-if="validationErrors"
+        :errors='validationErrors'
+        ></form-error-component>
+
         <!-- button to toggle create - form -->
         <div @click="createNewDish" class="mb-2 btn btn-success">Create</div>        
         <button @click="check" >CHECK</button>
@@ -9,15 +15,14 @@
             :categories="categories"
             @update:arrayPush="arrayPush">
         </create-component> -->
-        <create-component 
+        <CreateComponent 
         :dishes="dishes"
         :categories="categories"
         v-if="createForm"
         @createNewDish="createNewDish"
         @getNewDishes="getNewDishes"
-
-        >
-        </create-component>
+        />
+        
 
         <!-- create new dish - form -->
         
@@ -134,7 +139,7 @@
 import CreateComponent from './CreateComponent.vue';
 export default {
     components: { 
-        'create-component' : CreateComponent
+        CreateComponent,
     },
     data: function(){
         return{
@@ -165,7 +170,9 @@ export default {
 
             // retrive for edit single dish info
             editDishArr: [],  
-            dishEdit_id: -1,   
+            dishEdit_id: -1,  
+            
+            validationErrors: '',
         };
     },
 
@@ -256,8 +263,11 @@ export default {
                 let ind = this.getDishIndById(this.dishEdit_id);
                 this.dishes.splice(ind, 1, response.data)             
             })
-            .catch(function (error) {
-                console.error(error);
+            .catch(error => {
+                if(error.response.status == 422) {
+                    this.validationErrors = error.response.data.errors;
+                    console.error('errore: ', error);
+                }
             });
             this.changeForm = !this.changeForm;
         },
