@@ -23,31 +23,36 @@
                     </div>
                 </li>
             </ul>
-            <div>
-                <ul>
-                    <li v-for="dish in cart" :key="dish.id">
-                        {{dish.dish_name}}
-                        {{dish.price}}
-                        {{dish.quantity}}
-                    </li>
-                </ul>
-            </div>
+            <cart-component :cart="cart"></cart-component>
+            <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
         </div>
     </section>
 </template>
 
 <script>
+import CartComponent from './CartComponent.vue';
 export default {
+     components: { 
+        'cart-component' : CartComponent
+    },
     data: function() {
         return {
             menu: [],
-
             cart:[],
         }
     },
     props: [
         'user'
     ],
+    computed: {
+        totalPrice() {
+            let total = 0;
+            for(let i = 0; i < this.cart.length; i++) {
+                total += this.cart[i].price * this.cart[i].quantity;
+            }
+            return total;
+        }
+    },
     mounted() {
 
         axios.get(`/api/get/restaurant/menu/${this.user.id}`)
@@ -60,6 +65,17 @@ export default {
             })
 
         console.log('id utente: ', this.user.id);
+
+        // Getting Cart from LOCALSTORAGE
+         if (localStorage.getItem('cart')) {
+            try {
+                this.cart = JSON.parse(localStorage.getItem('cart'));
+                // localStorage.removeItem('cart');
+            } catch(e) {
+                localStorage.removeItem('cart');
+            }
+        }
+        console.log("carrello",this.cart);
     },
 
     methods: {
@@ -73,11 +89,24 @@ export default {
                for(let i=0; i<this.cart.length; i++) {
                   if(element.id === this.cart[i].id) {
                       this.cart[i].quantity++;
+                      this.cart.splice(i, 1, element);
                   }
                }
             }   
             console.log("Il carrello: ",this.cart);
+            this.saveCart();
+
+        },
+
+        saveCart() {
+            const parsed = JSON.stringify(this.cart);
+            localStorage.setItem('cart', parsed);
+        },
+
+        removeItemFromStorage() {
+            localStorage.removeItem('cart');
         }
+
     }
 
     
