@@ -36,7 +36,7 @@ export default {
             console.log(dish.quantity);
             newQuantity= dish.quantity--;
             // if(dish.quantity == 0) {
-                this.cart.splice(dish, 1)
+                // this.cart.splice(dish, 1)
             // }
             console.log(dish.quantity)
             this.$emit('removeDish', newQuantity)
