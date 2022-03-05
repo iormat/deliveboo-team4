@@ -88,6 +88,7 @@ export default {
             } else {
                 for(let i=0; i<this.cart.length; i++) {
                     if(element.id === this.cart[i].id) {
+                        element.quantity = this.cart[i].quantity;
                         this.cart[i].quantity++;
                         this.cart.splice(i, 1, element);
                     }
