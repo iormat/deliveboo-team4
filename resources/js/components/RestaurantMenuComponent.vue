@@ -26,6 +26,7 @@
             <cart-component :cart="cart"></cart-component>
             <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
         </div>
+
     </section>
 </template>
 
@@ -39,6 +40,7 @@ export default {
         return {
             menu: [],
             cart:[],
+            x: "",
         }
     },
     props: [
@@ -70,7 +72,6 @@ export default {
          if (localStorage.getItem('cart')) {
             try {
                 this.cart = JSON.parse(localStorage.getItem('cart'));
-                // localStorage.removeItem('cart');
             } catch(e) {
                 localStorage.removeItem('cart');
             }
@@ -80,29 +81,26 @@ export default {
 
     methods: {
         addToCart(element) {
-           
-            if(!this.cart.includes(element)) {
+            const parsed = JSON.stringify(this.cart);
+            if(!parsed.includes(`"id":${element.id}`)) {
                 element.quantity = 1;
-                this.cart.push(element);
-            } 
-            else {
-               for(let i=0; i<this.cart.length; i++) {
-                  if(element.id === this.cart[i].id) {
-                      this.cart[i].quantity++;
-                      this.cart.splice(i, 1, element);
-                  }
-               }
-            }   
-            console.log("Il carrello: ",this.cart);
+                this.cart.push(element)
+            } else {
+                for(let i=0; i<this.cart.length; i++) {
+                    if(element.id === this.cart[i].id) {
+                        this.cart[i].quantity++;
+                        this.cart.splice(i, 1, element);
+                    }
+                }
+            }             
             this.saveCart();
-
         },
+
 
         saveCart() {
             const parsed = JSON.stringify(this.cart);
             localStorage.setItem('cart', parsed);
         },
-
         removeItemFromStorage() {
             localStorage.removeItem('cart');
         }
