@@ -64,24 +64,18 @@ export default {
 
     methods: {
         addToCart(element) {
-            if(this.cart.length == 0){
+           
+            if(!this.cart.includes(element)) {
                 element.quantity = 1;
                 this.cart.push(element);
-            }
-            else if(this.cart.length > 0) {
-                this.cart.forEach((dish, i) => {
-                    if(!this.cart.includes(element)) {
-                        element.quantity = 1;
-                        this.cart.push(element)
-                    } else if (this.cart.includes(element)){
-                        this.cart[i].quantity ++;
-                        // this.cart.splice(i, 1, element);
-                        console.log(i);
-                        console.log(dish);
-                    }       
-                });
             } 
-                  
+            else {
+               for(let i=0; i<this.cart.length; i++) {
+                  if(element.id === this.cart[i].id) {
+                      this.cart[i].quantity++;
+                  }
+               }
+            }   
             console.log("Il carrello: ",this.cart);
         }
     }
