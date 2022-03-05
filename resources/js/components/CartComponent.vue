@@ -7,6 +7,7 @@
                         {{dish.dish_name}}
                         {{dish.price}}
                         {{dish.quantity}}
+                        <button @click="removeFromCart(dish)"> delete </button>
                     </li>
                 </ul>
                 {{totalPrice}}
@@ -31,6 +32,16 @@ export default {
     },
 
     methods: {
+        removeFromCart(dish) {
+            console.log(dish.quantity);
+            newQuantity= dish.quantity--;
+            // if(dish.quantity == 0) {
+                this.cart.splice(dish, 1)
+            // }
+            console.log(dish.quantity)
+            this.$emit('removeDish', newQuantity)
+        }
+
 
     }
 

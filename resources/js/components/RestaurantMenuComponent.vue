@@ -69,11 +69,11 @@ export default {
         console.log('id utente: ', this.user.id);
 
         // Getting Cart from LOCALSTORAGE
-         if (localStorage.getItem('cart')) {
+         if (sessionStorage.getItem('cart')) {
             try {
-                this.cart = JSON.parse(localStorage.getItem('cart'));
+                this.cart = JSON.parse(sessionStorage.getItem('cart'));
             } catch(e) {
-                localStorage.removeItem('cart');
+                sessionStorage.removeItem('cart');
             }
         }
         console.log("carrello",this.cart);
@@ -88,8 +88,8 @@ export default {
             } else {
                 for(let i=0; i<this.cart.length; i++) {
                     if(element.id === this.cart[i].id) {
-                        element.quantity = this.cart[i].quantity;
                         this.cart[i].quantity++;
+                        element.quantity = this.cart[i].quantity;
                         this.cart.splice(i, 1, element);
                     }
                 }
@@ -100,10 +100,10 @@ export default {
 
         saveCart() {
             const parsed = JSON.stringify(this.cart);
-            localStorage.setItem('cart', parsed);
+            sessionStorage.setItem('cart', parsed);
         },
         removeItemFromStorage() {
-            localStorage.removeItem('cart');
+            sessionStorage.removeItem('cart');
         }
 
     }
