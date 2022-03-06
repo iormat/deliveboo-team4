@@ -15,6 +15,7 @@
             <div>
                 <button @click="checkout" class="btn btn-success">Procedi all'ordine</button>
             </div>
+
         </div>
     </section>
 </template>
@@ -23,11 +24,12 @@
 export default {
     data: function() {
         return {
-            total: 0
+            total: 0,
         }
     },
-
-
+    props: {
+        cart: Array
+    },
     computed: {
         // get total price of cart items
         totalPrice() {

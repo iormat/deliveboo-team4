@@ -15,13 +15,14 @@
 
         <div>
             <button class="btn btn-success">Procedi all'ordine</button>
-            {{tokenApi}}
+            {{authorization.type}}
         </div>
         <v-braintree 
-            authorization="authorization"
+            :authorization="authorization.type"
             locale="it_IT"
             @success="onSuccess"
             @error="onError"
+            @load="onLoad"
         ></v-braintree>
     </div>
 </template>
@@ -32,15 +33,12 @@ export default {
         return {
             cart: [],
 
-            tokenApi: 'fddfgfg',
+            authorization: {
+                required: true,
+                type: '',
+            }
         }
     },
-    props: {
-        authorization: {
-            // required: true,
-            // type: String,
-        }
-    }, 
 
     computed: {
         // get total price of cart items
@@ -53,6 +51,10 @@ export default {
         }
     },
     methods: {
+        onLoad() {
+            alert('caricando');
+        },
+
         onSuccess (payload) {
             // let nonce = payload.nonce;
             console.log(payload);
@@ -61,7 +63,6 @@ export default {
             // let message = error.message;
             console.log(error);
         },
-
     },
     mounted() {
         if (sessionStorage.getItem('cart')) {
@@ -73,20 +74,9 @@ export default {
         }
     },
     async mounted() {
-        this.tokenApi = 'caio';
-        await axios.get('/order/generate')
-            .then(res => {
-                console.log('questo è il risultato: ', res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        // tokenApi = response.token;
-        // this.loadingPayment = false;
-        // return {
-        //     tokenApi: tokenApi,
-        //     loadingPayment:  false,  
-        // }
+        const response = await axios.get('/orders/generate')
+        this.authorization.type = response.data.token;
+        // return {tokenApi: this.authorization.type}
     }
 }
 </script>
