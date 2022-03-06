@@ -21,7 +21,9 @@ export default {
     props: [
         'cart'
     ], 
+    
     computed: {
+        // get total price of cart items
         totalPrice() {
             let total = 0;
             for(let i = 0; i < this.cart.length; i++) {
@@ -32,13 +34,10 @@ export default {
     },
 
     methods: {
+        // send dish info to parent
         removeFromCart(dish) {
             this.$emit('removeDish', dish)
         }
-
-
     }
-
-    
 }
 </script>

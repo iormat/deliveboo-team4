@@ -43,46 +43,15 @@ export default {
         return {
             menu: [],
             cart:[],
-            x: "",
         }
     },
+
     props: [
         'user'
     ],
-    computed: {
-        totalPrice() {
-            let total = 0;
-            for(let i = 0; i < this.cart.length; i++) {
-                total += this.cart[i].price * this.cart[i].quantity;
-            }
-            return total;
-        }
-    },
-    mounted() {
-
-        axios.get(`/api/get/restaurant/menu/${this.user.id}`)
-            .then(res => {
-                this.menu = res.data;
-                console.log(res)
-            })
-            .catch(err => {
-                console.error(err);
-            })
-
-        console.log('id utente: ', this.user.id);
-
-        // Getting Cart from LOCALSTORAGE
-         if (sessionStorage.getItem('cart')) {
-            try {
-                this.cart = JSON.parse(sessionStorage.getItem('cart'));
-            } catch(e) {
-                sessionStorage.removeItem('cart');
-            }
-        }
-        console.log("carrello",this.cart);
-    },
 
     methods: {
+        // add dish to cart
         addToCart(element) {
             const parsed = JSON.stringify(this.cart);
             if(!parsed.includes(`"id":${element.id}`)) {
@@ -99,7 +68,7 @@ export default {
             }             
             this.saveCart();
         },
-
+        // remove dish from cart
         removeDish(dish) {
             for(let i=0; i<this.cart.length; i++) {
                 if(dish.id === this.cart[i].id) {
@@ -119,12 +88,30 @@ export default {
             const parsed = JSON.stringify(this.cart);
             sessionStorage.setItem('cart', parsed);
         },
+
         removeItemFromStorage() {
             sessionStorage.removeItem('cart');
         }
 
-    }
+    },
+   
+    mounted() {
+        axios.get(`/api/get/restaurant/menu/${this.user.id}`)
+            .then(res => {
+                this.menu = res.data;
+            })
+            .catch(err => {
+                console.error(err);
+            })
 
-    
+        // Getting Cart from LOCALSTORAGE
+         if (sessionStorage.getItem('cart')) {
+            try {
+                this.cart = JSON.parse(sessionStorage.getItem('cart'));
+            } catch(e) {
+                sessionStorage.removeItem('cart');
+            }
+        }
+    }, 
 }
 </script>
