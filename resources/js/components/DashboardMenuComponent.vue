@@ -229,7 +229,6 @@ export default {
     
         // update existing dish
         updateDish(event) {
-
             let form = new FormData(event.target);
             form.append("dish_name", this.editDish_name);
             form.append("description", this.editDescription);

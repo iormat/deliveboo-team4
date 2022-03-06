@@ -23,7 +23,8 @@
                     </div>
                 </li>
             </ul>
-            <cart-component 
+            <cart-component
+            v-if="shoppingCart"
             :cart="cart"
             @removeDish="removeDish"
             ></cart-component>
@@ -43,6 +44,8 @@ export default {
         return {
             menu: [],
             cart:[],
+
+            shoppingCart: false,
         }
     },
 
@@ -65,7 +68,10 @@ export default {
                         this.cart.splice(i, 1, element);
                     }
                 }
-            }             
+            }
+            // check cart
+            this.cart.length > 0 ? this.shoppingCart = true : this.shoppingCart = false;
+ 
             this.saveCart();
         },
         // remove dish from cart
@@ -79,9 +85,12 @@ export default {
                     }else {
                         this.cart.splice(i, 1);
                     }
-                    this.saveCart();
                 }
             }
+            // check cart
+            this.cart.length > 0 ? this.shoppingCart = true : this.shoppingCart = false;
+
+            this.saveCart();
         },
 
         saveCart() {
@@ -103,7 +112,7 @@ export default {
             .catch(err => {
                 console.error(err);
             })
-
+        
         // Getting Cart from LOCALSTORAGE
          if (sessionStorage.getItem('cart')) {
             try {
@@ -112,6 +121,9 @@ export default {
                 sessionStorage.removeItem('cart');
             }
         }
+        // check cart
+        this.cart.length > 0 ? this.shoppingCart = true : this.shoppingCart = false;
+
     }, 
 }
 </script>

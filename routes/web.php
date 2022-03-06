@@ -21,14 +21,17 @@ Route::get('/dashboard', function(){
 
 
 // api routes
-Route::prefix('/api') -> group(function() {  
+Route::prefix('/api') -> group(function() { 
+    // logged users 
     Route::get('/dishes', 'ApiController@getMenu') -> name('api.dishes');
     Route::get('/categories', 'ApiController@getCategories') -> name('api.categories');
     Route::post('/store', 'ApiController@addDish');
     Route::post('/edit', 'ApiController@edit');
     Route::post('/updateDish/{id}', 'ApiController@updateDish') -> name('update');
-    Route::get('/dishDelete/{id}', 'ApiController@deleteDish') -> name('dalate');
+    Route::get('/dishDelete/{id}', 'ApiController@deleteDish') -> name('delate');
     Route::get('/get/restaurant/menu/{id}', 'ApiController@getRestaurantMenu') -> name('menu');
+    // guests
+    Route::post('/cart/checkout', 'ApiController@checkout') -> name('api.cart.checkout');
 });
 
 
@@ -39,3 +42,9 @@ Route::post('/orders/make/payment', 'OrderController@makePayment');
 Route::get('/all/dishes', 'DishController@index');
 
 Route::get('/restaurant/details/{id}', 'GuestController@getRestaurant') -> name('restaurant');
+
+// Route::get('/cart/checkout', 'OrderController@checkout') -> name('checkout');
+
+// Route::get('/cart/checkout', function(){
+//     return view('pages.cart-checkout');
+// }) -> name('cart-checkout');
