@@ -23,7 +23,10 @@
                     </div>
                 </li>
             </ul>
-            <cart-component :cart="cart"></cart-component>
+            <cart-component 
+            :cart="cart"
+            @removeDish="removeDish"
+            ></cart-component>
             <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
         </div>
 
@@ -97,6 +100,20 @@ export default {
             this.saveCart();
         },
 
+        removeDish(dish) {
+            for(let i=0; i<this.cart.length; i++) {
+                if(dish.id === this.cart[i].id) {
+                    if(dish.quantity > 1) {
+                        this.cart[i].quantity --;
+                        dish.quantity = this.cart[i].quantity;
+                        this.cart.splice(i, 1, dish);
+                    }else {
+                        this.cart.splice(i, 1);
+                    }
+                    this.saveCart();
+                }
+            }
+        },
 
         saveCart() {
             const parsed = JSON.stringify(this.cart);
