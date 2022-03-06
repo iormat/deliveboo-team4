@@ -124,9 +124,7 @@ class ApiController extends Controller
     }
 
     // checkout
-    public function checkout(Request $request) {
-        return view('pages.cart-checkout', compact('request'));
-        // return $request;
-        // return response() -> json($request);
+    public function checkout() {
+        return view('pages.cart-checkout');
     }
 }

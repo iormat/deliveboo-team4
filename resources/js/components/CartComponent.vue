@@ -15,11 +15,6 @@
             <div>
                 <button @click="checkout" class="btn btn-success">Procedi all'ordine</button>
             </div>
-            <v-braintree 
-                authorization="xxxxxxxxxxxxxxxxxxxxxx"
-                @success="onSuccess"
-                @error="onError"
-            ></v-braintree>
         </div>
     </section>
 </template>
@@ -32,9 +27,6 @@ export default {
         }
     },
 
-    props: [
-        'cart'
-    ], 
 
     computed: {
         // get total price of cart items
@@ -64,21 +56,8 @@ export default {
         },
 
         checkout() {
-            let totalPrice = {
-                total: this.total,
-            };
-            axios.post('/api/cart/checkout', totalPrice)
-                .then(res =>{
-                    // window.location.href = "/api/cart/checkout";
-                    console.log(res.data)
-                })
-                .catch(err => {
-                    console.error(err)
-                })
+            window.location.href = "/api/cart/checkout";
         }
     },
-    mounted() {
-        console.log('cart componente figlio: ', this.cart)
-    }
 }
 </script>

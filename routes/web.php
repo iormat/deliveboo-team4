@@ -31,7 +31,7 @@ Route::prefix('/api') -> group(function() {
     Route::get('/dishDelete/{id}', 'ApiController@deleteDish') -> name('delate');
     Route::get('/get/restaurant/menu/{id}', 'ApiController@getRestaurantMenu') -> name('menu');
     // guests
-    Route::post('/cart/checkout', 'ApiController@checkout') -> name('api.cart.checkout');
+    Route::get('/cart/checkout', 'ApiController@checkout') -> name('api.cart.checkout');
 });
 
 
