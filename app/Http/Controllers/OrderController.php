@@ -11,7 +11,7 @@ use App\Dish;
 class OrderController extends Controller
 {
     public function generate(Request $request, Gateway $gateway){
-        $token = $gateway->clientToken()->generate();
+        $token = $gateway -> clientToken() -> generate();
         $data = [
             'success' => true,
             'token' => $token
@@ -22,7 +22,6 @@ class OrderController extends Controller
     
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
-         
         $dish = Dish::find($request->dish);
         $result = $gateway->transaction()->sale([
             'amount' => $dish->price,

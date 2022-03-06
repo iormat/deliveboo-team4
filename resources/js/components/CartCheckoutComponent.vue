@@ -10,20 +10,20 @@
                     <!-- <button @click="removeFromCart(dish)" class="btn btn-danger"> delete </button> -->
                 </li>
             </ul>
-            {{totalPrice}}
+            {{totalPrice}} &euro;
         </div>
 
-        <div>
-            <button class="btn btn-success">Procedi all'ordine</button>
-            {{authorization.type}}
+        <div class="container container-xl">
+            <v-braintree
+                v-if="authorization != ''" 
+                :authorization="authorization"
+                locale="it_IT"
+                btnText="Procedi al checkout"
+                @success="onSuccess"
+                @error="onError"
+            ></v-braintree>
+
         </div>
-        <v-braintree 
-            :authorization="authorization.type"
-            locale="it_IT"
-            @success="onSuccess"
-            @error="onError"
-            @load="onLoad"
-        ></v-braintree>
     </div>
 </template>
 
@@ -33,10 +33,12 @@ export default {
         return {
             cart: [],
 
-            authorization: {
-                required: true,
-                type: '',
-            }
+            authorization: '',
+
+            form: {
+                token: '',
+                dish: '',
+            },
         }
     },
 
@@ -51,20 +53,25 @@ export default {
         }
     },
     methods: {
-        onLoad() {
-            alert('caricando');
-        },
-
         onSuccess (payload) {
-            // let nonce = payload.nonce;
-            console.log(payload);
+            let nonce = payload.nonce;
+            console.log(nonce);
         },
         onError (error) {
             // let message = error.message;
-            console.log(error);
+            console.error(error);
         },
     },
-    mounted() {
+    // mounted() {
+    //     if (sessionStorage.getItem('cart')) {
+    //         try {
+    //             this.cart = JSON.parse(sessionStorage.getItem('cart'));
+    //         } catch(e) {
+    //             sessionStorage.removeItem('cart');
+    //         }
+    //     }
+    // },
+    async mounted() {
         if (sessionStorage.getItem('cart')) {
             try {
                 this.cart = JSON.parse(sessionStorage.getItem('cart'));
@@ -72,11 +79,10 @@ export default {
                 sessionStorage.removeItem('cart');
             }
         }
-    },
-    async mounted() {
         const response = await axios.get('/orders/generate')
-        this.authorization.type = response.data.token;
+        this.authorization = response.data.token;
         // return {tokenApi: this.authorization.type}
+
     }
 }
 </script>
