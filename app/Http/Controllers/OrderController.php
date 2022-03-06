@@ -19,6 +19,7 @@ class OrderController extends Controller
      
         return response()->json($data, 200);
     }
+    
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
          

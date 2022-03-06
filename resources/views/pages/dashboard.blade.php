@@ -17,8 +17,4 @@
     @endif
     <dashboard-menu-component></ashboard-menu-component>
 
-    
-
-   
-
 @endsection
