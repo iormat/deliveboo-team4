@@ -44,12 +44,12 @@ export default {
     methods: {
         onSuccess (payload) {
             let nonce = payload.nonce;
-            console.log(playload);
+            console.log('successo ',nonce);
         // Do something great with the nonce...
         },
         onError (error) {
             let message = error.message;
-            console.log(error);
+            console.log('errore: ', error);
         // Whoops, an error has occured while trying to get the nonce
         },
         // send dish info to parent

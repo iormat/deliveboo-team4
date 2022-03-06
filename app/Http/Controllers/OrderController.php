@@ -22,9 +22,9 @@ class OrderController extends Controller
     
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
-        $dish = Dish::find($request->dish);
+        $total = $request -> total;
         $result = $gateway->transaction()->sale([
-            'amount' => $dish->price,
+            'amount' => $total,
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true
@@ -45,6 +45,6 @@ class OrderController extends Controller
          
             return response()->json($data, 200);
         }
-        return response()->json($dish);
+        return response()->json($total);
     }
 }
