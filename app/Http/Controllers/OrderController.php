@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
-use App\Dish;
+use App\Customer;
+use App\Order;
 
 
 class OrderController extends Controller
@@ -62,5 +63,24 @@ class OrderController extends Controller
         $customer = Customer::create($data);
  
         return json_encode($customer);
+    }
+
+    public function createOrder(Request $request) {
+        
+        $data = $request -> validate ([
+            "total_price" => 'required',
+            "payment_confirmation" => 'required | boolean',
+        ]);
+        $data['date'] = "1977-04-03";
+        $data['confirmed'] = 0;
+        $data['confirmation_date'] = "1977-04-03";
+
+        
+        $order = Order::make($data);
+        $lastCustomer = Customer::orderBy('id', 'desc')->first();
+        $order -> customer() -> associate($lastCustomer);
+        $order -> save();
+
+        return json_encode($order);
     }
 }

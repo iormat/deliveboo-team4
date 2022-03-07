@@ -49,6 +49,9 @@
 
 <script>
 export default {
+    props:{
+        paymetnConfirmation: Number
+    },
     data: function() {
         return {
             // errors: [],
@@ -74,13 +77,15 @@ export default {
     },
 
  mounted() {
-    const storageCustomerData = JSON.parse(sessionStorage.getItem('customerData'));
-    this.name = storageCustomerData.name;
-    this.surname = storageCustomerData.surname;
-    this.address = storageCustomerData.address;
-    this.note = storageCustomerData.note;
-    this.cap = storageCustomerData.cap;
-    this.telephone = storageCustomerData.telephone;
+    if(sessionStorage.getItem('customerData')) {
+        const storageCustomerData = JSON.parse(sessionStorage.getItem('customerData'));
+        this.name = storageCustomerData.name;
+        this.surname = storageCustomerData.surname;
+        this.address = storageCustomerData.address;
+        this.note = storageCustomerData.note;
+        this.cap = storageCustomerData.cap;
+        this.telephone = storageCustomerData.telephone;
+    }
 },
 
     methods: {

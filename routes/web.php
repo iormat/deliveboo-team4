@@ -36,7 +36,8 @@ Route::prefix('/api') -> group(function() {
 
 
 Route::get('/orders/generate', 'OrderController@generate');
-Route::get('/orders/customerInfo', 'OrderController@customerInfo');
+Route::post('/orders/customerInfo', 'OrderController@customerInfo');
+Route::post('/orders/createOrder', 'OrderController@createOrder');
 Route::post('/orders/make/payment', 'OrderController@makePayment');
 
 

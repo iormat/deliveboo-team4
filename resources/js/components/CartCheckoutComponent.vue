@@ -65,7 +65,7 @@ export default {
                 token: '',
                 total: '',
             }, 
-
+            paymetnConfirmation: 1,
             errors: [],
 
             showF: "",
@@ -73,6 +73,11 @@ export default {
 
             customerData: {},
 
+
+            orderInfo: {
+                total_price: "",
+                payment_confirmation: 1,
+            }
         }
     },
     
@@ -84,6 +89,7 @@ export default {
             for(let i = 0; i < this.cart.length; i++) {
                 total += this.cart[i].price * this.cart[i].quantity;
             }
+            this.orderInfo.total_price = total; 
             return this.total = total;
         }
     },
@@ -112,6 +118,8 @@ export default {
         },
         onError (error) {
             // let message = error.message;
+            this.paymetnConfirmation = 0;
+            this.orderInfo.payment_confirmation = 0;
             console.error(error);
         },
         buy() {
@@ -124,7 +132,27 @@ export default {
                 .catch(err => {
                     this.transition = err.data.message;
                     console.error('errore api buy: ', err)
+                });
+
+            axios.post('/orders/customerInfo', this.customerData)
+                .then(res => {
+                    sessionStorage.removeItem('customerData');
+                    console.log('customer data: ', res)
                 })
+                .catch(err => {
+                    console.error('errore api customer data: ', err)
+                });
+
+            axios.post('/orders/createOrder', this.orderInfo)
+                .then(res => {
+                    console.log('orderInfo: ', res)
+                })
+                .catch(err => {
+                    console.error('errore api orderInfo: ', err)
+                })
+
+            
+            
         },
 
         addToCart(element) {
