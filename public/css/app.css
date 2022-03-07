@@ -10962,9 +10962,12 @@ a.text-dark:focus {
   }
 }
 
-.d-flex {
-  height: 100%;
+header {
   width: 30%;
+}
+
+.d-flex {
+  height: 100vh;
 }
 
 .container-fluid,
@@ -10972,6 +10975,7 @@ a.text-dark:focus {
 .container-md,
 .container-lg,
 .container-xl {
+  width: 20%;
   padding: 0px;
   margin: 0;
   background-color: hsl(var(--clr-primary));
