@@ -71,6 +71,8 @@ export default {
                         }
                     }
                 }
+            } else {
+                alert('Nel carrello sono presenti piatti di altri ristoranti!')
             }
         
         // check cart
