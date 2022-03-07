@@ -10,8 +10,10 @@
 </head>
 <body>
     <div id="app">
-        
-        @yield('content')
+        <div>
+            @include('components.header')
+            @yield('content')
+        </div>
 
     </div>
     
