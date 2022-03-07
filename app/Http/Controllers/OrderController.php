@@ -47,4 +47,20 @@ class OrderController extends Controller
         }
         return response()->json($total);
     }
+
+    public function customerInfo(Request $request) {
+        // validate required customer info data
+        $data = $request -> validate ([
+            'name' => 'required | string | min:2 | max:60',
+            'surname' => 'required | string | min:2 | max:60',
+            'address' => 'required| string | min:4 | max:60',
+            'note' => 'string | min:4 | max:60',
+            'cap' => 'required | string | min:5 | max:5',
+            'telephone' => 'required | string',
+        ]);
+
+        $customer = Customer::create($data);
+ 
+        return json_encode($customer);
+    }
 }
