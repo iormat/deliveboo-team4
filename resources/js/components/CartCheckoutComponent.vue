@@ -1,50 +1,82 @@
 
 <template>
-     <div class="container">
-        <div>
-            <div>
-                {{form}}
+     <div class="container" >
+        
+        <customer-form-component
+            v-if="showForm"
+            :showForm = "showForm"
+            @infoCustomer = "showForm"
+        >
+        </customer-form-component>
+         <!-- PAGAMENTO -->
+        <div v-else>
+            <div v-if="transition === ''" >
+                <div>
+                    <ul>
+                        <li v-for="dish in cart" :key="dish.id">
+                            {{dish.dish_name}}
+                            {{dish.price}}
+                            {{dish.quantity}}
+                            <button @click="removeFromCart(dish)" class="btn btn-danger"> delete </button>
+                            <button @click="addToCart(dish)" class="btn btn-success"> Add </button>
+                        </li>
+                    </ul>
+                    {{totalPrice}} &euro;
+                </div>
+
+                <div class="container container-xl">
+                    <v-braintree
+                        v-if="authorization != ''" 
+                        :authorization="authorization"
+                        locale="it_IT"
+                        btnText="Procedi al checkout"
+                        @success="onSuccess"
+                        @error="onError"
+                    ></v-braintree>
+
+                </div>
             </div>
-            <ul>
-                <li v-for="dish in cart" :key="dish.id">
-                    {{dish.dish_name}}
-                    {{dish.price}}
-                    {{dish.quantity}}
-                    <button @click="removeFromCart(dish)" class="btn btn-danger"> delete </button>
-                    <button @click="addToCart(dish)" class="btn btn-success"> Add </button>
-                </li>
-            </ul>
-            {{totalPrice}} &euro;
         </div>
 
-        <div class="container container-xl">
-            <v-braintree
-                v-if="authorization != ''" 
-                :authorization="authorization"
-                locale="it_IT"
-                btnText="Procedi al checkout"
-                @success="onSuccess"
-                @error="onError"
-            ></v-braintree>
-
+        <div v-if="transition != ''">
+            {{transition}}
+            <button @click="home" class="btn btn-success">HOME</button>
         </div>
+
     </div>
+
 </template>
 
 <script>
+import CustomerFormComponent from "./CustomerFormComponent.vue";
+
 export default {
+  components: { 
+        'customer-form-component' : CustomerFormComponent
+    },
     data: function() {
         return {
             cart: [],
-
-            authorization: '',
-
+            transition: "",
+            authorization: '', 
             form: {
                 token: '',
                 total: '',
-            },
+            }, 
+
+            errors: [],
+
+            showForm: true,
+            name: "",
+            surname: "",
+            address: "",
+            note: "",
+            cap: "",
+            telephone: "",
+
         }
     },
+    
 
     computed: {
         // get total price of cart items
@@ -57,6 +89,13 @@ export default {
         }
     },
     methods: {
+        infoCustomer(showForm) {
+            this.showForm = showForm
+        },
+
+        home(){
+            window.location.href = "/";
+        },
         onSuccess (payload) {
             let nonce = payload.nonce;
             this.form.token = nonce;
@@ -71,9 +110,11 @@ export default {
             axios.post('/orders/make/payment', this.form)
                 .then(res => {
                     sessionStorage.removeItem('cart');
+                    this.transition = res.data.message;
                     console.log('conferma api buy: ', res)
                 })
                 .catch(err => {
+                    this.transition = err.data.message;
                     console.error('errore api buy: ', err)
                 })
         },
