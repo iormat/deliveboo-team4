@@ -15,6 +15,6 @@
             </ul>
         </div>
     @endif
-    <dashboard-menu-component></ashboard-menu-component>
+    <dashboard-menu-component></dashboard-menu-component>
 
 @endsection
