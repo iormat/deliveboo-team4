@@ -3,8 +3,9 @@
      <div class="container" >
         
         <customer-form-component
-            @showForm = "showForm"
-            @showPayment = "showPayment"
+            @showForm="showForm"
+            @showPayment="showPayment"
+            @getCustomerData="getCustomerData"
         >
         </customer-form-component>
 
@@ -70,12 +71,7 @@ export default {
             showF: "",
             showP: false,
 
-            name: "",
-            surname: "",
-            address: "",
-            note: "",
-            cap: "",
-            telephone: "",
+            customerData: {},
 
         }
     },
@@ -98,6 +94,11 @@ export default {
 
         showPayment() {
             this.showP = true;
+        },
+
+        getCustomerData(info) {
+            this.customerData = info;
+            console.log(this.customerData);
         },
 
         home(){
@@ -169,6 +170,7 @@ export default {
     },
 
     async mounted() {
+
         if (sessionStorage.getItem('cart')) {
             try {
                 this.cart = JSON.parse(sessionStorage.getItem('cart'));
@@ -179,7 +181,8 @@ export default {
         const response = await axios.get('/orders/generate')
         this.authorization = response.data.token;
         // return {tokenApi: this.authorization.type}
+    },
 
-    }
+
 }
 </script>
