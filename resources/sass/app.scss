@@ -7,6 +7,20 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// palette
+:root {
+    --clr-neutral-100: #fff;
+    --clr-neutral-900: #000;
+    --clr-primary: rgb(94, 33, 41);
+    --clr-secondary: #E4A010;
+    --clr-accent: #BADBAD;
+}
+
+::selection {
+    color: var(--clr-secondary);
+    background-color: var(--clr-primary);
+}
+
 body {
     text-align: center;
 }
