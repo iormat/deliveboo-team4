@@ -115,4 +115,16 @@ class ApiController extends Controller
         $dish -> delete();
         return json_encode($dish);
     }
+
+    // retrive restaurant menu for guests
+    public function getRestaurantMenu($id) {
+        $menu = Dish::where('user_id', $id) -> get();
+
+        return json_encode($menu);
+    }
+
+    // checkout
+    public function checkout() {
+        return view('pages.cart-checkout');
+    }
 }

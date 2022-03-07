@@ -5,12 +5,13 @@ use App\Http\Controllers\Controller;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
+use App\Dish;
 
 
 class OrderController extends Controller
 {
     public function generate(Request $request, Gateway $gateway){
-        $token = $gateway->clientToken()->generate();
+        $token = $gateway -> clientToken() -> generate();
         $data = [
             'success' => true,
             'token' => $token
@@ -18,10 +19,12 @@ class OrderController extends Controller
      
         return response()->json($data, 200);
     }
+    
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
+        $total = $request -> total;
         $result = $gateway->transaction()->sale([
-            'amount' => '15.00',
+            'amount' => $total,
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true
@@ -42,6 +45,6 @@ class OrderController extends Controller
          
             return response()->json($data, 200);
         }
-        // return 'makePaymant';
+        return response()->json($total);
     }
 }

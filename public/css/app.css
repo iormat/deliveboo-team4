@@ -10962,3 +10962,43 @@ a.text-dark:focus {
   }
 }
 
+body {
+  text-align: center;
+}
+
+#edit {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.137);
+  display: grid;
+  place-content: center;
+}
+
+#edit form {
+  border: 2px solid black;
+  padding: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+#restaurants li,
+#restaurant_menu li {
+  list-style-type: none;
+}
+
+#restaurants li .card,
+#restaurant_menu li .card {
+  margin-top: 2rem;
+  min-height: 40ch;
+}
+
+#restaurants li .card .card-header,
+#restaurant_menu li .card .card-header {
+  min-height: 14ch;
+}
+
+#restaurants li .card mark,
+#restaurant_menu li .card mark {
+  background-color: limegreen;
+}
+
