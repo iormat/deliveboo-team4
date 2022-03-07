@@ -3,6 +3,7 @@
      <div class="container" >
         
          <form
+         v-if="showForm"
          method="POST" 
          enctype="multipart/form-data" 
          @submit.prevent="infoCustomer">
@@ -58,18 +59,17 @@ export default {
             note: "",
             cap: "",
             telephone: "",
+            showForm: true,
+            showPayment: false,
         }
     },
 
-    prop: {
-        showForm: Boolean,
-    },
 
     methods: {
         infoCustomer() {
             this.showForm = false;
-
-            this.$emit("infoCustomer", this.showForm);
+            this.$emit("showForm");
+            this.$emit("showPayment");
         },
     }
         

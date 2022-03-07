@@ -3,13 +3,14 @@
      <div class="container" >
         
         <customer-form-component
-            v-if="showForm"
-            :showForm = "showForm"
-            @infoCustomer = "showForm"
+            @showForm = "showForm"
+            @showPayment = "showPayment"
         >
         </customer-form-component>
+
+
          <!-- PAGAMENTO -->
-        <div v-else>
+        <div v-if="showP">
             <div v-if="transition === ''" >
                 <div>
                     <ul>
@@ -66,7 +67,9 @@ export default {
 
             errors: [],
 
-            showForm: true,
+            showF: "",
+            showP: false,
+
             name: "",
             surname: "",
             address: "",
@@ -89,8 +92,12 @@ export default {
         }
     },
     methods: {
-        infoCustomer(showForm) {
-            this.showForm = showForm
+        showForm() {
+            this.showF = false;
+        },
+
+        showPayment() {
+            this.showP = true;
         },
 
         home(){
