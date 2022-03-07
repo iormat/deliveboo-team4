@@ -11086,21 +11086,21 @@ nav h1 {
 }
 
 :root {
-  --clr-neutral-100: 0, 0%, 100%;
-  --clr-neutral-900: 0, 0%, 0%;
-  --clr-primary: 352, 48%, 25%;
-  --clr-secondary: 41, 87%, 48%;
-  --clr-accent: 103, 39%, 77%;
+  --clr-neutral-100: #fff;
+  --clr-neutral-900: #000;
+  --clr-primary: 352 48% 25%;
+  --clr-secondary: 41 87% 48%;
+  --clr-accent: 103 39% 77%;
 }
 
 ::-moz-selection {
-  color: var(--clr-secondary);
-  background-color: var(--clr-primary);
+  color: hsl(var(--clr-secondary));
+  background-color: hsl(var(--clr-primary));
 }
 
 ::selection {
-  color: var(--clr-secondary);
-  background-color: var(--clr-primary);
+  color: hsl(var(--clr-secondary));
+  background-color: hsl(var(--clr-primary));
 }
 
 * {
@@ -11111,6 +11111,61 @@ nav h1 {
 
 #app {
   height: 100vh;
+}
+
+#dishes_menu {
+  max-width: 100%;
+}
+
+#menu .card.mycard {
+  color: var(--clr-neutral-900);
+  padding: 0.8em;
+  min-height: 40ch;
+  background-color: hsl(var(--clr-accent)/0.2);
+  border-radius: 1.125em;
+}
+
+#menu .card.mycard .card-main-info {
+  padding: 0 1em;
+}
+
+#menu .card.mycard .card-body {
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-neutral-900);
+  border-radius: 1.125em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#menu .card.mycard .card-body .card-content .dish-img {
+  width: 25%;
+}
+
+#menu .card.mycard .card-body .card-content .dish-img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  display: block;
+}
+
+#menu .card.mycard .mod-container {
+  text-align: right;
+}
+
+#menu .card.mycard .mod-container .modifiers {
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  background-color: hsl(var(--clr-secondary));
+  cursor: pointer;
+  text-align: center;
 }
 
 #edit {
