@@ -57,22 +57,26 @@ export default {
         // add dish to cart
         addToCart(element) {
             const parsed = JSON.stringify(this.cart);
-            if(!parsed.includes(`"id":${element.id}`)) {
-                element.quantity = 1;
-                this.cart.push(element)
-            } else {
-                for(let i=0; i<this.cart.length; i++) {
-                    if(element.id === this.cart[i].id) {
-                        this.cart[i].quantity++;
-                        element.quantity = this.cart[i].quantity;
-                        this.cart.splice(i, 1, element);
+
+            if(parsed.includes(`"user_id":${element.user_id}`) || parsed === "[]") {
+                if(!parsed.includes(`"id":${element.id}`)) {
+                    element.quantity = 1;
+                    this.cart.push(element)
+                } else {
+                    for(let i=0; i<this.cart.length; i++) {
+                        if(element.id === this.cart[i].id) {
+                            this.cart[i].quantity++;
+                            element.quantity = this.cart[i].quantity;
+                            this.cart.splice(i, 1, element);
+                        }
                     }
                 }
             }
-            // check cart
-            this.cart.length > 0 ? this.shoppingCart = true : this.shoppingCart = false;
- 
-            this.saveCart();
+        
+        // check cart
+        this.cart.length > 0 ? this.shoppingCart = true : this.shoppingCart = false;
+
+        this.saveCart();
         },
         // remove dish from cart
         removeDish(dish) {
@@ -100,6 +104,7 @@ export default {
 
         removeItemFromStorage() {
             sessionStorage.removeItem('cart');
+            this.cart = [];
         }
 
     },

@@ -37,7 +37,7 @@ export default {
             for(let i = 0; i < this.cart.length; i++) {
                 total += this.cart[i].price * this.cart[i].quantity;
             }
-            return this.total = total;
+            return this.total = total.toFixed(2);
         }
     },
 
