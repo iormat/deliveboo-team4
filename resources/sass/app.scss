@@ -7,13 +7,16 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//Partials
+@import 'partials/_dashboardHeader';
+
 // palette
 :root {
-    --clr-neutral-100: #fff;
-    --clr-neutral-900: #000;
-    --clr-primary: rgb(94, 33, 41);
-    --clr-secondary: #E4A010;
-    --clr-accent: #BADBAD;
+    --clr-neutral-100: 0, 0%, 100%;
+    --clr-neutral-900: 0, 0%, 0%;
+    --clr-primary: 352, 48%, 25%;
+    --clr-secondary: 41, 87%, 48%;
+    --clr-accent: 103, 39%, 77%;
 }
 
 ::selection {
@@ -21,8 +24,13 @@
     background-color: var(--clr-primary);
 }
 
-body {
-    text-align: center;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#app{
+    height: 100vh;
 }
 
 #edit{

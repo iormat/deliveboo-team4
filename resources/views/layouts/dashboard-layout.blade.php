@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="">
     <title>DeliveBoo</title>
 </head>
 <body>
     <div id="app">
-        <div>
-            @include('components.header')
+
+        <div class="d-flex">
+            @include('components.dashboard-header')
             @yield('content')
         </div>
 
