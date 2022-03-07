@@ -10962,6 +10962,24 @@ a.text-dark:focus {
   }
 }
 
+:root {
+  --clr-neutral-100: #fff;
+  --clr-neutral-900: #000;
+  --clr-primary: rgb(94, 33, 41);
+  --clr-secondary: #E4A010;
+  --clr-accent: #BADBAD;
+}
+
+::-moz-selection {
+  color: var(--clr-secondary);
+  background-color: var(--clr-primary);
+}
+
+::selection {
+  color: var(--clr-secondary);
+  background-color: var(--clr-primary);
+}
+
 body {
   text-align: center;
 }
