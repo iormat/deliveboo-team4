@@ -14,24 +14,34 @@
     margin: 0;
     box-sizing: border-box;
 }
+//Partials
+@import 'partials/_dashboardHeader';
 
 // palette
 :root {
     --clr-neutral-100: #fff;
     --clr-neutral-900: #000;
-    --clr-primary: rgb(94, 33, 41);
-    --clr-secondary: #E4A010;
-    --clr-accent: #BADBAD;
+    --clr-primary: 352 48% 25%;
+    --clr-secondary: 41 87% 48%;
+    --clr-accent: 103 39% 77%;
 }
 
 ::selection {
-    color: var(--clr-secondary);
-    background-color: var(--clr-primary);
+    color: hsl(var(--clr-secondary));
+    background-color: hsl(var(--clr-primary));
 }
 
-body {
-    text-align: center;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+#app{
+    height: 100vh;
+}
+// DASHBOARD - DISH MENU
+@import 'partials/dashboardMenu';
+
 
 #edit{
     position: absolute;

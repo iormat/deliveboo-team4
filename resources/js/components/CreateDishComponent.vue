@@ -1,8 +1,7 @@
 <template>
-
         <!-- <section> -->
         <section id="create">
-            <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
+            <form class="from" method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
                 <!-- dish name - create -->
                 <label for="name">
                     Inserisci il nome&colon;

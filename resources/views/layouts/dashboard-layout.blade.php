@@ -11,8 +11,9 @@
 </head>
 <body>
     <div id="app">
-        <div>
-            
+
+        <div class="d-flex">
+            @include('components.dashboard-header')
             @yield('content')
         </div>
        

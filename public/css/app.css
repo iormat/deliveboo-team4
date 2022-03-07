@@ -11050,25 +11050,213 @@ footer .container .footer-bottom .copyright i {
   box-sizing: border-box;
 }
 
+header {
+  width: 30%;
+}
+
+.d-flex {
+  height: 100vh;
+}
+
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  width: 20%;
+  padding: 0px;
+  margin: 0;
+  background-color: hsl(var(--clr-primary));
+}
+
+.container-fluid .auth,
+.container-sm .auth,
+.container-md .auth,
+.container-lg .auth,
+.container-xl .auth {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.container-fluid .container,
+.container-sm .container,
+.container-md .container,
+.container-lg .container,
+.container-xl .container {
+  padding: 0;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container-fluid .container .burger,
+.container-sm .container .burger,
+.container-md .container .burger,
+.container-lg .container .burger,
+.container-xl .container .burger {
+  display: none;
+}
+
+.container-fluid .container .burger div,
+.container-sm .container .burger div,
+.container-md .container .burger div,
+.container-lg .container .burger div,
+.container-xl .container .burger div {
+  width: 25px;
+  height: 5px;
+  margin: 5px;
+  background-color: hsl(var(--clr-accent));
+}
+
+.container-fluid .container .nav-links,
+.container-sm .container .nav-links,
+.container-md .container .nav-links,
+.container-lg .container .nav-links,
+.container-xl .container .nav-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.container-fluid .container .nav-links a,
+.container-sm .container .nav-links a,
+.container-md .container .nav-links a,
+.container-lg .container .nav-links a,
+.container-xl .container .nav-links a {
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: hsl(var(--clr-neutral-100));
+}
+
+.container-fluid .container .nav-links li,
+.container-sm .container .nav-links li,
+.container-md .container .nav-links li,
+.container-lg .container .nav-links li,
+.container-xl .container .nav-links li {
+  list-style: none;
+  margin: 60px 0;
+}
+
+nav {
+  padding: 20px;
+  display: flex;
+  height: 90%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav h1 {
+  color: hsl(var(--clr-neutral-100));
+  margin-top: 40px;
+}
+
+.logout {
+  padding: 20px;
+  border-top: solid 2px hsl(var(--clr-accent));
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logout a {
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    display: none;
+  }
+}
+
 :root {
   --clr-neutral-100: #fff;
   --clr-neutral-900: #000;
-  --clr-primary: rgb(94, 33, 41);
-  --clr-secondary: #E4A010;
-  --clr-accent: #BADBAD;
+  --clr-primary: 352 48% 25%;
+  --clr-secondary: 41 87% 48%;
+  --clr-accent: 103 39% 77%;
 }
 
 ::-moz-selection {
-  color: var(--clr-secondary);
-  background-color: var(--clr-primary);
+  color: hsl(var(--clr-secondary));
+  background-color: hsl(var(--clr-primary));
 }
 
 ::selection {
-  color: var(--clr-secondary);
-  background-color: var(--clr-primary);
+  color: hsl(var(--clr-secondary));
+  background-color: hsl(var(--clr-primary));
 }
 
-body {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100vh;
+}
+
+#dishes_menu {
+  max-width: 100%;
+}
+
+#menu .card.mycard {
+  color: var(--clr-neutral-900);
+  padding: 0.8em;
+  min-height: 40ch;
+  background-color: hsl(var(--clr-accent)/0.2);
+  border-radius: 1.125em;
+}
+
+#menu .card.mycard .card-main-info {
+  padding: 0 1em;
+}
+
+#menu .card.mycard .card-body {
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-neutral-900);
+  border-radius: 1.125em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#menu .card.mycard .card-body .card-content .dish-img {
+  width: 25%;
+}
+
+#menu .card.mycard .card-body .card-content .dish-img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  display: block;
+}
+
+#menu .card.mycard .mod-container {
+  text-align: right;
+}
+
+#menu .card.mycard .mod-container .modifiers {
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  background-color: hsl(var(--clr-secondary));
+  cursor: pointer;
   text-align: center;
 }
 

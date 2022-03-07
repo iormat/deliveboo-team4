@@ -1,0 +1,88 @@
+header{
+    width: 30%;
+}
+.d-flex{
+    height: 100vh;
+}
+.container-fluid{
+    width: 20%;
+    padding: 0px;
+    margin: 0;
+    background-color: hsl(var(--clr-primary));
+    .auth{
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
+    .container{
+        padding: 0;
+        width: 100%;
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        .burger{
+            display: none;
+            //border-top: solid 2px hsl(var(--clr-accent));
+            div{
+                width: 25px;
+                height: 5px;
+                margin: 5px;
+                background-color: hsl(var(--clr-accent));
+            }
+        }
+        .nav-links{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 40%;
+            a{
+                text-decoration: none;
+                letter-spacing: 3px;
+                font-weight: bold;
+                color: hsl(var(--clr-neutral-100));
+            }
+            li{
+                list-style: none;
+                margin: 60px 0;
+            }
+        }
+    }
+}
+nav{
+    padding: 20px;
+    display: flex;
+    height: 90%;
+    justify-content: flex-start;
+    align-items: center;
+    
+    h1{
+        color: hsl(var(--clr-neutral-100));
+        margin-top: 40px;
+    }
+}
+.logout{
+    padding: 20px;
+    border-top: solid 2px hsl(var(--clr-accent));
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    a{
+        text-decoration: none;
+        letter-spacing: 3px;
+        font-weight: bold;
+        color: red;
+    }
+}
+
+
+
+@media screen and (max-width:768px) {
+    header{
+        display: none;
+    }
+    
+}
+    
