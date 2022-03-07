@@ -34,10 +34,11 @@ Route::prefix('/api') -> group(function() {
     Route::get('/cart/checkout', 'ApiController@checkout') -> name('api.cart.checkout');
 });
 
-
-Route::get('/orders/generate', 'OrderController@generate');
-Route::post('/orders/make/payment', 'OrderController@makePayment');
-
+Route::prefix('/api') -> group(function() { 
+    Route::get('/generate', 'OrderController@generate');
+    Route::post('/make/payment', 'OrderController@makePayment');
+    Route::post('/customerInfo', 'OrderController@customerInfo');
+});
 
 Route::get('/all/dishes', 'DishController@index');
 
