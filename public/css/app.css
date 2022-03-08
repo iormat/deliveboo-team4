@@ -11050,6 +11050,14 @@ header {
   width: 30%;
 }
 
+header .fas.icons {
+  display: none;
+  color: hsl(var(--clr-accent));
+  font-size: 30px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .d-flex {
   height: 100vh;
 }
@@ -11059,7 +11067,7 @@ header {
 .container-md,
 .container-lg,
 .container-xl {
-  width: 20%;
+  width: 15%;
   padding: 0px;
   margin: 0;
   background-color: hsl(var(--clr-primary));
@@ -11071,7 +11079,8 @@ header {
 .container-lg .auth,
 .container-xl .auth {
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
+  color: hsl(var(--clr-neutral-100));
 }
 
 .container-fluid .container,
@@ -11081,7 +11090,7 @@ header {
 .container-xl .container {
   padding: 0;
   width: 100%;
-  height: 85%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11114,7 +11123,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 40%;
+  overflow: hidden;
 }
 
 .container-fluid .container .nav-links a,
@@ -11123,7 +11132,7 @@ header {
 .container-lg .container .nav-links a,
 .container-xl .container .nav-links a {
   text-decoration: none;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   font-weight: bold;
   color: hsl(var(--clr-neutral-100));
 }
@@ -11134,7 +11143,7 @@ header {
 .container-lg .container .nav-links li,
 .container-xl .container .nav-links li {
   list-style: none;
-  margin: 60px 0;
+  margin: 30px 0;
 }
 
 nav {
@@ -11164,18 +11173,36 @@ nav h1 {
   text-decoration: none;
   letter-spacing: 3px;
   font-weight: bold;
-  color: red;
+  color: hsl(var(--clr-accent));
 }
 
-@media screen and (max-width: 768px) {
-  header {
+@media screen and (max-width: 1175px) {
+  .auth {
     display: none;
+  }
+
+  .nav-links {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 837px) {
+  .logout-text {
+    display: none;
+  }
+
+  .li-text {
+    display: none;
+  }
+
+  header .fas.icons {
+    display: block;
   }
 }
 
 :root {
-  --clr-neutral-100: #fff;
-  --clr-neutral-900: #000;
+  --clr-neutral-100: 0, 0%, 100%;
+  --clr-neutral-900: 0, 0%, 0%;
   --clr-primary: 352 48% 25%;
   --clr-secondary: 41 87% 48%;
   --clr-accent: 103 39% 77%;
