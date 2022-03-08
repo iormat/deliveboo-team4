@@ -10964,13 +10964,13 @@ a.text-dark:focus {
 
 footer {
   text-align: left;
-  color: var(--clr-neutral-100);
+  color: hsl(var(--clr-neutral-100));
   min-height: 300px;
   background-color: hsl(var(--clr-primary));
 }
 
 footer a {
-  color: var(--clr-neutral-100);
+  color: hsl(var(--clr-neutral-100));
   cursor: pointer;
 }
 

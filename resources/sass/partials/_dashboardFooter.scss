@@ -1,8 +1,8 @@
 footer {
     text-align: left;
-    color: var(--clr-neutral-100);
+    color: hsl(var(--clr-neutral-100));
     a {
-        color: var(--clr-neutral-100);
+        color: hsl(var(--clr-neutral-100));
         cursor: pointer;
     }
     a:hover {
