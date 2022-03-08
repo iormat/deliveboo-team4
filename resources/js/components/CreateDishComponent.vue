@@ -1,7 +1,7 @@
 <template>
     <!-- <section> -->
     <section id="create_dish">
-        <form method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
+        <form id="create_form" method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
             <!-- dish name - create -->
             <label for="name">
                 Inserisci il nome del piatto&colon;
@@ -36,8 +36,12 @@
                     </option>
                 </select> 
             </label>
+            <!--  -->
+            <div class="text-right">
+                <button form="create_form" class="btn btn-success">Crea</button>
+                <button class="btn btn-danger" @click="toggleForm">Chiudi</button>
+            </div>
 
-            <input type="submit" class="mb-5 btn btn-success" value="submit">
         </form>
     </section>
 </template>
@@ -63,12 +67,12 @@ export default {
     },
 
     methods: {
+        // save form image
         saveImg(img) {
             this.dishes_img = img.target.files[0];
             console.log("dishes_img:", this.dishes_img);
         },
-       
-       // submit create dish - form
+        // submit create dish - form
         submitDish(e) {
             let form = new FormData(e.target);
                 form.append("dish_name", this.dish_name);
@@ -81,13 +85,11 @@ export default {
                 form.append("category", this.category);
                 form.append("user_id", this.user_id);
             // post form 
-
             let self = this;
             axios.post('/api/store', form)
             .then(function (response) {
                 self.newDishes = self.dishes;
                 self.newDishes.push(response.data);
-                // console.log("api create:", self.newDishes);
                 self.$emit("getNewDishes", self.newDishes);
             })
             .catch(function (error) {

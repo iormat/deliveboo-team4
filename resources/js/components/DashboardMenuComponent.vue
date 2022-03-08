@@ -4,7 +4,7 @@
         <div @click="createNewDish" class="mb-2 btn btn-success">Create</div>        
 
         <!-- dish menu -->
-        <section id="menu">
+        <section v-if="!createForm && !changeForm" id="menu">
             <h2>I tuoi piatti</h2>
             <div class="container">
                 <div class="row">
@@ -27,8 +27,12 @@
                                     </div>
                                 </div>
                                 <div class="mod-container">
-                                    <span class="modifiers" @click="editDish(dish.id)"> edit </span>
-                                    <span class="modifiers" @click="deleteDish(dish.id)"> cest </span>
+                                    <span class="modifiers" @click="editDish(dish.id)">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </span>
+                                    <span class="modifiers" @click="deleteDish(dish.id)">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
                                 </div>
                             </div>
                         </li>
@@ -72,7 +76,7 @@ export default {
             categories: [],
 
             // utility
-            createForm: true,
+            createForm: false,
             changeForm: false,
             
 
@@ -87,12 +91,10 @@ export default {
         createNewDish() {
             this.createForm = !this.createForm;
         },
-
         // get new dish from CreateComponent
         getNewDishes(newDishes) {
             this.dishes = newDishes;
         },
-
         // toggle close edit - form
         toggleEditDish() {
             this.changeForm = !this.changeForm;
@@ -113,7 +115,6 @@ export default {
             let ind = this.getDishIndById(dish.id);
             this.dishes.splice(ind, 1, dish)             
         },
-
         // delete dish
         deleteDish(id) {
             axios.get(`/api/dishDelete/${id}`)
@@ -123,7 +124,7 @@ export default {
                 this.dishes.splice(dishInd, 1); 
             })
         },
-
+        // get dish index to delete
         getDishIndById(id){
             for (let i = 0; i < this.dishes.length; i++) {
                 const dish = this.dishes[i];

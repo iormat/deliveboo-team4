@@ -11248,8 +11248,8 @@ nav h1 {
 }
 
 #menu .card.mycard .card-body {
-  background-color: var(--clr-neutral-100);
-  color: var(--clr-neutral-900);
+  background-color: hsl(var(--clr-neutral-100));
+  color: hsl(var(--clr-neutral-900));
   border-radius: 1.125em;
   display: flex;
   flex-direction: column;
@@ -11286,56 +11286,106 @@ nav h1 {
   text-align: center;
 }
 
-#create_dish {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.137);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#create_dish form {
-  max-width: 60%;
-  border: 2px solid black;
-  border-radius: 1.125rem;
-  padding: 1.125em;
-  background-color: white;
-}
-
-#create_dish form label {
-  font-size: 1.2rem;
-  font-weight: bolder;
-  display: block;
-  padding: 0.25em;
-}
-
 #edit {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.137);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#create_dish {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#edit form {
+form {
+  min-width: 30ch;
   max-width: 60%;
   border: 2px solid black;
   border-radius: 1.125rem;
   padding: 1.125em;
-  background-color: white;
+  background-color: hsl(var(--clr-accent)/0.2);
 }
 
-#edit form label {
+form label {
   font-size: 1rem;
   font-weight: bolder;
   display: block;
   padding: 0.25em;
 }
 
-#edit form label#price {
-  width: 30ch;
+form label input:not(input[type=checkbox]):focus,
+form label textarea:focus,
+form label select:focus {
+  border: 0;
+  box-shadow: 2px 2px 3px hsl(var(--clr-primary));
+}
+
+form label * {
+  background-color: hsl(var(--clr-accent)/0.2);
+}
+
+form label select {
+  border: 0;
+}
+
+form label select option {
+  background-color: hsl(var(--clr-accent)/0.7);
+}
+
+form .check-btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+form input[type=checkbox].check-check {
+  display: none;
+}
+
+form .check-after {
+  width: 1.125em;
+  height: 1.125em;
+  border: 1px solid hsl(var(--clr-primary));
+  border-radius: 0.25rem;
+  margin-left: 1.125rem;
+  padding: 0.125em;
+}
+
+form .check-after::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: hsl(var(--clr-primary));
+  transform: scale(0);
+  border-radius: 0.25rem;
+  transition: transform 0.3s;
+}
+
+form .check-check:checked + .check-after::after {
+  transform: scale(1);
+}
+
+form button {
+  all: unset;
+  padding: 0.5em 0.75em;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  color: hsl(var(--clr-neutral-100));
+}
+
+form button:first-child {
+  background-color: hsl(var(--clr-secondary));
+}
+
+form button:last-child {
+  background-color: hsl(var(--clr-primary));
 }
 
 #restaurants li,

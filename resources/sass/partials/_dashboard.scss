@@ -1,0 +1,95 @@
+// DASHBOARD - MENU - PARTIALS
+@import '../partials/dashboardMenu';
+
+// DASHBOARD - DISH_EDIT - PARTIALS
+@import '../partials/dashboardEditDish';
+
+// DASHBOARD - DISH_CREATE - PARTIALS
+@import '../partials/dashboardCreateDish';
+
+// GENERAL FORM RULES
+form{
+    min-width: 30ch;
+    max-width: 60%;
+    border: 2px solid black;
+    border-radius: 1.125rem;
+    padding: 1.125em;
+    background-color: hsl(var(--clr-accent)/.2);
+    // all labels
+    label {
+        font-size: 1rem;
+        font-weight: bolder;
+        display: block;
+        padding: .25em;
+        // box-shadow focus
+        input:not(input[type='checkbox']),
+        textarea,
+        select {
+            &:focus {
+                border: 0;
+                box-shadow: 2px 2px 3px hsl(var(--clr-primary))
+            }
+        }
+        // background color
+        * {
+            background-color: hsl(var(--clr-accent)/.2);
+        }
+        // select
+        select {
+            border: 0;
+            option {
+                background-color: hsl(var(--clr-accent)/.7);
+            }
+        }
+    }
+    // checkbox styiling
+    .check-btn {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 20px;
+    }
+    
+    input[type="checkbox"].check-check {
+        display: none;
+    }
+    
+    .check-after {
+        width: 1.125em;
+        height: 1.125em;
+        border: 1px solid hsl(var(--clr-primary));
+        border-radius: .25rem;
+        margin-left: 1.125rem;
+        padding: .125em;
+    }
+    
+    .check-after::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        display: block;
+        background-color: hsl(var(--clr-primary));
+        transform: scale(0);
+        border-radius: .25rem;
+        transition: transform 0.3s;
+    }
+    
+    .check-check:checked + .check-after::after {
+        transform: scale(1);
+    }
+    
+    button {
+        all: unset;
+        padding: .5em .75em;
+        font-size: 1rem;
+        border-radius: .75rem;
+        cursor: pointer;
+        color: hsl(var(--clr-neutral-100));
+        &:first-child {
+            background-color: hsl(var(--clr-secondary));
+        }
+        &:last-child {
+            background-color: hsl(var(--clr-primary));
+        }
+    }
+}

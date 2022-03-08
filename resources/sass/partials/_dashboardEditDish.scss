@@ -1,26 +1,11 @@
 #edit{
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.137);
     display: flex;
     justify-content: center;
     align-items: center;
-    form{
-        max-width: 60%;
-        border: 2px solid black;
-        border-radius: 1.125rem;
-        padding: 1.125em;
-        background-color: white;
-        label {
-            font-size: 1rem;
-            font-weight: bolder;
-            display: block;
-            padding: .25em;
-            &#price {
-                width: 30ch;
-            }
-        }
-    }
+    overflow: hidden;
+    // form
 }
 
 

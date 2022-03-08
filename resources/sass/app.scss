@@ -39,14 +39,8 @@
 #app{
     height: 100vh;
 }
-// DASHBOARD - DISH MENU
-@import 'partials/dashboardMenu';
-
-// DASHBOARD - CREATE DISH FORM
-@import 'partials/dashboardCreateDish';
-
-// DASHBOARD - EDIT DISH FORM
-@import 'partials/dashboardEditDish';
+// DASHBOARD PARTIALS
+@import 'partials/dashboard';
 
 #restaurants,
 #restaurant_menu {

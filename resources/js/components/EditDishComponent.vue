@@ -1,23 +1,23 @@
 <template>
     <section id="edit" class="container">
-        <form class="row" method="POST" enctype="multipart/form-data" @submit.prevent="updateDish">
+        <form id="edit_form" method="POST" enctype="multipart/form-data" @submit.prevent="updateDish">
             <!-- dish name - edit -->
-            <label for="name" class="col-6">
+            <label for="name">
                 Inserisci il nome&colon;
                 <input class="form-control" type="text" id="name" min="4" max="50" required v-model="editDish_name" name="dish_name">
             </label>
             <!-- dish description - edit -->
-            <label for="desription" class="col-12">
+            <label for="desription">
                 Inserisci il una descrizione&colon;
                 <textarea class="form-control" v-model="editDescription" id="desription" cols="50" rows="3" required></textarea>
             </label>
             <!-- dish price - edit -->
-            <label for="price" class="col-4">
+            <label for="price">
                 Inserisci il prezzo&colon;
                 <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice">
             </label>
             <!-- dish category - edit -->
-            <label for="category" class="col-4">
+            <label for="category">
                 Categoria&colon;
                 <select class="form-control" v-model="editCategory" name="category" id="category">
                     <option v-for="category in categories" :key="category.id" :value="category.id" >
@@ -27,25 +27,28 @@
                 </select>
             </label>
             <!-- dish ingredients - edit -->
-            <label for="ingredients" class="col-12">
+            <label for="ingredients">
                 Aggiungi gli ingredienti&colon;
                 <textarea class="form-control" v-model="editIngredients" id="ingredients" cols="50" rows="3" required></textarea>
             </label>
             <!-- dish image - edit -->
-            <label for="img" class="col-4">
+            <label for="img">
                 Aggiungi immagine&colon;
                 <input class="form-control" type="file" @change="saveUpdatedImg" id="img">
             </label> 
             <!-- dish availabiliy - edit -->
-            <label for="available">
-                Disponibilit&agrave;&colon;
-                <input type="checkbox" name="available" v-model="editAvailable" id="available">
-            </label>
+            <div class="check-button">
+                <label for="available" class="check-btn" name="available">
+                    Disponibile&colon; 
+                    <input type="checkbox" id="available" class="check-check" v-model="editAvailable">
+                    <div class="check-after"></div>
+                </label>
+            </div>
             <!-- submit edit form -->
-            <input type="submit" class="btn btn-success" value="submit">
             <!-- close edit form -->
             <div class="text-right">
-                <!-- <button class="btn btn-danger" @click="toggleEditDish">Chiudi</button> -->
+                <button  form="edit_form" class="btn" @click="toggleForm">Modifica</button>
+                <button class="btn" @click="toggleForm">Chiudi</button>
             </div>
         </form>
     </section>
