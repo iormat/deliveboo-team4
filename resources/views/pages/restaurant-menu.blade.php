@@ -1,4 +1,5 @@
 @extends('layouts.main-layout')
+
 @section('content')
     <section id="restaurant_menu">       
         {{-- <ul class="row">
@@ -30,4 +31,5 @@
     {{-- {{$user}} --}}
 
 </section>
+
 @endsection

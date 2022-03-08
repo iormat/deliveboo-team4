@@ -127,4 +127,9 @@ class ApiController extends Controller
     public function checkout() {
         return view('pages.cart-checkout');
     }
+
+    public function guestRestautanMenu($id) {
+        $restaurant = User::findOrFail($id);
+        return response() -> json($restaurant);
+    }
 }
