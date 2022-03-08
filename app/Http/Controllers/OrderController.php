@@ -69,9 +69,9 @@ class OrderController extends Controller
         
         $data = $request -> validate ([
             "total_price" => 'required',
-            "payment_confirmation" => 'required | boolean',
+            "payment_confirmation" => 'required',
+            "date" => 'required | string',
         ]);
-        $data['date'] = "1977-04-03";
         $data['confirmed'] = 0;
         $data['confirmation_date'] = "1977-04-03";
 
