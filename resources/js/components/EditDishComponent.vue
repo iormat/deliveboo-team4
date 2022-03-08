@@ -47,7 +47,7 @@
             <!-- submit edit form -->
             <!-- close edit form -->
             <div class="text-right">
-                <button  form="edit_form" class="btn" @click="toggleForm">Modifica</button>
+                <button  form="edit_form" class="btn">Modifica</button>
                 <button class="btn" @click="toggleForm">Chiudi</button>
             </div>
         </form>
@@ -98,9 +98,7 @@ export default {
             // post form 
             axios.post(`/api/updateDish/${this.editDishArr.id}`, form)
             .then( response => {
-                // let ind = this.getDishIndById(this.dishEdit_id);
                 this.$emit('updateDish', response.data)
-                // this.dishes.splice(ind, 1, response.data)             
                 this.$emit('toggleEditDish',)
             })
             .catch(function (error) {
