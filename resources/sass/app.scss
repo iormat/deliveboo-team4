@@ -7,6 +7,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import 'partials/_dashboardFooter';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 //Partials
 @import 'partials/_dashboardHeader';
 
@@ -35,21 +42,11 @@
 // DASHBOARD - DISH MENU
 @import 'partials/dashboardMenu';
 
+// DASHBOARD - CREATE DISH FORM
+@import 'partials/dashboardCreateDish';
 
-#edit{
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.137);
-    display: grid;
-    place-content: center;
-    form{
-        border: 2px solid black;
-        padding: 20px;
-        background-color: white;
-        text-align: center;
-
-    }
-}
+// DASHBOARD - EDIT DISH FORM
+@import 'partials/dashboardEditDish';
 
 #restaurants,
 #restaurant_menu {
