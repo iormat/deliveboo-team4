@@ -11206,7 +11206,10 @@ nav h1 {
 }
 
 #dishes_menu {
-  max-width: 100%;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
 }
 
 #menu .card.mycard {
@@ -11260,19 +11263,56 @@ nav h1 {
   text-align: center;
 }
 
+#create_dish {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.137);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#create_dish form {
+  max-width: 60%;
+  border: 2px solid black;
+  border-radius: 1.125rem;
+  padding: 1.125em;
+  background-color: white;
+}
+
+#create_dish form label {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  display: block;
+  padding: 0.25em;
+}
+
 #edit {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.137);
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #edit form {
+  max-width: 60%;
   border: 2px solid black;
-  padding: 20px;
+  border-radius: 1.125rem;
+  padding: 1.125em;
   background-color: white;
-  text-align: center;
+}
+
+#edit form label {
+  font-size: 1rem;
+  font-weight: bolder;
+  display: block;
+  padding: 0.25em;
+}
+
+#edit form label#price {
+  width: 30ch;
 }
 
 #restaurants li,
