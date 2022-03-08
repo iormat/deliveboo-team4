@@ -10966,7 +10966,7 @@ footer {
   text-align: left;
   color: var(--clr-neutral-100);
   min-height: 300px;
-  background-color: var(--clr-primary);
+  background-color: hsl(var(--clr-primary));
 }
 
 footer a {
@@ -10976,7 +10976,7 @@ footer a {
 
 footer a:hover {
   text-decoration: none;
-  color: var(--clr-accent);
+  color: hsl(var(--clr-accent));
 }
 
 footer .container {
@@ -10992,20 +10992,17 @@ footer .container .footer-top {
 
 footer .container .footer-top .dowload {
   display: flex;
-  margin-top: 2%;
-  padding: 20px;
-  border-radius: 5px;
-  width: 50%;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
+  border-radius: 5px;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
 footer .container .footer-top .navbar-footer {
-  margin: 2% 2% 0% 2%;
   padding: 20px;
   border-radius: 5px;
-  width: 21%;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -11016,10 +11013,9 @@ footer .container .footer-top .navbar-footer ul li {
 
 footer .container .footer-top .subscribe {
   padding: 20px;
-  margin-top: 2%;
   border-radius: 5px;
-  width: 21%;
   background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
 }
 
 footer .container .footer-top img {

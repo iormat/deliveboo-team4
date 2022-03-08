@@ -7,10 +7,10 @@ footer {
     }
     a:hover {
         text-decoration: none;
-        color: var(--clr-accent);
+        color: hsl(var(--clr-accent));
     }
     min-height: 300px;
-    background-color: var(--clr-primary);
+    background-color: hsl(var(--clr-primary));
     .container {
         padding: 0;
         width: 80%;
@@ -20,19 +20,16 @@ footer {
            margin-right: 0 !important;
             .dowload{
                 display: flex;
-                margin-top: 2%;
-                padding: 20px;
-                border-radius: 5px;
-                width: 50%;
                 flex-direction: column;
                 justify-content: space-between;
+                padding: 20px;
+                border-radius: 5px;
+                height: 100%;
                 background-color: rgba($color: #000000, $alpha: 0.2);
             }
             .navbar-footer {
-                margin: 2% 2% 0% 2%;
                 padding: 20px;
                 border-radius: 5px;
-                width: 21%;
                 background-color: rgba($color: #000000, $alpha: 0.2);
                 ul li {
                     list-style: none;
@@ -41,10 +38,9 @@ footer {
             }
             .subscribe {
                 padding: 20px;
-                margin-top: 2%;
                 border-radius: 5px;
-                width: 21%;
                 background-color: rgba($color: #000000, $alpha: 0.2);
+                height: 100%;
             }
             img {
                 width: 25%;
