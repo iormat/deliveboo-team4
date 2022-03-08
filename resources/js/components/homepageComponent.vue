@@ -1,12 +1,12 @@
 <template>
     <section id="restaurants">
-        <select name="" id="" v-model="selectCategory">
+        <select name="" id="" v-model="selectType">
             <option value="Tutti" selected>Tutti</option>
-            <option v-for="category in categories" :key="category.id" :value="category.id">{{category.category_name}}</option>
+            <option v-for="type in types" :key="type.id" :value="type.id">{{type.type_name}}</option>
         </select>
         <div class="container">
             <ul class="row">
-                <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-sm-12 col-md-6 col-lg-4">
+                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6 col-lg-4">
                     <div @click="goToRestaurant(restaurant.id)">
                         <div class="card mb-3">
                             <div class="card-header">
@@ -34,8 +34,9 @@ export default {
 
 data: function() {
     return {
-        categories : [],
-        selectCategory : ''
+        types : [],
+        selectType : 'Tutti',
+        restaurantsArr : []
     }
 },
 props: {
@@ -54,21 +55,28 @@ methods: {
         }
     },
     mounted() {
-        axios.get('/api/categories')
+        axios.get('/api/restaurants/types')
         .then(res => {
-            this.categories = res.data
+            this.types = res.data
         })
+    },
+    created() {
+        this.restaurantsArr = this.restaurants
+        console.log(this.restaurantsArr[0].types[0].type_name);
     },
     computed: {
         // check array to get only related results
         showFiltered() {
-            if(this.selectCategory ) {
-                return this.discsArr;
+            if(this.selectType === 'Tutti') {
+                return this.restaurantsArr;
             }
-            return this.discsArr.filter((item) => {
-                if(item.genre === this.selectedGenre){
-                    return this.discsArr
-                }
+            return this.restaurantsArr.filter((item) => {
+                for (let i = 0; i < item.types.length; i++) {
+                    let type = item.types[i]
+                    if(type.id === this.selectType){
+                        return this.restaurantsArr;
+                    }
+                }   
             })
         }
     }

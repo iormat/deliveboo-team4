@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Dish;
 use App\Category;
 use App\User;
+use App\Type;
 
 class ApiController extends Controller
 {
@@ -131,5 +132,9 @@ class ApiController extends Controller
     public function guestRestautanMenu($id) {
         $restaurant = User::findOrFail($id);
         return response() -> json($restaurant);
+    }
+    public function getTypes() {
+        $types = Type::All();
+        return response() -> json($types);
     }
 }
