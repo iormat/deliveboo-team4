@@ -24,7 +24,7 @@ export default {
   }),
 
 async mounted () {
-	await axios.get('/chart/orders')
+	await axios.get('/chart/orders/year')
 			.then(r=> {
 				this.ord2018 = r.data.ord2018.length;
 				this.ord2019 = r.data.ord2019.length;
@@ -32,35 +32,35 @@ async mounted () {
 				this.ord2021 = r.data.ord2021.length;
 				this.ord2022 = r.data.ord2022.length;
 
-				for(let i=0; i < r.data.ordGen.length; i++) {
-					let month = r.data.ordGen[i];
-					this.totGen += Number(month.total_price);
+				for(let i=0; i < r.data.ord2018.length; i++) {
+					let month = r.data.ord2018[i];
+					this.tot2018 += Number(month.total_price);
 				};
-				this.totGen = Number(this.totGen.toFixed(2));
+				this.tot2018 = Number(this.tot2018.toFixed(2));
 
-				for(let i=0; i < r.data.ordFeb.length; i++) {
-					let month = r.data.ordFeb[i];
-					this.totFeb += Number(month.total_price);
+				for(let i=0; i < r.data.ord2019.length; i++) {
+					let month = r.data.ord2019[i];
+					this.tot2019 += Number(month.total_price);
 				};
-				this.totFeb = Number(this.totFeb.toFixed(2));
+				this.tot2019 = Number(this.tot2019.toFixed(2));
 
-				for(let i=0; i < r.data.ordMar.length; i++) {
-					let month = r.data.ordMar[i];
-					this.totMar += Number(month.total_price);
+				for(let i=0; i < r.data.ord2020.length; i++) {
+					let month = r.data.ord2020[i];
+					this.tot2020 += Number(month.total_price);
 				};
-				this.totMar = Number(this.totMar.toFixed(2));
+				this.tot2020 = Number(this.tot2020.toFixed(2));
 
-				for(let i=0; i < r.data.ordApr.length; i++) {
-					let month = r.data.ordApr[i];
-					this.totApr += Number(month.total_price);
+				for(let i=0; i < r.data.ord2021.length; i++) {
+					let month = r.data.ord2021[i];
+					this.tot2021 += Number(month.total_price);
 				};
-				this.totApr = Number(this.totApr.toFixed(2));
+				this.tot2021 = Number(this.tot2021.toFixed(2));
 
-                for(let i=0; i < r.data.ordApr.length; i++) {
-					let month = r.data.ordApr[i];
-					this.totApr += Number(month.total_price);
+                for(let i=0; i < r.data.ord2022.length; i++) {
+					let month = r.data.ord2022[i];
+					this.tot2022 += Number(month.total_price);
 				};
-				this.totApr = Number(this.totApr.toFixed(2));
+				this.tot2022 = Number(this.tot2022.toFixed(2));
 
 
 
@@ -91,3 +91,4 @@ async mounted () {
 	}
 }
 </script>
+
