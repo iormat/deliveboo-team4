@@ -2,7 +2,7 @@
     <div class="container ">
             
         <div class="footer-top row justify-content-between ">
-            <div class="col-sm-12 col-lg-6 mt-3 p-1">
+            <div class="col-sm-12 col-lg-6 mt-3 p-3">
                 <div class="dowload ">
                     <h5>Deliveboo</h5>
                     <div>
@@ -11,7 +11,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-3 mt-3 p-1">
+            <div class="col-sm-12 col-lg-3 mt-3 p-3">
                 <div class="navbar-footer ">
                     <h5>Note Legali</h5>
                     <ul>
@@ -22,7 +22,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-3 mt-3 p-1">
+            <div class="col-sm-12 col-lg-3 mt-3 p-3">
                 <div class="subscribe">
                     <h5>Vuoi il tuo ristorante su Deliveboo?</h5>
                     <a href="*">Registrati</a>
@@ -31,7 +31,7 @@
             
         </div>
 
-        <div class="row align-items-center justify-content-between footer-bottom p-1">
+        <div class="row align-items-center justify-content-between footer-bottom p-3">
             <div class="social g-5">
                 <a href="*"><i id="facebook" class="fab fa-facebook-square"></i></a>
                 <a href="*"><i id="twitter" class="fab fa-twitter-square"></i></a>

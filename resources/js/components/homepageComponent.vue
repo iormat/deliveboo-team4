@@ -1,23 +1,27 @@
 <template>
     <section id="restaurants">
         <!-- search for restaurant  type -->
-        <select name="" id="" v-model="selectType">
-            <option value="Tutti" selected>Tutti</option>
-            <option v-for="type in types" :key="type.id" :value="type.id">{{type.type_name}}</option>
-        </select>
+        <div class="d-flex align-items-center justify-content-center h-25">
+            <div class=" container-select-type d-flex align-items-center justify-content-center">
+                <select name="" id="" v-model="selectType">
+                    <option value="Tutti" selected>Tutti</option>
+                    <option v-for="type in types" :key="type.id" :value="type.id">{{type.type_name}}</option>
+                </select>
+            </div>
+        </div>
+        
         <!-- get restaurant to display -->
         <div class="container">
             <ul class="row">
-                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6 g-5">
+                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6 p-3">
                     <div @click="goToRestaurant(restaurant.id)">
                         <div class="card flex-row">
                             <div class="business-img">
                                 <img src="https://picsum.photos/300/300" alt="">
                             </div>
                             <div class="card-body">
-                                <h3>Restaurant&colon; {{restaurant.business_name}}</h3>
-                                <p>Restaurant description&colon;</p>
-                                {{restaurant.business_description}}
+                                <h3>{{restaurant.business_name}}</h3>
+                                <p>{{restaurant.business_description}}</p>
                             </div>
                         </div>
                     </div>

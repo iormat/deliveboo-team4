@@ -1,9 +1,35 @@
 #restaurants,
 #restaurant_menu {
+    width: 80%;
+    margin: auto;
+    .container-select-type { 
+        width: 100px;
+        height: 50px;
+        select{
+            width: 100px;
+            padding: 5px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            color: hsl(var(--clr-accent));
+            background-color: hsl(var(--clr-primary));
+            border: 6px solid transparent;
+            border-color: #fff transparent transparent transparent;
+            option {
+                padding: 5px;
+            }
+        }
+        select:after {
+            border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+        }
+   
+    }
     li {
+        cursor: pointer;
         padding: 1em 0;
         list-style-type: none;
-        transition: 1s;
+        transition: .7s;
         .card {
             height: 25ch;
             .business-img {
@@ -19,6 +45,18 @@
             .card-body {
                 max-width: 65%;
                 padding: 1em;
+                p {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 5;
+                    -webkit-box-orient: vertical;
+                }
+                h3 {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                }
             }
             mark {
                 background-color: limegreen;
@@ -27,10 +65,5 @@
     }
     li:hover {
         transform: scale(1.1); 
-        z-index: 99;
     }
-}
-
-#restaurants {
-
 }

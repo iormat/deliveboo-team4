@@ -11261,11 +11261,48 @@ header .fas.icons {
   height: 100vh;
 }
 
+#restaurants,
+#restaurant_menu {
+  width: 80%;
+  margin: auto;
+}
+
+#restaurants .container-select-type,
+#restaurant_menu .container-select-type {
+  width: 100px;
+  height: 50px;
+}
+
+#restaurants .container-select-type select,
+#restaurant_menu .container-select-type select {
+  width: 100px;
+  padding: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: hsl(var(--clr-accent));
+  background-color: hsl(var(--clr-primary));
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+#restaurants .container-select-type select option,
+#restaurant_menu .container-select-type select option {
+  padding: 5px;
+}
+
+#restaurants .container-select-type select:after,
+#restaurant_menu .container-select-type select:after {
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
 #restaurants li,
 #restaurant_menu li {
+  cursor: pointer;
   padding: 1em 0;
   list-style-type: none;
-  transition: 1s;
+  transition: 0.7s;
 }
 
 #restaurants li .card,
@@ -11295,6 +11332,22 @@ header .fas.icons {
   padding: 1em;
 }
 
+#restaurants li .card .card-body p,
+#restaurant_menu li .card .card-body p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+#restaurants li .card .card-body h3,
+#restaurant_menu li .card .card-body h3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 #restaurants li .card mark,
 #restaurant_menu li .card mark {
   background-color: limegreen;
@@ -11303,7 +11356,6 @@ header .fas.icons {
 #restaurants li:hover,
 #restaurant_menu li:hover {
   transform: scale(1.1);
-  z-index: 99;
 }
 
 #dishes_menu {
