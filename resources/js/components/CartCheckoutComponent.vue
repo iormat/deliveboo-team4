@@ -1,7 +1,7 @@
 
 <template>
      <div class="container" >
-        
+        <button @click="check">CHECKKKKKKKKKKKKKKKKKKK</button>
         <customer-form-component
             @showForm="showForm"
             @showPayment="showPayment"
@@ -73,10 +73,12 @@ export default {
 
             customerData: {},
 
+            a: 1,
 
             orderInfo: {
                 total_price: "",
-                payment_confirmation: 1,
+                payment_confirmation: "",
+                date: "",
             }
         }
     },
@@ -119,14 +121,35 @@ export default {
         onError (error) {
             // let message = error.message;
             this.paymetnConfirmation = 0;
-            this.orderInfo.payment_confirmation = 0;
             console.error(error);
         },
-        buy() {
-            axios.post('/orders/make/payment', this.form)
+        check() {
+            console.log(today);
+
+        },
+
+        async buy() {
+
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let yyyy = today.getFullYear();
+            today =  yyyy + '/' +  mm + '/' + dd ;
+
+            this.orderInfo.date = today;
+
+            await axios.post('/orders/make/payment', this.form)
                 .then(res => {
                     sessionStorage.removeItem('cart');
                     this.transition = res.data.message;
+
+                    if(this.transition === "Transazione completata") {
+                        this.orderInfo.payment_confirmation = 1;
+                    } else {
+                        this.orderInfo.payment_confirmation = 0;
+                    }
+                    console.log(this.orderInfo.payment_confirmation);
+
                     console.log('conferma api buy: ', res)
                 })
                 .catch(err => {
@@ -134,7 +157,7 @@ export default {
                     console.error('errore api buy: ', err)
                 });
 
-            axios.post('/orders/customerInfo', this.customerData)
+            await axios.post('/orders/customerInfo', this.customerData)
                 .then(res => {
                     sessionStorage.removeItem('customerData');
                     console.log('customer data: ', res)
@@ -143,15 +166,16 @@ export default {
                     console.error('errore api customer data: ', err)
                 });
 
-            axios.post('/orders/createOrder', this.orderInfo)
-                .then(res => {
-                    console.log('orderInfo: ', res)
-                })
-                .catch(err => {
-                    console.error('errore api orderInfo: ', err)
-                })
+             await axios.post('/orders/createOrder', this.orderInfo)
+                    .then(res => {
+                        console.log("order info SENZA ERRORE", this.orderInfo);
+                        console.log('orderInfo: ', res)
+                    })
+                    .catch(err => {
+                        console.error('errore api orderInfo: ', err)
+                        console.log("order info ERRORE",this.orderInfo);
+                    });
 
-            
             
         },
 
@@ -171,7 +195,7 @@ export default {
             }
             // check cart
             this.cart.length > 0 ? this.shoppingCart = true : this.shoppingCart = false;
- 
+
             this.saveCart();
         },
 
