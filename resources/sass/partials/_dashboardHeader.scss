@@ -14,7 +14,7 @@ header{
 .d-flex{
     height: 100vh;
 }
-.container-fluid{
+.dash-cont{
     width: 15%;
     padding: 0px;
     margin: 0;
@@ -37,7 +37,7 @@ header{
             //border-top: solid 2px hsl(var(--clr-accent));
             div{
                 width: 25px;
-                height: 5px;
+                height: 3px;
                 margin: 5px;
                 background-color: hsl(var(--clr-accent));
             }
@@ -61,7 +61,7 @@ header{
         }
     }
 }
-nav{
+.dash-nav{
     padding: 20px;
     display: flex;
     height: 90%;
