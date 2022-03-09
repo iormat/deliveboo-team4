@@ -45,8 +45,7 @@ Route::get('/all/dishes', 'DishController@index');
 
 Route::get('/restaurant/details/{id}', 'GuestController@getRestaurant') -> name('restaurant');
 
-// Route::get('/cart/checkout', 'OrderController@checkout') -> name('checkout');
-
-// Route::get('/cart/checkout', function(){
-//     return view('pages.cart-checkout');
-// }) -> name('cart-checkout');
+Route::prefix('/chart') -> group(function() { 
+    Route::get('/months', 'DishController@index');
+    Route::get('/orders', 'DishController@index');
+});

@@ -1999,9 +1999,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showF: "",
       showP: false,
       customerData: {},
+      a: 1,
       orderInfo: {
         total_price: "",
-        payment_confirmation: 1
+        payment_confirmation: "",
+        date: ""
       }
     };
   },
@@ -2041,31 +2043,71 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     onError: function onError(error) {
       // let message = error.message;
       this.paymetnConfirmation = 0;
-      this.orderInfo.payment_confirmation = 0;
       console.error(error);
+    },
+    check: function check() {
+      console.log(today);
     },
     buy: function buy() {
       var _this = this;
 
-      axios.post('/orders/make/payment', this.form).then(function (res) {
-        sessionStorage.removeItem('cart');
-        _this.transition = res.data.message;
-        console.log('conferma api buy: ', res);
-      })["catch"](function (err) {
-        _this.transition = err.data.message;
-        console.error('errore api buy: ', err);
-      });
-      axios.post('/orders/customerInfo', this.customerData).then(function (res) {
-        sessionStorage.removeItem('customerData');
-        console.log('customer data: ', res);
-      })["catch"](function (err) {
-        console.error('errore api customer data: ', err);
-      });
-      axios.post('/orders/createOrder', this.orderInfo).then(function (res) {
-        console.log('orderInfo: ', res);
-      })["catch"](function (err) {
-        console.error('errore api orderInfo: ', err);
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var today, dd, mm, yyyy;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                today = new Date();
+                dd = String(today.getDate()).padStart(2, '0');
+                mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+                yyyy = today.getFullYear();
+                today = yyyy + '/' + mm + '/' + dd;
+                _this.orderInfo.date = today;
+                _context.next = 8;
+                return axios.post('/orders/make/payment', _this.form).then(function (res) {
+                  sessionStorage.removeItem('cart');
+                  _this.transition = res.data.message;
+
+                  if (_this.transition === "Transazione completata") {
+                    _this.orderInfo.payment_confirmation = 1;
+                  } else {
+                    _this.orderInfo.payment_confirmation = 0;
+                  }
+
+                  console.log(_this.orderInfo.payment_confirmation);
+                  console.log('conferma api buy: ', res);
+                })["catch"](function (err) {
+                  _this.transition = err.data.message;
+                  console.error('errore api buy: ', err);
+                });
+
+              case 8:
+                _context.next = 10;
+                return axios.post('/orders/customerInfo', _this.customerData).then(function (res) {
+                  sessionStorage.removeItem('customerData');
+                  console.log('customer data: ', res);
+                })["catch"](function (err) {
+                  console.error('errore api customer data: ', err);
+                });
+
+              case 10:
+                _context.next = 12;
+                return axios.post('/orders/createOrder', _this.orderInfo).then(function (res) {
+                  console.log("order info SENZA ERRORE", _this.orderInfo);
+                  console.log('orderInfo: ', res);
+                })["catch"](function (err) {
+                  console.error('errore api orderInfo: ', err);
+                  console.log("order info ERRORE", _this.orderInfo);
+                });
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     addToCart: function addToCart(element) {
       var parsed = JSON.stringify(this.cart);
@@ -2110,11 +2152,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this2 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               if (sessionStorage.getItem('cart')) {
                 try {
@@ -2124,19 +2166,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
               }
 
-              _context.next = 3;
+              _context2.next = 3;
               return axios.get('/orders/generate');
 
             case 3:
-              response = _context.sent;
+              response = _context2.sent;
               _this2.authorization = response.data.token; // return {tokenApi: this.authorization.type}
 
             case 5:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }))();
   }
 });
@@ -2266,7 +2308,7 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
     };
   },
   mounted: function mounted() {
-    // axios.get('/')
+    // axios.get('/chart/mounts')
     //         .then(r=> {
     //         this.totGen = r.data.totGen,
     //         this.totFeb = r.data.totFeb,
@@ -2282,7 +2324,7 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
     //         }
     //         )
     //         .catch(e=>console.error(e));
-    // axios.get('/')
+    // axios.get('/chat/orders')
     //         .then(r=> {
     //         this.ordGen = r.data.ordGen,
     //         this.ordFeb = r.data.ordFeb,
@@ -100828,6 +100870,10 @@ var render = function () {
     "div",
     { staticClass: "container" },
     [
+      _c("button", { on: { click: _vm.check } }, [
+        _vm._v("CHECKKKKKKKKKKKKKKKKKKK"),
+      ]),
+      _vm._v(" "),
       _c("customer-form-component", {
         on: {
           showForm: _vm.showForm,

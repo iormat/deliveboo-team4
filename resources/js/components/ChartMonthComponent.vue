@@ -29,7 +29,7 @@ export default {
     }
   }),
   mounted () {
-    // axios.get('/')
+    // axios.get('/chart/mounts')
     //         .then(r=> {
     //         this.totGen = r.data.totGen,
     //         this.totFeb = r.data.totFeb,
@@ -46,7 +46,7 @@ export default {
     //         )
     //         .catch(e=>console.error(e));
 
-    // axios.get('/')
+    // axios.get('/chat/orders')
     //         .then(r=> {
     //         this.ordGen = r.data.ordGen,
     //         this.ordFeb = r.data.ordFeb,
