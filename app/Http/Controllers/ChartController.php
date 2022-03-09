@@ -120,6 +120,57 @@ class ChartController extends Controller
 
     }
 
+    public function getOrdersYear() {
+        
+        $user = Auth::user();
+
+        $orders2018 = DB::table('orders') 
+        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        -> where('dishes.user_id', $user -> id)
+        -> wherebetween('orders.date', [date("2018-01-01"), date("2018-12-31")]) 
+        -> get();
+
+        $orders2019 = DB::table('orders') 
+        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        -> where('dishes.user_id', $user -> id)
+        -> wherebetween('orders.date', [date("2019-01-01"), date("2018-12-31")]) 
+        -> get();
+
+        $orders2020 = DB::table('orders') 
+        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        -> where('dishes.user_id', $user -> id)
+        -> wherebetween('orders.date', [date("2020-01-01"), date("2020-12-31")]) 
+        -> get();
+
+        $orders2021 = DB::table('orders') 
+        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        -> where('dishes.user_id', $user -> id)
+        -> wherebetween('orders.date', [date("2021-01-01"), date("2021-12-31")]) 
+        -> get();
+
+        $orders2022 = DB::table('orders') 
+        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        -> where('dishes.user_id', $user -> id)
+        -> wherebetween('orders.date', [date("2022-01-01"), date("2022-12-31")]) 
+        -> get();
+
+     
+        $orders = [
+            'ord2018' => $orders2018,
+            'ord2019' => $orders2019,
+            'ord2020' => $orders2020,
+            'ord2021' => $orders2021,
+            'ord2022' => $orders2022,
+        ];
+
+        return json_encode($orders);
+    }
+
     public function statistics(){
         return view('pages.orders-statistics');
     }
