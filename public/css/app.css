@@ -11361,6 +11361,7 @@ nav ul li a:hover {
 #restaurant_menu li {
   padding: 1em 0;
   list-style-type: none;
+  transition: 1s;
 }
 
 #restaurants li .card,
@@ -11393,6 +11394,12 @@ nav ul li a:hover {
 #restaurants li .card mark,
 #restaurant_menu li .card mark {
   background-color: limegreen;
+}
+
+#restaurants li:hover,
+#restaurant_menu li:hover {
+  transform: scale(1.1);
+  z-index: 99;
 }
 
 #dishes_menu {
