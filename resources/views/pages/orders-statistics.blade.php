@@ -1,9 +1,13 @@
 @extends('layouts.main-layout')
 
 @section('content')
-    
-<chart-month-component></chart-month-component>
 
+<div class="container">    
+    <chart-month-component></chart-month-component>
+    <chart-order-component></chart-order-component>
+    <chart-profit-component></chart-profit-component>
+</div>
+ 
 
 
 @endsection
