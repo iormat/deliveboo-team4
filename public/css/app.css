@@ -11171,7 +11171,7 @@ header .fas.icons {
 .logo {
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -11181,10 +11181,12 @@ header .fas.icons {
 }
 
 .nav-flex {
+  position: fixed;
+  z-index: 999;
   width: 100%;
   height: 100px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 1em 0;
   background-color: hsl(var(--clr-primary));
@@ -11202,20 +11204,24 @@ header .fas.icons {
 }
 
 .hp-nav-links {
-  display: flex;
   margin: 0;
 }
 
 .hp-nav-links li {
-  margin: 0 30px;
+  margin: 0 20px;
   list-style: none;
 }
 
 .hp-nav-links a {
   text-decoration: none;
   letter-spacing: 3px;
-  font-weight: bold;
   color: hsl(var(--clr-accent));
+}
+
+.closeMenu {
+  font-size: 2rem;
+  display: none;
+  cursor: pointer;
 }
 
 .burger-flex {
@@ -11231,6 +11237,96 @@ header .fas.icons {
   .hp-burger {
     display: block;
   }
+}
+
+header {
+  background-color: hsl(var(--clr-primary)/0.95);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  right: 0;
+  background-color: hsl(var(--clr-primary));
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav ul li a {
+  color: hsl(var(--clr-neutral-900));
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+}
+
+nav ul li a:hover {
+  color: hsl(var(--clr-accent));
+}
+
+.nav-toggle {
+  opacity: 0;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background-color: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
 }
 
 :root {

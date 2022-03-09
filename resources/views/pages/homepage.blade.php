@@ -8,7 +8,7 @@
         <a href="{{ route('login-register') }}">REGISTRATI O ACCEDI</a>
     @endauth
 
-    <my-header-component></my-header-component>
+    <my-header-component-due></my-header-component-due>
 
     <homepage-component :restaurants ="{{$restaurants}}"></homepage-component>
 
