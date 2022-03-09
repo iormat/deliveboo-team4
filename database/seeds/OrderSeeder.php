@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 use App\Order;
-use App\Dish;
 use App\Customer;
 
 class OrderSeeder extends Seeder
@@ -14,7 +15,7 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 10) -> make() -> each(function($order) {
+        factory(Order::class, 100) -> make() -> each(function($order) {
 
             $customer = Customer::inRandomOrder() -> limit(1) -> first();
             $order -> customer() -> associate($customer);
@@ -22,7 +23,7 @@ class OrderSeeder extends Seeder
             $order -> save();
         });
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             DB::table('dish_order')->insert([
                 ['dish_id' => rand(1, 10), 'order_id' => rand(1, 10), 'amount' => rand(1,10)]
             ]);

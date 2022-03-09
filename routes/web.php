@@ -36,6 +36,8 @@ Route::prefix('/api') -> group(function() {
 
 
 Route::get('/orders/generate', 'OrderController@generate');
+Route::post('/orders/customerInfo', 'OrderController@customerInfo');
+Route::post('/orders/createOrder', 'OrderController@createOrder');
 Route::post('/orders/make/payment', 'OrderController@makePayment');
 
 
@@ -43,8 +45,10 @@ Route::get('/all/dishes', 'DishController@index');
 
 Route::get('/restaurant/details/{id}', 'GuestController@getRestaurant') -> name('restaurant');
 
-// Route::get('/cart/checkout', 'OrderController@checkout') -> name('checkout');
+Route::prefix('/chart') -> group(function() { 
+    Route::get('/orders', 'ChartController@getOrdersMonth');
+    Route::get('/statistics', 'ChartController@statistics');
 
-// Route::get('/cart/checkout', function(){
-//     return view('pages.cart-checkout');
-// }) -> name('cart-checkout');
+});
+
+
