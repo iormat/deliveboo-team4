@@ -3,6 +3,7 @@
     li {
         padding: 1em 0;
         list-style-type: none;
+        transition: 1s;
         .card {
             height: 25ch;
             .business-img {
@@ -23,6 +24,10 @@
                 background-color: limegreen;
             }
         }
+    }
+    li:hover {
+        transform: scale(1.1); 
+        z-index: 99;
     }
 }
 

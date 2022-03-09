@@ -8,7 +8,7 @@
         <!-- get restaurant to display -->
         <div class="container">
             <ul class="row">
-                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6">
+                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6 g-5">
                     <div @click="goToRestaurant(restaurant.id)">
                         <div class="card flex-row">
                             <div class="business-img">
