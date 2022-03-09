@@ -39,22 +39,9 @@
 #app{
     height: 100vh;
 }
+
+// HOMEPAGE PARTIALS
+@import 'partials/homepage';
+
 // DASHBOARD PARTIALS
 @import 'partials/dashboard';
-
-#restaurants,
-#restaurant_menu {
-    li {
-        list-style-type: none;
-        .card {
-            margin-top: 2rem;
-            min-height: 40ch;
-            .card-header {
-                min-height: 14ch;
-            }
-            mark {
-                background-color: limegreen;
-            }
-        }
-    }
-}
