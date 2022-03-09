@@ -1,5 +1,5 @@
-<header class="container-fluid">
-    <nav>
+<header class="container-fluid dash-cont">
+    <nav class="dash-nav">
         <div class="container"><h1 class="auth">ciao {{Auth::user() -> name}}</h1>
             <ul class="nav-links">
 
