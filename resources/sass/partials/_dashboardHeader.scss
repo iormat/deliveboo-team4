@@ -1,0 +1,140 @@
+header{
+    width: 30%;
+    .fas{
+        &.icons{
+            
+            display: none;
+            color: hsl(var(--clr-accent));
+            font-size: 30px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+}
+.d-flex{
+    height: 100vh;
+}
+.dash-cont{
+    width: 15%;
+    padding: 0px;
+    margin: 0;
+    background-color: hsl(var(--clr-primary));
+    .auth{
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: hsl(var(--clr-neutral-100));
+    }
+    .container{
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        .burger{
+            display: none;
+            //border-top: solid 2px hsl(var(--clr-accent));
+            div{
+                width: 25px;
+                height: 3px;
+                margin: 5px;
+                background-color: hsl(var(--clr-accent));
+            }
+        }
+        .nav-links{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            a{
+                text-decoration: none;
+                letter-spacing: 2px;
+                font-weight: bold;
+                color: hsl(var(--clr-neutral-100));
+            }
+            li{
+                list-style: none;
+                margin: 30px 0;
+            }
+            
+        }
+    }
+}
+.dash-nav{
+    padding: 20px;
+    display: flex;
+    height: 90%;
+    justify-content: flex-start;
+    align-items: center;
+    
+    h1{
+        color: hsl(var(--clr-neutral-100));
+        margin-top: 40px;
+    }
+    
+}
+.logout{
+    padding: 20px;
+    border-top: solid 2px hsl(var(--clr-accent));
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    a{
+        text-decoration: none;
+        letter-spacing: 3px;
+        font-weight: bold;
+        color: hsl(var(--clr-accent));
+    }
+}
+
+
+
+
+
+
+@media screen and (max-width:576px) {
+   
+    
+
+    
+}
+@media screen and (max-width:768px) {
+   
+    
+
+    
+}
+
+@media screen and (max-width:1175px) {
+    .auth{
+        display: none;
+    }
+    .nav-links{
+        height: 100%;
+    }
+   
+}
+
+@media screen and (max-width:837px) {
+    .logout-text{
+        display:none;
+    }
+    .li-text{
+        display: none;
+    }
+    header{
+        .fas{
+        &.icons{
+            display:block;
+        }
+    }}
+    
+    //icons
+   
+    
+    
+}
+    

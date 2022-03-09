@@ -10962,43 +10962,655 @@ a.text-dark:focus {
   }
 }
 
-body {
+footer {
+  text-align: left;
+  color: hsl(var(--clr-neutral-100));
+  min-height: 300px;
+  background-color: hsl(var(--clr-primary));
+}
+
+footer a {
+  color: hsl(var(--clr-neutral-100));
+  cursor: pointer;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: hsl(var(--clr-accent));
+}
+
+footer .container {
+  padding: 0;
+  width: 80%;
+  margin: auto;
+}
+
+footer .container .footer-top {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+footer .container .footer-top .dowload {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 5px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+footer .container .footer-top .navbar-footer {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+footer .container .footer-top .navbar-footer ul li {
+  list-style: none;
+  margin: 10px 0;
+}
+
+footer .container .footer-top .subscribe {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
+}
+
+footer .container .footer-top img {
+  width: 25%;
+  margin-right: 5px;
+}
+
+footer .container .footer-bottom {
+  margin: 20px 0;
+}
+
+footer .container .footer-bottom a {
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+footer .container .footer-bottom .copyright {
+  font-size: 12px;
+}
+
+footer .container .footer-bottom .copyright i {
+  margin-right: 5px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: 30%;
+}
+
+header .fas.icons {
+  display: none;
+  color: hsl(var(--clr-accent));
+  font-size: 30px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.d-flex {
+  height: 100vh;
+}
+
+.dash-cont {
+  width: 15%;
+  padding: 0px;
+  margin: 0;
+  background-color: hsl(var(--clr-primary));
+}
+
+.dash-cont .auth {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: hsl(var(--clr-neutral-100));
+}
+
+.dash-cont .container {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dash-cont .container .burger {
+  display: none;
+}
+
+.dash-cont .container .burger div {
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background-color: hsl(var(--clr-accent));
+}
+
+.dash-cont .container .nav-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.dash-cont .container .nav-links a {
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: hsl(var(--clr-neutral-100));
+}
+
+.dash-cont .container .nav-links li {
+  list-style: none;
+  margin: 30px 0;
+}
+
+.dash-nav {
+  padding: 20px;
+  display: flex;
+  height: 90%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dash-nav h1 {
+  color: hsl(var(--clr-neutral-100));
+  margin-top: 40px;
+}
+
+.logout {
+  padding: 20px;
+  border-top: solid 2px hsl(var(--clr-accent));
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logout a {
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: hsl(var(--clr-accent));
+}
+
+@media screen and (max-width: 1175px) {
+  .auth {
+    display: none;
+  }
+
+  .nav-links {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 837px) {
+  .logout-text {
+    display: none;
+  }
+
+  .li-text {
+    display: none;
+  }
+
+  header .fas.icons {
+    display: block;
+  }
+}
+
+.logo {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo h4 {
+  margin: 0;
+  color: hsl(var(--clr-neutral-100));
+}
+
+.nav-flex {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+  background-color: hsl(var(--clr-primary));
+}
+
+.hp-burger {
+  display: none;
+}
+
+.hp-burger div {
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background-color: hsl(var(--clr-accent));
+}
+
+.hp-nav-links {
+  margin: 0;
+}
+
+.hp-nav-links li {
+  margin: 0 20px;
+  list-style: none;
+}
+
+.hp-nav-links a {
+  text-decoration: none;
+  letter-spacing: 3px;
+  color: hsl(var(--clr-accent));
+}
+
+.closeMenu {
+  font-size: 2rem;
+  display: none;
+  cursor: pointer;
+}
+
+.burger-flex {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+  .hp-nav-links {
+    display: none;
+  }
+
+  .hp-burger {
+    display: block;
+  }
+}
+
+header {
+  background-color: hsl(var(--clr-primary)/0.95);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  right: 0;
+  background-color: hsl(var(--clr-primary));
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav ul li a {
+  color: hsl(var(--clr-neutral-900));
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+}
+
+nav ul li a:hover {
+  color: hsl(var(--clr-accent));
+}
+
+.nav-toggle {
+  opacity: 0;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background-color: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+}
+
+:root {
+  --clr-neutral-100: 0, 0%, 100%;
+  --clr-neutral-900: 0, 0%, 0%;
+  --clr-primary: 352 48% 25%;
+  --clr-secondary: 41 87% 48%;
+  --clr-accent: 103 39% 77%;
+}
+
+::-moz-selection {
+  color: hsl(var(--clr-secondary));
+  background-color: hsl(var(--clr-primary));
+}
+
+::selection {
+  color: hsl(var(--clr-secondary));
+  background-color: hsl(var(--clr-primary));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100vh;
+}
+
+#restaurants,
+#restaurant_menu {
+  width: 80%;
+  margin: auto;
+}
+
+#restaurants .container-select-type,
+#restaurant_menu .container-select-type {
+  width: 100px;
+  height: 50px;
+}
+
+#restaurants .container-select-type select,
+#restaurant_menu .container-select-type select {
+  width: 100px;
+  padding: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: hsl(var(--clr-accent));
+  background-color: hsl(var(--clr-primary));
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+#restaurants .container-select-type select option,
+#restaurant_menu .container-select-type select option {
+  padding: 5px;
+}
+
+#restaurants .container-select-type select:after,
+#restaurant_menu .container-select-type select:after {
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+#restaurants li,
+#restaurant_menu li {
+  cursor: pointer;
+  padding: 1em 0;
+  list-style-type: none;
+  transition: 0.7s;
+}
+
+#restaurants li .card,
+#restaurant_menu li .card {
+  height: 25ch;
+}
+
+#restaurants li .card .business-img,
+#restaurant_menu li .card .business-img {
+  width: 35%;
+  min-width: 15ch;
+}
+
+#restaurants li .card .business-img img,
+#restaurant_menu li .card .business-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+#restaurants li .card .card-body,
+#restaurant_menu li .card .card-body {
+  max-width: 65%;
+  padding: 1em;
+}
+
+#restaurants li .card .card-body p,
+#restaurant_menu li .card .card-body p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+#restaurants li .card .card-body h3,
+#restaurant_menu li .card .card-body h3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#restaurants li .card mark,
+#restaurant_menu li .card mark {
+  background-color: limegreen;
+}
+
+#restaurants li:hover,
+#restaurant_menu li:hover {
+  transform: scale(1.1);
+}
+
+#dishes_menu {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+#menu .card.mycard {
+  color: var(--clr-neutral-900);
+  padding: 0.8em;
+  min-height: 40ch;
+  background-color: hsl(var(--clr-accent)/0.2);
+  border-radius: 1.125em;
+}
+
+#menu .card.mycard .card-main-info {
+  padding: 0 1em;
+}
+
+#menu .card.mycard .card-body {
+  background-color: hsl(var(--clr-neutral-100));
+  color: hsl(var(--clr-neutral-900));
+  border-radius: 1.125em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#menu .card.mycard .card-body .card-content .dish-img {
+  width: 25%;
+}
+
+#menu .card.mycard .card-body .card-content .dish-img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  display: block;
+}
+
+#menu .card.mycard .mod-container {
+  text-align: right;
+}
+
+#menu .card.mycard .mod-container .modifiers {
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  background-color: hsl(var(--clr-secondary));
+  cursor: pointer;
   text-align: center;
 }
 
 #edit {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.137);
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-#edit form {
+#create_dish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  min-width: 30ch;
+  max-width: 60%;
   border: 2px solid black;
-  padding: 20px;
-  background-color: white;
-  text-align: center;
+  border-radius: 1.125rem;
+  padding: 1.125em;
+  background-color: hsl(var(--clr-accent)/0.2);
 }
 
-#restaurants li,
-#restaurant_menu li {
-  list-style-type: none;
+form label {
+  font-size: 1rem;
+  font-weight: bolder;
+  display: block;
+  padding: 0.25em;
 }
 
-#restaurants li .card,
-#restaurant_menu li .card {
-  margin-top: 2rem;
-  min-height: 40ch;
+form label input:not(input[type=checkbox]):focus,
+form label textarea:focus,
+form label select:focus {
+  border: 0;
+  box-shadow: 2px 2px 3px hsl(var(--clr-primary));
 }
 
-#restaurants li .card .card-header,
-#restaurant_menu li .card .card-header {
-  min-height: 14ch;
+form label * {
+  background-color: hsl(var(--clr-accent)/0.2);
 }
 
-#restaurants li .card mark,
-#restaurant_menu li .card mark {
-  background-color: limegreen;
+form label select {
+  border: 0;
+}
+
+form label select option {
+  background-color: hsl(var(--clr-accent)/0.7);
+}
+
+form .check-btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+form input[type=checkbox].check-check {
+  display: none;
+}
+
+form .check-after {
+  width: 1.125em;
+  height: 1.125em;
+  border: 1px solid hsl(var(--clr-primary));
+  border-radius: 0.25rem;
+  margin-left: 1.125rem;
+  padding: 0.125em;
+}
+
+form .check-after::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: hsl(var(--clr-primary));
+  transform: scale(0);
+  border-radius: 0.25rem;
+  transition: transform 0.3s;
+}
+
+form .check-check:checked + .check-after::after {
+  transform: scale(1);
+}
+
+form button {
+  all: unset;
+  padding: 0.5em 0.75em;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  color: hsl(var(--clr-neutral-100));
+}
+
+form button:first-child {
+  background-color: hsl(var(--clr-secondary));
+}
+
+form button:last-child {
+  background-color: hsl(var(--clr-primary));
 }
 

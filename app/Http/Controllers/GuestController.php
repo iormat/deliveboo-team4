@@ -9,8 +9,7 @@ use App\Dish;
 class GuestController extends Controller
 {
     public function home() {
-        $restaurants = User::all();
-
+        $restaurants = User::with('types') -> get();
         return view('pages.homepage', compact('restaurants'));
     }
 

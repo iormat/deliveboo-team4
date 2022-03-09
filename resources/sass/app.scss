@@ -7,39 +7,43 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-body {
-    text-align: center;
+@import 'partials/_dashboardFooter';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+//Partials
+@import 'partials/_dashboardHeader';
+@import 'partials/_homepageHeader';
+@import 'partials/_homepageHeader2.0';
+
+// palette
+:root {
+    --clr-neutral-100:0, 0%, 100%;
+    --clr-neutral-900:0, 0%, 0%;
+    --clr-primary: 352 48% 25%;
+    --clr-secondary: 41 87% 48%;
+    --clr-accent: 103 39% 77%;
 }
 
-#edit{
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.137);
-    display: grid;
-    place-content: center;
-    form{
-        border: 2px solid black;
-        padding: 20px;
-        background-color: white;
-        text-align: center;
-
-    }
+::selection {
+    color: hsl(var(--clr-secondary));
+    background-color: hsl(var(--clr-primary));
 }
 
-#restaurants,
-#restaurant_menu {
-    li {
-        list-style-type: none;
-        .card {
-            margin-top: 2rem;
-            min-height: 40ch;
-            .card-header {
-                min-height: 14ch;
-            }
-            mark {
-                background-color: limegreen;
-            }
-        }
-    }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#app{
+    height: 100vh;
 }
 
+// HOMEPAGE PARTIALS
+@import 'partials/homepage';
+
+// DASHBOARD PARTIALS
+@import 'partials/dashboard';
