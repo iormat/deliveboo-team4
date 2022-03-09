@@ -1,14 +1,14 @@
 <template>
     <div id="dishes_menu">
+
+
+        <button @click="toStatistics">STATISTICS</button>
+
         <h2>I tuoi menu</h2>
         <!-- button to toggle create - form -->
         <div @click="createNewDish" class="mb-2 btn btn-success">Create</div>        
         <button @click="check" >CHECK</button>
-        <!-- <create-component                               
-            v-bind:createForm.sync="createForm" 
-            :categories="categories"
-            @update:arrayPush="arrayPush">
-        </create-component> -->
+
         <create-component 
         :dishes="dishes"
         :categories="categories"
@@ -170,6 +170,11 @@ export default {
     },
 
     methods: {
+
+        toStatistics(){
+            window.location.href = "/chart/statistics";
+        },
+
         // toggle create - form
         createNewDish() {
             this.createForm = !this.createForm;

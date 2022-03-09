@@ -46,6 +46,9 @@ Route::get('/all/dishes', 'DishController@index');
 Route::get('/restaurant/details/{id}', 'GuestController@getRestaurant') -> name('restaurant');
 
 Route::prefix('/chart') -> group(function() { 
-    Route::get('/months', 'DishController@index');
-    Route::get('/orders', 'DishController@index');
+    Route::get('/orders', 'ChartController@getOrdersMonth');
+    Route::get('/statistics', 'ChartController@statistics');
+
 });
+
+

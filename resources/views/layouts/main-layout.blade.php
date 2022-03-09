@@ -13,7 +13,6 @@
         
         @yield('content')
 
-        <chart-month-component></chart-month-component>
     </div>
     
 
