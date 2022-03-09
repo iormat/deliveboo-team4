@@ -11261,6 +11261,44 @@ header .fas.icons {
   height: 100vh;
 }
 
+#restaurants li,
+#restaurant_menu li {
+  padding: 1em 0;
+  list-style-type: none;
+}
+
+#restaurants li .card,
+#restaurant_menu li .card {
+  height: 25ch;
+}
+
+#restaurants li .card .business-img,
+#restaurant_menu li .card .business-img {
+  width: 35%;
+  min-width: 15ch;
+}
+
+#restaurants li .card .business-img img,
+#restaurant_menu li .card .business-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+#restaurants li .card .card-body,
+#restaurant_menu li .card .card-body {
+  max-width: 65%;
+  padding: 1em;
+}
+
+#restaurants li .card mark,
+#restaurant_menu li .card mark {
+  background-color: limegreen;
+}
+
 #dishes_menu {
   width: 100%;
   height: 100vh;
@@ -11419,26 +11457,5 @@ form button:first-child {
 
 form button:last-child {
   background-color: hsl(var(--clr-primary));
-}
-
-#restaurants li,
-#restaurant_menu li {
-  list-style-type: none;
-}
-
-#restaurants li .card,
-#restaurant_menu li .card {
-  margin-top: 2rem;
-  min-height: 40ch;
-}
-
-#restaurants li .card .card-header,
-#restaurant_menu li .card .card-header {
-  min-height: 14ch;
-}
-
-#restaurants li .card mark,
-#restaurant_menu li .card mark {
-  background-color: limegreen;
 }
 

@@ -8,20 +8,16 @@
         <!-- get restaurant to display -->
         <div class="container">
             <ul class="row">
-                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6 col-lg-4">
+                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6">
                     <div @click="goToRestaurant(restaurant.id)">
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h3>Restaurant&colon; {{restaurant.business_name}}</h3>
-                                <span>Id&colon; {{restaurant.id}}</span>
+                        <div class="card flex-row">
+                            <div class="business-img">
+                                <img src="https://picsum.photos/300/300" alt="">
                             </div>
                             <div class="card-body">
+                                <h3>Restaurant&colon; {{restaurant.business_name}}</h3>
                                 <p>Restaurant description&colon;</p>
                                 {{restaurant.business_description}}
-                            </div>
-                            <div class="card-footer">
-                                Restauran PIVA&colon;
-                                <mark>{{restaurant.p_iva}}</mark>
                             </div>
                         </div>
                     </div>
