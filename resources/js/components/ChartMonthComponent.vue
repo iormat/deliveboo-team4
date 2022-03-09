@@ -34,6 +34,7 @@ export default {
 async mounted () {
 	await axios.get('/chart/orders')
 			.then(r=> {
+				console.log(r);
 				this.ordGen = r.data.ordGen.length;
 				this.ordFeb = r.data.ordFeb.length;
 				this.ordMar = r.data.ordMar.length;
