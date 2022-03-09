@@ -15,7 +15,7 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 100) -> make() -> each(function($order) {
+        factory(Order::class, 300) -> make() -> each(function($order) {
 
             $customer = Customer::inRandomOrder() -> limit(1) -> first();
             $order -> customer() -> associate($customer);
