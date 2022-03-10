@@ -11248,6 +11248,7 @@ header.dash-cont.container-xl .fas.icons {
 }
 
 .header-nav {
+  top: 0;
   background-color: hsl(var(--clr-primary));
   text-align: center;
   position: fixed;
@@ -11258,7 +11259,6 @@ header.dash-cont.container-xl .fas.icons {
 
 .header-nav h1 {
   color: hsl(var(--clr-neutral-100));
-  margin-top: 1rem;
 }
 
 .nav-nav {
@@ -11283,16 +11283,18 @@ header.dash-cont.container-xl .fas.icons {
   margin-left: 1em;
 }
 
+.nav-nav ul li span,
 .nav-nav ul li a {
   color: hsl(var(--clr-neutral-900));
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  opacity: 0;
   transition: opacity 150ms ease-in-out;
+  cursor: pointer;
 }
 
+.nav-nav ul li span:hover,
 .nav-nav ul li a:hover {
   color: hsl(var(--clr-accent));
 }
@@ -11341,7 +11343,7 @@ header.dash-cont.container-xl .fas.icons {
   transform: scale(1, 1);
 }
 
-.nav-toggle:checked ~ nav a {
+.nav-toggle:checked ~ nav span {
   opacity: 1;
   transition: opacity 250ms ease-in-out 250ms;
 }
@@ -11354,8 +11356,14 @@ header.dash-cont.container-xl .fas.icons {
   header.header-nav {
     display: grid;
     grid-template-columns: 1fr auto minmax(600px, 1fr) 1fr;
+    align-items: center;
   }
 
+  header.header-nav li {
+    margin-bottom: 0;
+  }
+
+  header.header-nav li span,
   header.header-nav li a {
     opacity: 1;
     position: relative;
@@ -11378,7 +11386,8 @@ header.dash-cont.container-xl .fas.icons {
     justify-content: flex-end;
   }
 
-  .nav-nav a::before {
+  .nav-nav a::before,
+  .nav-nav span::before {
     content: "";
     display: block;
     height: 5px;
@@ -11391,8 +11400,16 @@ header.dash-cont.container-xl .fas.icons {
     transition: transform ease-in-out 250ms;
   }
 
-  .nav-nav a:hover::before {
+  .nav-nav a:hover::before,
+  .nav-nav span:hover::before {
     transform: scale(1, 1);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 840px) {
+  .nav-nav ul li span,
+  .nav-nav ul li a {
+    font-size: 0.9rem;
   }
 }
 
@@ -11694,11 +11711,5 @@ form button:last-child {
 
 .charts {
   padding: 3rem 0;
-}
-.charts {
-  width: 80%;
-  padding: 100px 0;
-  margin: auto;
-  
 }
 

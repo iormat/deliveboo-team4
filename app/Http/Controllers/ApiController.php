@@ -129,10 +129,11 @@ class ApiController extends Controller
         return view('pages.cart-checkout');
     }
 
-    public function guestRestautanMenu($id) {
-        $restaurant = User::findOrFail($id);
-        return response() -> json($restaurant);
-    }
+    // public function guestRestautanMenu($id) {
+    //     $restaurant = User::findOrFail($id);
+    //     return response() -> json($restaurant);
+    // }
+
     public function getTypes() {
         $types = Type::All();
         return response() -> json($types);

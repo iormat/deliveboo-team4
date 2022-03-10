@@ -2,13 +2,15 @@
 
 @section('content')
     
-    @auth
+    {{-- @auth
         <a href="{{ route('logout') }}">LOGOUT</a>
     @else
         <a href="{{ route('login-register') }}">REGISTRATI O ACCEDI</a>
-    @endauth
+    @endauth --}}
 
-    <my-header-component-due></my-header-component-due>
+    <my-header-component-due
+    user="{{Auth::check()}}"
+    ></my-header-component-due>
 
     <homepage-component :restaurants ="{{$restaurants}}"></homepage-component>
 
