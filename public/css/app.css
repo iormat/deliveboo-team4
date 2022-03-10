@@ -11239,15 +11239,21 @@ header .fas.icons {
   }
 }
 
-header {
-  background-color: hsl(var(--clr-primary)/0.95);
+.header-nav {
+  background-color: hsl(var(--clr-primary));
   text-align: center;
   position: fixed;
   z-index: 999;
   width: 100%;
+  padding: 1.5rem;
 }
 
-nav {
+.header-nav h1 {
+  color: hsl(var(--clr-neutral-100));
+  margin-top: 1rem;
+}
+
+.nav-nav {
   position: absolute;
   text-align: left;
   right: 0;
@@ -11258,27 +11264,28 @@ nav {
   transition: transform 400ms ease-in-out;
 }
 
-nav ul {
+.nav-nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-nav ul li {
+.nav-nav ul li {
   margin-bottom: 1em;
   margin-left: 1em;
 }
 
-nav ul li a {
+.nav-nav ul li a {
   color: hsl(var(--clr-neutral-900));
   text-decoration: none;
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   opacity: 0;
+  transition: opacity 150ms ease-in-out;
 }
 
-nav ul li a:hover {
+.nav-nav ul li a:hover {
   color: hsl(var(--clr-accent));
 }
 
@@ -11291,6 +11298,7 @@ nav ul li a:hover {
   left: 0;
   top: 0;
   margin-left: 1rem;
+  margin-bottom: 1rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -11300,7 +11308,7 @@ nav ul li a:hover {
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
   display: block;
-  background-color: white;
+  background-color: hsl(var(--clr-neutral-100));
   height: 2px;
   width: 2em;
   border-radius: 2px;
@@ -11327,6 +11335,27 @@ nav ul li a:hover {
 
 .nav-toggle:checked ~ nav a {
   opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header.header-nav {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 1fr) 1fr;
+  }
+
+  header.header-nav li a {
+    opacity: 1;
+  }
+
+  .nav-nav {
+    all: unset;
+    grid-column: 3/4;
+  }
 }
 
 :root {
@@ -11452,6 +11481,10 @@ nav ul li a:hover {
 #restaurants li:hover,
 #restaurant_menu li:hover {
   transform: scale(1.1);
+}
+
+.divisore {
+  margin-top: 150px;
 }
 
 #dishes_menu {

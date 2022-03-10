@@ -1,7 +1,7 @@
 <template>
     <section id="restaurants">
         <!-- search for restaurant  type -->
-        <div class="d-flex align-items-center justify-content-center h-25">
+        <div class="d-flex align-items-center justify-content-center h-25 divisore">
             <div class=" container-select-type d-flex align-items-center justify-content-center">
                 <select name="" id="" v-model="selectType">
                     <option value="Tutti" selected>Tutti</option>

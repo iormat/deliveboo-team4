@@ -1,8 +1,8 @@
 <template>
-    <header>
+    <header class="header-nav">
         <h1>DeliverBoo</h1>
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <nav>
+        <nav class="nav-nav">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Contact us</a></li>
