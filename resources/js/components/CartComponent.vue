@@ -12,8 +12,8 @@
                 </ul>
                 {{totalPrice}}
             </div>
-            <div>
-                <button @click="checkout" class="btn btn-success">Procedi all'ordine</button>
+            <div class="buy-button" @click="checkout">
+                <div>Vai al pagamento</div>
             </div>
 
         </div>

@@ -1,34 +1,89 @@
 <template>
-    <section id="restaurants">
-        <div class="container">
-            <!-- menu list -->
-            <ul class="row">
-                <li class="col-sm-12 col-md-6 col-lg-4" v-for="dish in menu" :key="dish.id">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h3>Nome Piatto&colon; {{dish.dish_name}}</h3>
-                            <span>Id&colon; {{dish.id}}</span>
-                        </div>
-                        <div class="card-body">
-                            <p>Descrizione piatto&colon;</p>
-                            {{dish.description}}
-                        </div>
-                        <div class="card-footer">
-                            Prezzo piatto&colon;
-                            <mark>{{dish.price}} &euro;</mark>
-                            <div>
-                                <button class="btn btn-success my-3" @click="addToCart(dish)">Add to Cart</button>
+    <section id="ristoranti">
+        <div class="container-details">
+            
+            <div class="jambo-details">
+                <div class="overlay"></div>
+                    <h1>nome ristorante</h1>
+                    <img src="https://cdn.create.vista.com/api/media/medium/218509368/stock-photo-salad-grated-pumpkin-scrambled-eggs?token=" alt="" >
+                
+            </div>
+
+            <div class="restourant-container row">
+                <div class="menu-container col-sm-12 col-md-9 col-lg-9">
+                    <ul class="cards-container">
+                        <li class="col-sm-12" v-for="dish in menu" :key="dish.id">
+                            <div class="card_header">
+                                <h3>Nome Piatto&colon; {{dish.dish_name}}</h3>
                             </div>
-                        </div>
+                            <div class="card_body d-flex row">
+                                <p class="col-sm-12 col-md-8 col-lg-8 description-dish">Descrizione piatto&colon; {{dish.description}}</p>
+                                    
+                                <div class="imgdish col-md-4 col-lg-4">
+                                    <img src="https://picsum.photos/300/300" alt="">
+                                </div>
+                            </div>
+                            <div class="card_footer">
+                                Prezzo piatto&colon;
+                                    <mark>{{dish.price}} &euro;</mark>
+                                    <div @click="addToCart(dish)" class="AddToCart">
+                                        <i class="fas fa-plus"></i> <span>Aggiungi al carrello</span>
+                                    </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chart-container-1 col-md-3 col-lg-3">
+                    <div class="chart-container">
+                        <cart-component
+                        v-if="shoppingCart"
+                        :cart="cart"
+                        @removeDish="removeDish"
+                        ></cart-component>
+                        <!-- <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button> -->
                     </div>
-                </li>
-            </ul>
-            <cart-component
-            v-if="shoppingCart"
-            :cart="cart"
-            @removeDish="removeDish"
-            ></cart-component>
-            <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
+                </div>
+
+            </div>
+            
+            <!-- <div class="d-flex flexing">
+                <div class="container row p-5 cont-card">
+                    <ul class="row">
+                        <li class="col-sm-12" v-for="dish in menu" :key="dish.id">
+                            <div class="card mb-3 details-card">
+                                <div class="card-header">
+                                    <h3>Nome Piatto&colon; {{dish.dish_name}}</h3>
+                                    <span>Id&colon; {{dish.id}}</span>
+                                </div>
+                                <div class="card-body">
+                                    <p>Descrizione piatto&colon;</p>
+                                    {{dish.description}}
+                                   
+                                </div>
+                                 <div class="card-footer">
+                                    Prezzo piatto&colon;
+                                    <mark>{{dish.price}} &euro;</mark>
+                                    <div>
+                                        <button class="btn btn-success my-3" @click="addToCart(dish)">Add to Cart</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="chart-container">
+                        <cart-component
+                        v-if="shoppingCart"
+                        :cart="cart"
+                        @removeDish="removeDish"
+                        ></cart-component>
+                        <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
+                    </div>
+            </div> -->
+            
+            <!-- menu list -->
+            
         </div>
 
     </section>
