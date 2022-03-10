@@ -11358,11 +11358,41 @@ header.dash-cont.container-xl .fas.icons {
 
   header.header-nav li a {
     opacity: 1;
+    position: relative;
   }
 
   .nav-nav {
     all: unset;
     grid-column: 3/4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .nav-nav li {
+    margin-left: 3em;
+  }
+
+  .nav-nav .ul-links {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-nav a::before {
+    content: "";
+    display: block;
+    height: 5px;
+    background-color: black;
+    position: absolute;
+    top: -0.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+
+  .nav-nav a:hover::before {
+    transform: scale(1, 1);
   }
 }
 
@@ -11664,5 +11694,11 @@ form button:last-child {
 
 .charts {
   padding: 3rem 0;
+}
+.charts {
+  width: 80%;
+  padding: 100px 0;
+  margin: auto;
+  
 }
 
