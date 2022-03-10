@@ -11046,11 +11046,19 @@ footer .container .footer-bottom .copyright i {
   box-sizing: border-box;
 }
 
-header {
+header.container-fluid.dash-cont,
+header.dash-cont.container-sm,
+header.dash-cont.container-md,
+header.dash-cont.container-lg,
+header.dash-cont.container-xl {
   width: 30%;
 }
 
-header .fas.icons {
+header.container-fluid.dash-cont .fas.icons,
+header.dash-cont.container-sm .fas.icons,
+header.dash-cont.container-md .fas.icons,
+header.dash-cont.container-lg .fas.icons,
+header.dash-cont.container-xl .fas.icons {
   display: none;
   color: hsl(var(--clr-accent));
   font-size: 30px;
@@ -11645,5 +11653,16 @@ form button:first-child {
 
 form button:last-child {
   background-color: hsl(var(--clr-primary));
+}
+
+#statistics {
+  width: 70%;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 2em;
+}
+
+.charts {
+  padding: 3rem 0;
 }
 

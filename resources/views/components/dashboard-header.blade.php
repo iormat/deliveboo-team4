@@ -7,11 +7,10 @@
                 <li><a href="#"><i class="fas fa-home-lg icons"></i></a></li>
                 <li class="li-text"><a href="#">Your Orders</a></li>
                 <li><a href="#"><i class="fas fa-truck icons"></i></a></li>
-                <li class="li-text"><a href="#">Your Statistics</a></li>
+                <li class="li-text"><a href="{{route('statistics')}}">Your Statistics</a></li>
                 <li><a href="#"><i class="fas fa-chart-line icons"></i></a></li>
                 <li class="li-text"><a href="#">Your Menu</a></li>
-                <li><a href="#"><i class="fas fa-utensils icons"></i></a></li>
-                
+                <li><a href="#"><i class="fas fa-utensils icons"></i></a></li>                
                 
             </ul>
             <div class="burger">
