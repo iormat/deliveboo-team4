@@ -138,4 +138,18 @@ class ApiController extends Controller
         $types = Type::All();
         return response() -> json($types);
     }
+
+    // get user chosen restaurants types
+    public function chosenRestaurants(Request $request) {
+        
+        $type = key($request->all());
+
+        $restaurant = DB::table('users')
+                ->select('users.*')
+                ->join('type_user', 'users.id', '=', 'type_user.user_id')
+                ->join('types', 'type_user.type_id', '=', 'types.id')
+                ->where('types.type_name', $type)
+                ->get();
+        return response() -> json($restaurant);
+    }
 }

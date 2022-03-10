@@ -3,10 +3,12 @@
         <!-- search for restaurant  type -->
         <div class="d-flex align-items-center justify-content-center h-25 divisore">
             <div class=" container-select-type d-flex align-items-center justify-content-center">
-                <select name="" id="" v-model="selectType">
-                    <option value="Tutti" selected>Tutti</option>
-                    <option v-for="type in types" :key="type.id" :value="type.id">{{type.type_name}}</option>
-                </select>
+                <div class="type" v-for="type in types" :key="type.id">
+                    <label :for="type.type_name">
+                        {{type.type_name}}
+                        <input @click="getRestaurants($event, type.type_name)" :value="type.type_name" type="checkbox" :id="type.type_name">
+                    </label>
+                </div>
             </div>
         </div>
         
@@ -38,12 +40,10 @@ export default {
         return {
             types : [],
             selectType : 'Tutti',
+
+            restaurants: [],
         }
     },
-
-    props: {
-            restaurants: Array,
-        },
     
     methods: {
         // redirect to restaurant details page
@@ -55,7 +55,29 @@ export default {
             .catch(err => {
                 console.log(err);
             })
-        }
+        },
+        // get selected restaurants types
+        getRestaurants(event, type) {
+            if(event.target.checked) {
+                axios.post('/api/user/chosen/restaurants', type)
+                    .then(res => {
+                        res.data.forEach(element => {
+                            const parsed = JSON.stringify(this.restaurants);
+                            if(!parsed.includes(`"id":${element.id}`)) {
+                                element.type = type;
+                                this.restaurants.push(element)
+                                console.log(element)
+                            }
+                        });
+                    })
+            }else {
+                this.restaurants = this.restaurants.filter(function(element){
+                    if(element.type != type) {
+                        return element
+                    }
+                })
+            }
+        },
     },
     mounted() {
         axios.get('/api/restaurants/types')
@@ -63,21 +85,5 @@ export default {
             this.types = res.data;
         })
     },
-    computed: {
-        // check array to get only related results
-        showFiltered() {
-            if(this.selectType === 'Tutti') {
-                return this.restaurants;
-            }
-            return this.restaurants.filter((restaurant) => {
-                for (let i = 0; i < restaurant.types.length; i++) {
-                    let type = restaurant.types[i];
-                    if(type.id === this.selectType){
-                        return this.restaurants;
-                    }
-                }   
-            })
-        }
-    }
 }
 </script>

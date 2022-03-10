@@ -33,6 +33,7 @@ Route::prefix('/api') -> group(function() {
     // guests
     Route::get('/cart/checkout', 'ApiController@checkout') -> name('api.cart.checkout');
     Route::get('/restaurants/types', 'ApiController@getTypes');
+    Route::post('/user/chosen/restaurants', 'ApiController@chosenRestaurants');
 });
 
 
