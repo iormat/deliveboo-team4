@@ -1,15 +1,22 @@
 
 <template>
-  <div>
+  <section id="order-page">
       <h2>I tuoi ordini</h2>
-        <ul class="m-3 px-2">
-            <li v-for="order in orders" :key="order.id">
-                id ordine: {{order.id}} {{order.order_id}} - {{order.date}} - {{order.confirmed}}
-                <button @click="confirmed(order.id)" class="btn btn-success">conferma</button>
+        <ol reversed class="m-3 px-2">
+            <li v-for="order, i in orders" :key="i" class="lst">
+                    <div>
+                        data: {{order.created_at}} <br>
+                        nome: {{order.name}} surname: {{order.success}} <br>
+                        indirizzo: <br>
+                        {{order.address}}
+                        confermato: {{order.confirmed}}
+                    </div>
+                    
+                <button v-if="order.confirmed === 0" @click="confirmed(order.id)" class="btn btn-outline-success button">conferma</button>
             </li>
-        </ul>
+        </ol>
 
-  </div>
+  </section>
 </template>
 
 <script>
