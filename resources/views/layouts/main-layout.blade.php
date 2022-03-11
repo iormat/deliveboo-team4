@@ -13,9 +13,10 @@
     <div id="app">
         
         @yield('content')
+        
         @include('components.dashboard-footer')
-
     </div>
+    
     
 </body>
 </html>

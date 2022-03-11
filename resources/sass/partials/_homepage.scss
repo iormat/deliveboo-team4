@@ -26,10 +26,9 @@
    
     }
     li {
-        cursor: pointer;
         padding: 1em 0;
         list-style-type: none;
-        transition: .7s;
+        // transition: .7s;
         .card {
             height: 25ch;
             .business-img {
@@ -62,9 +61,6 @@
                 background-color: limegreen;
             }
         }
-    }
-    li:hover {
-        transform: scale(1.1); 
     }
 }
 // .divisore{

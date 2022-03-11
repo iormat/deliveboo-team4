@@ -18,6 +18,7 @@
 @import 'partials/_dashboardHeader';
 @import 'partials/_homepageHeader2.0';
 @import 'partials/restaurantDetails';
+@import 'partials/forms';
 
 // palette
 :root {
@@ -41,10 +42,14 @@
 }
 #app{
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 // HOMEPAGE PARTIALS
 @import 'partials/homepage';
+
 
 // DASHBOARD PARTIALS
 @import 'partials/dashboard';

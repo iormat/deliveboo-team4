@@ -1,7 +1,6 @@
 
 <template>
      <div class="container" >
-        <button @click="check">CHECKKKKKKKKKKKKKKKKKKK</button>
         <customer-form-component
             @showForm="showForm"
             @showPayment="showPayment"

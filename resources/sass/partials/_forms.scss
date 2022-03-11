@@ -1,0 +1,12 @@
+.loginRegister{
+    margin: 100px auto;
+    width: 50%;
+    text-align: center;
+    form{
+        border: solid 2px hsl(var(--clr-neutral-900));
+        border-radius: 5px;
+        width: 50%;
+        margin: 0 auto;
+        background-color: hsl(var(--clr-accent)/.6);
+    }
+}
