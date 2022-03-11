@@ -1,5 +1,8 @@
 <template>
     <section id="restaurants">
+        <div id="home-jumbo">
+            <img src="/storage/assets/pexels-ray-piedra-1565982.jpg" alt="header jumbo">
+        </div>
         <section class="container">
             <h2>I nostri consigliati</h2>
             <div class="fav-restaurants">

@@ -11464,14 +11464,14 @@ header.dash-cont.container-xl .fas.icons {
 }
 
 #ristoranti .restourant-container .menu-container .cards-container .card_body {
-  height: 100px;
+  max-height: 100px;
   width: 100%;
 }
 
 #ristoranti .restourant-container .menu-container .cards-container .card_body p {
-  overflow: scroll;
+  overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
 

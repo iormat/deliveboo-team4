@@ -90,13 +90,13 @@
                     // background-color: aqua;
                 }
                 .card_body{
-                    height: 100px;
+                    max-height: 100px;
                     width: 100%;
                     // background-color: rgb(61, 107, 107);
                     p{
-                        overflow: scroll;
+                        overflow: hidden;
                         display: -webkit-box;
-                        -webkit-line-clamp: 3;
+                        -webkit-line-clamp: 4;
                         -webkit-box-orient: vertical;
                     }
                     .imgdish{

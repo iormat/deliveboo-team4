@@ -22,9 +22,7 @@
                 <span></span>
             </label>    
         </div>
-        <div id="home-jumbo">
-            <img src="/storage/assets/pexels-ray-piedra-1565982.jpg" alt="header jumbo">
-        </div>
+        
     </header>
 </template>
 
