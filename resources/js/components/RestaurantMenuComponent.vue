@@ -26,14 +26,15 @@
                             <div class="card_footer">
                                 Prezzo piatto&colon;
                                     <mark>{{dish.price}} &euro;</mark>
-                                    <div @click="addToCart(dish)" class="AddToCart">
+                                    <div @click="addToCart(dish)" class="AddToCart" >
                                         <i class="fas fa-plus"></i> <span>Aggiungi al carrello</span>
                                     </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="chart-container-1 col-md-3 col-lg-3">
+                <div class="chart-container-1 col-sm-12 col-md-3 col-lg-3">
+
                     <div class="chart-container">
                         <cart-component
                         v-if="shoppingCart"
