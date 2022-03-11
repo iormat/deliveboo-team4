@@ -43,6 +43,9 @@ Route::prefix('/orders') -> group(function() {
     Route::post('/customerInfo', 'OrderController@customerInfo');
     Route::post('/createOrder', 'OrderController@createOrder');
     Route::post('/make/payment', 'OrderController@makePayment');
+    Route::get('', 'OrderController@index')-> name('orders');
+    Route::get('/list', 'OrderController@list');
+    Route::post('/confirm', 'OrderController@confirm');
 });
 
 

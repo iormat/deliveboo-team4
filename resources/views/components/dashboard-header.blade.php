@@ -5,7 +5,7 @@
 
                 <li class="li-text"><a href="#">Home</a></li>
                 <li><a href="#"><i class="fas fa-home-lg icons"></i></a></li>
-                <li class="li-text"><a href="#">Your Orders</a></li>
+                <li class="li-text"><a href="{{route('orders')}}">Your Orders</a></li>
                 <li><a href="#"><i class="fas fa-truck icons"></i></a></li>
                 <li class="li-text"><a href="{{route('statistics')}}">Your Statistics</a></li>
                 <li><a href="#"><i class="fas fa-chart-line icons"></i></a></li>

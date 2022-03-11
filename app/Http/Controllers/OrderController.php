@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use App\Customer;
 use App\Order;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -82,5 +83,34 @@ class OrderController extends Controller
         $order -> save();
 
         return json_encode($order);
+    }
+
+    public function index(){
+        return view('pages.orders');
+    }
+
+    public function list() {
+        
+        $user = Auth::user();
+
+        $orders = DB::table('orders') 
+        -> select('orders.created_at', 'orders.total_price', 'dishes.user_id', 'customers.name', 'customers.surname', 'customers.address', 'orders.id', 'orders.confirmed')
+        -> distinct()
+        -> join('customers', 'customer_id', '=', 'customers.id')
+        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        -> where('dishes.user_id', $user -> id)
+        -> get();
+
+        return response()->json($orders);    
+    }
+
+    public function confirm(Request $request){
+        $id = key($request -> all());       
+        $order = Order::findOrFail($id);
+        $order['confirmed'] = 1;
+        $order -> update();
+
+        return response()->json($order);
     }
 }
