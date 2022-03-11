@@ -39,8 +39,6 @@ export default {
                         })
                 }
             }
-            let confirm = this.orders.co
-            // axios.post('/orders/confirm', confirm);
         }
     }
 }

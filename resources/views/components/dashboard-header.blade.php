@@ -3,8 +3,8 @@
         <div class="container"><h1 class="auth">ciao {{Auth::user() -> name}}</h1>
             <ul class="nav-links">
 
-                <li class="li-text"><a href="#">Home</a></li>
-                <li><a href="#"><i class="fas fa-home-lg icons"></i></a></li>
+                <li class="li-text"><a href="{{route('home')}}">Home</a></li>
+                <li><a href="{{route('home')}}"><i class="fas fa-home-lg icons"></i></a></li>
                 <li class="li-text"><a href="{{route('orders')}}">Your Orders</a></li>
                 <li><a href="#"><i class="fas fa-truck icons"></i></a></li>
                 <li class="li-text"><a href="{{route('statistics')}}">Your Statistics</a></li>
