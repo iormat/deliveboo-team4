@@ -10,6 +10,7 @@ $factory->define(Customer::class, function (Faker $faker) {
         
         "name" => $faker -> firstName(),
         "surname" => $faker -> lastName(),
+        "email" => $faker -> safeEmail(),
         "address" => $faker -> streetAddress(),
         "note" => $faker -> words(10, true),
         "cap" => $faker -> numerify("#####"),

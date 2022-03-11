@@ -2,6 +2,7 @@
 <template>
      <div class="container" >
         <customer-form-component
+            @getDishesId="getDishesId"
             @showForm="showForm"
             @showPayment="showPayment"
             @getCustomerData="getCustomerData"
@@ -78,7 +79,9 @@ export default {
                 total_price: "",
                 payment_confirmation: "",
                 date: "",
-            }
+            },
+
+            dishesId: [],
         }
     },
     
@@ -95,6 +98,12 @@ export default {
         }
     },
     methods: {
+
+        getDishesId(e) {
+            this.dishesId = e;
+            console.log(this.dishesId);
+        },
+
         showForm() {
             this.showF = false;
         },
@@ -136,6 +145,13 @@ export default {
             today =  yyyy + '/' +  mm + '/' + dd ;
 
             this.orderInfo.date = today;
+
+            this.dishesId.forEach((id, i) => {
+                let newDishProperty = "dish" + i;
+                this.orderInfo[newDishProperty] = id; 
+            }); 
+            console.log("orderInfo",this.orderInfo);
+            console.log(Object.keys(this.orderInfo).length);
 
             await axios.post('/orders/make/payment', this.form)
                 .then(res => {
@@ -229,6 +245,8 @@ export default {
                 sessionStorage.removeItem('cart');
             }
         }
+
+
         const response = await axios.get('/orders/generate')
         this.authorization = response.data.token;
         // return {tokenApi: this.authorization.type}

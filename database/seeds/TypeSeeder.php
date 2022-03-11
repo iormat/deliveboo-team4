@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\Type;
 use App\User;
+use Illuminate\Support\Facades\DB;
+
 
 class TypeSeeder extends Seeder
 {
@@ -17,7 +19,7 @@ class TypeSeeder extends Seeder
         
         for($i = 0; $i < 10; $i++) {
             DB::table('type_user') -> insert([
-                ['type_id' => rand(1,5), 'user_id' => rand(1,10)]
+                ['type_id' => rand(1,5), 'user_id' => rand(1,5)]
             ]);
         }
 

@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string("name", 60);
             $table->string("surname", 60);
+            $table->string("email", 60);
             $table->string("address", 60);
             $table->string("note") -> nullable();
             $table->string("cap", 5);

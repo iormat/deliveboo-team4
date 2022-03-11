@@ -16,6 +16,10 @@
                 <input type="text" name="surname" min="2" max="60" v-model="surname"  required>
             </label>
             <br>
+            <label for="email">Email
+                <input type="email" name="email" min="2" max="60" v-model="email"  required>
+            </label>
+            <br>
             <label for="address">Address
                 <input type="text" name="address" min="5" max="60" v-model="address"  required>
             </label>
@@ -51,6 +55,7 @@ export default {
             customerForm: {
                 name: "",
                 surname: "",
+                email: "",
                 address: "",
                 note: "",
                 cap: "",
@@ -59,12 +64,17 @@ export default {
 
             name: "",
             surname: "",
+            email: "",
             address: "",
             note: "",
             cap: "",
             telephone: "",
             showForm: true,
             showPayment: false,
+
+
+            dishesId: [],
+            cart: [],
         }
     },
 
@@ -73,11 +83,22 @@ export default {
         const storageCustomerData = JSON.parse(sessionStorage.getItem('customerData'));
         this.name = storageCustomerData.name;
         this.surname = storageCustomerData.surname;
+        this.email = storageCustomerData.email;
         this.address = storageCustomerData.address;
         this.note = storageCustomerData.note;
         this.cap = storageCustomerData.cap;
         this.telephone = storageCustomerData.telephone;
     }
+
+    if (sessionStorage.getItem('cart')) {
+        try {
+            this.cart = JSON.parse(sessionStorage.getItem('cart'));
+        } catch(e) {
+            sessionStorage.removeItem('cart');
+        }
+    }    
+
+    console.log("cart", this.cart);
 },
 
     methods: {
@@ -86,6 +107,7 @@ export default {
 
             this.customerForm.name = this.name;
             this.customerForm.surname = this.surname;
+            this.customerForm.email = this.email;
             this.customerForm.address = this.address;
             this.customerForm.note = this.note;
             this.customerForm.cap = this.cap;
@@ -94,6 +116,13 @@ export default {
             const parsed = JSON.stringify(this.customerForm);
             sessionStorage.setItem('customerData', parsed);
 
+            this.cart.forEach(dish => {
+                console.log("dish",dish.id);
+                this.dishesId.push(dish.id);
+            });
+            console.log("ids", this.dishesId);
+
+            this.$emit("getDishesId", this.dishesId);
             this.$emit("showForm");
             this.$emit("showPayment");
             this.$emit("getCustomerData", this.customerForm);

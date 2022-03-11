@@ -8,7 +8,7 @@
             <div class="fav-restaurants">
                 <ul class="row flex-nowrap">
                     <li v-for="favRes in favRestaurants" :key="favRes.id" class="col-sm-12 col-md-6 p-3">
-                        <div @click="goToRestaurant(favRes.id)">
+                        <div @click="goToRestaurant(favRes.id, )">
                             <div class="card flex-row">
                                 <div class="business-img">
                                     <img src="https://picsum.photos/300/300" alt="">

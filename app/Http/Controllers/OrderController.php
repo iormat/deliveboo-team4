@@ -9,6 +9,12 @@ use App\Customer;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Dish;
+use App\Mail\PaymentConfirmation;
+use Illuminate\Support\Facades\Mail;
+
+
+
 
 class OrderController extends Controller
 {
@@ -38,6 +44,8 @@ class OrderController extends Controller
                 'success' => true,
                 'message' => 'Transazione completata'
             ];
+
+            
             return response()->json($data, 200);
         }else{
             $data = [
@@ -55,6 +63,7 @@ class OrderController extends Controller
         $data = $request -> validate ([
             'name' => 'required | string | min:2 | max:60',
             'surname' => 'required | string | min:2 | max:60',
+            'email' => 'required | string | min:2 | max:60',
             'address' => 'required| string | min:4 | max:60',
             'note' => 'string | min:4 | max:60',
             'cap' => 'required | string | min:5 | max:5',
@@ -75,12 +84,39 @@ class OrderController extends Controller
         ]);
         $data['confirmed'] = 0;
         $data['confirmation_date'] = "1977-04-03";
+  
+
 
         
         $order = Order::make($data);
         $lastCustomer = Customer::orderBy('id', 'desc')->first();
         $order -> customer() -> associate($lastCustomer);
         $order -> save();
+
+        for($i = 0; $i < count(array_keys($request -> all())) - 3; $i++) {
+            $key = "dish";
+            $key .= strval($i);
+            $dish = Dish::findOrFail($request -> $key);
+
+            $order -> dishes() -> attach($dish);
+        };
+
+
+
+
+        $user = DB::table('orders') 
+                -> select('users.*')
+                -> join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+                -> join('dishes',  'dish_order.dish_id', '=', 'dishes.id',)
+                -> join('users', 'dishes.user_id', '=', 'users.id')
+                -> where('orders.id', '=', $order -> id)
+                -> get();
+
+        $userEmail = $user[0] -> email;    
+        
+
+        Mail::to($lastCustomer -> email) -> send(new PaymentConfirmation($order));
+        Mail::to($userEmail) -> send(new PaymentConfirmation($order));
 
         return json_encode($order);
     }
