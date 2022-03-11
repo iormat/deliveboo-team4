@@ -31,7 +31,7 @@
             
         </div>
 
-        <div class="row align-items-center justify-content-between footer-bottom p-3">
+        <div class="row align-items-center justify-content-between footer-bottom mx-3">
             <div class="social g-5">
                 <a href="*"><i id="facebook" class="fab fa-facebook-square"></i></a>
                 <a href="*"><i id="twitter" class="fab fa-twitter-square"></i></a>

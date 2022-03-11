@@ -11024,7 +11024,7 @@ footer .container .footer-top img {
 }
 
 footer .container .footer-bottom {
-  margin: 20px 0;
+  padding: 20px 0;
 }
 
 footer .container .footer-bottom a {
@@ -11285,7 +11285,7 @@ header.dash-cont.container-xl .fas.icons {
 }
 
 #home-jumbo {
-  height: 50ch;
+  height: 60ch;
   width: 100%;
 }
 
@@ -11635,8 +11635,57 @@ header.dash-cont.container-xl .fas.icons {
   transform: scale(1.1);
 }
 
-.divisore {
-  margin-top: 150px;
+#restaurants .container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0;
+  color: hsl(var(--clr-primary));
+}
+
+#restaurants .container .row.flex-nowrap {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+#restaurants .container .types_container {
+  margin: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#restaurants .container .types_container .type {
+  min-width: 10ch;
+  text-align: center;
+}
+
+#restaurants .container .types_container .type input[type=checkbox] {
+  display: none;
+}
+
+#restaurants .container .types_container .type label {
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: hsl(var(--clr-primary));
+  position: relative;
+}
+
+#restaurants .container .types_container .type input[type=checkbox] + label::after {
+  content: "";
+  display: block;
+  height: 0.125em;
+  background-color: hsl(var(--clr-secondary));
+  transform: scale(0, 1);
+  transition: transform ease-in-out 250ms;
+}
+
+#restaurants .container .types_container .type input[type=checkbox]:checked + label::after {
+  transform: scale(1, 1);
+}
+
+#restaurants .container .types_container .type input[type=checkbox]:checked + label {
+  color: hsl(var(--clr-secondary));
 }
 
 #dishes_menu {

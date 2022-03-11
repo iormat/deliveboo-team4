@@ -152,4 +152,10 @@ class ApiController extends Controller
                 ->get();
         return response() -> json($restaurant);
     }
+
+    // get fav restaurants
+    public function favRestaurants() {
+        $restaurants = User::inRandomOrder() -> limit(4) -> get();
+        return response() -> json($restaurants);
+    }
 }

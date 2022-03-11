@@ -5,7 +5,9 @@
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <nav class="nav-nav">
                 <ul class="ul-links">
-                    <li><a href="#">Home</a></li>
+                    <li>
+                        <span @click="goHome">Home</span>
+                    </li>
                     <li><a href="#">Contact us</a></li>
                     <li><a href="#">Restaurant</a></li>
                     <li v-if="user">
@@ -40,6 +42,10 @@ export default {
         },
         loginRegister() {
             window.location.href = '/login';
+        },
+
+        goHome() {
+            window.location.href = '/';
         }
     }
 }

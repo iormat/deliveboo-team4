@@ -34,24 +34,27 @@ Route::prefix('/api') -> group(function() {
     Route::get('/cart/checkout', 'ApiController@checkout') -> name('api.cart.checkout');
     Route::get('/restaurants/types', 'ApiController@getTypes');
     Route::post('/user/chosen/restaurants', 'ApiController@chosenRestaurants');
+    Route::get('/fav/restaurants', 'ApiController@favRestaurants');
 });
 
-
-Route::get('/orders/generate', 'OrderController@generate');
-Route::post('/orders/customerInfo', 'OrderController@customerInfo');
-Route::post('/orders/createOrder', 'OrderController@createOrder');
-Route::post('/orders/make/payment', 'OrderController@makePayment');
+// orders routes
+Route::prefix('/orders') -> group(function() {
+    Route::get('/generate', 'OrderController@generate');
+    Route::post('/customerInfo', 'OrderController@customerInfo');
+    Route::post('/createOrder', 'OrderController@createOrder');
+    Route::post('/make/payment', 'OrderController@makePayment');
+});
 
 
 Route::get('/all/dishes', 'DishController@index');
 
 Route::get('/restaurant/details/{id}', 'GuestController@getRestaurant') -> name('restaurant');
 
+// charts routes
 Route::prefix('/chart') -> group(function() { 
     Route::get('/orders', 'ChartController@getOrdersMonth');
     Route::get('/orders/year', 'ChartController@getOrdersYear');
     Route::get('/statistics', 'ChartController@statistics') ->name('statistics');
-
 });
 
 

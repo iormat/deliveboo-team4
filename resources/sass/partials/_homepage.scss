@@ -1,7 +1,6 @@
 #restaurants,
 #restaurantMenu {
-    width: 100%;
-    
+    width: 100%;   
     // margin: auto;
     .container-select-type { 
         width: 100px;
@@ -22,7 +21,7 @@
         }
         select:after {
             border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+            border-color: #fff transparent transparent transparent;
         }
    
     }
@@ -68,6 +67,62 @@
         transform: scale(1.1); 
     }
 }
-.divisore{
-    margin-top: 150px;
+// .divisore{
+//     margin-top: 150px;
+// }
+// restaurants
+#restaurants {
+    // general homepage container rules
+    .container {
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 2rem 0;
+            color: hsl(var(--clr-primary));
+        }
+        // favourites restaurants
+        .row.flex-nowrap {
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
+
+        .types_container {
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            .type {
+                min-width: 10ch;
+                text-align: center;
+                input[type="checkbox"] {
+                    display: none;
+                }
+                label {
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    font-size: 1.5rem;
+                    color: hsl(var(--clr-primary));
+                    position: relative;
+                }
+
+                input[type="checkbox"] + label::after {
+                    content: '';
+                    display: block;
+                    height: .125em;
+                    background-color: hsl(var(--clr-secondary));
+                    transform: scale(0,1);
+                    transition: transform ease-in-out 250ms;
+                }
+
+                input[type="checkbox"]:checked + label::after {
+                    transform: scale(1,1);
+                }
+
+                input[type="checkbox"]:checked + label {
+                    color: hsl(var(--clr-secondary));
+                    // text-shadow: 0 0 5px hsl(var(--clr-primary));
+                }
+            }
+        }
+    }
 }

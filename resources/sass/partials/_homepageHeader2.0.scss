@@ -95,7 +95,7 @@
 
 // HEADER JUMBOTRON
 #home-jumbo {
-    height: 50ch;
+    height: 60ch;
     width: 100%;
     img {
         height: 100%;
@@ -105,7 +105,6 @@
 }
 
 @media screen and (min-width: 768px) {
-   
     .nav-toggle-label{
         display: none;
     }

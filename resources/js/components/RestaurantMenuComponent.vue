@@ -85,7 +85,6 @@
             <!-- menu list -->
             
         </div>
-
     </section>
 </template>
 
