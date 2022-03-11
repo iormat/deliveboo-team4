@@ -11915,6 +11915,27 @@ button:last-child {
   padding: 2em;
 }
 
+#order-page {
+  width: 100%;
+}
+
+#order-page .lst {
+  display: flex;
+  justify-content: space-between;
+  counter-reset: my-sec-counter;
+}
+
+#order-page .lst .button {
+  height: 40px;
+}
+
+#order-page .lst:before {
+  counter-increment: section;
+  content: counter(section);
+  position: absolute;
+  margin-left: -20px;
+}
+
 .charts {
   padding: 3rem 0;
 }

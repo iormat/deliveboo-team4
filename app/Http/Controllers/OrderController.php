@@ -94,6 +94,7 @@ class OrderController extends Controller
         $user = Auth::user();
 
         $orders = DB::table('orders') 
+        //-> select('*')
         -> select('orders.created_at', 'orders.total_price', 'dishes.user_id', 'customers.name', 'customers.surname', 'customers.address', 'orders.id', 'orders.confirmed')
         -> distinct()
         -> join('customers', 'customer_id', '=', 'customers.id')

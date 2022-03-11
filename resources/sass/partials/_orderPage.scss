@@ -1,0 +1,20 @@
+#order-page{
+    width: 100%;
+
+    .lst{
+        display: flex;
+        justify-content: space-between;
+        counter-reset: my-sec-counter;
+
+        .button{
+           height: 40px;
+        }
+    }
+    .lst:before {
+        counter-increment: section;
+        content: counter(section);
+        position: absolute;
+        margin-left: -20px;
+    }
+
+}
