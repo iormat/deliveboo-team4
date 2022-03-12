@@ -46,7 +46,8 @@ class GuestController extends Controller
         //     -> groupBy('ordini_id')
         //     -> get();
         
-        $orders = Order::with('dishes')
+        $orders = Order::with('customer', 'dishes')
+            // -> join('customers', 'orders.customer_id', '=', 'customers.id')
             // -> with('dish_order.amount')
             -> where('orders.id', 304)
             -> whereHas('dishes', function($query) {

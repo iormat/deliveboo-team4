@@ -146,7 +146,7 @@ class OrderController extends Controller {
     }
     // get all authenticated user orders
     public function list() {  
-        $orders = Order::with('dishes')
+        $orders = Order::with('dishes', 'customer')
             -> whereHas('dishes', function($query) {
                 $user = Auth::user();
                 $id = $user -> id;
