@@ -3,27 +3,11 @@
 @section('content')
 
 <my-header-component-due></my-header-component-due>
+
 <div class="loginRegister">
     @guest
 
-    <h2>Login</h2>
-    <form action="{{ route('login') }}" method="POST" class="form-login">
-    
-        @method('POST')
-        @csrf
-    
-        <label for="email">Email</label>
-        <input type="email" name="email">
-        <label for="password">Password</label>
-        <input type="password" name="password">
-        
-        <input type="submit" value="LOGIN" class="login-button">
-    
-    </form>
-
-    <p>per registrarti clicca <a href="{{route('register')}}">qui</a></p>
-
-    {{-- <h2>Register</h2>
+    <h2>Register</h2>
     <form action="{{ route('register') }}" method="POST">
     
         @method('POST')
@@ -92,12 +76,9 @@
         <br>
         <input type="submit" value="REGISTER">
     
-    </form> --}}
+    </form>
     @endguest
 </div>   
-
-
-
 
 
 

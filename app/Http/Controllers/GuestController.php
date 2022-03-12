@@ -17,6 +17,10 @@ class GuestController extends Controller
         return view('pages.login-register');
     }
 
+    public function register() {
+        return view('pages.register');
+    }
+
     public function getRestaurant($id) {
         $user = User::findOrFail($id);
 

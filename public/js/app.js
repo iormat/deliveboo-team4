@@ -2051,7 +2051,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.error(error);
     },
     check: function check() {
-      console.log(today);
+      console.log(this.buy);
     },
     buy: function buy() {
       var _this = this;
@@ -2073,11 +2073,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.dishesId.forEach(function (id, i) {
                   var newDishProperty = "dish" + i;
                   _this.orderInfo[newDishProperty] = id;
-                });
+                  var newDishQuantity = "quantity" + i;
+                  _this.orderInfo[newDishQuantity] = _this.cart[i].quantity;
+                }); // this.cart.forEach((dish, i) => {
+                //     let newDishQuantity = "dish" + i + "quantity";
+                //     this.orderInfo[newDishQuantity] = dish.quantity;
+                // });
+
 
                 console.log("orderInfo", _this.orderInfo);
-                console.log(Object.keys(_this.orderInfo).length);
-                _context.next = 11;
+                _context.next = 10;
                 return axios.post('/orders/make/payment', _this.form).then(function (res) {
                   sessionStorage.removeItem('cart');
                   _this.transition = res.data.message;
@@ -2095,8 +2100,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.error('errore api buy: ', err);
                 });
 
-              case 11:
-                _context.next = 13;
+              case 10:
+                _context.next = 12;
                 return axios.post('/orders/customerInfo', _this.customerData).then(function (res) {
                   sessionStorage.removeItem('customerData');
                   console.log('customer data: ', res);
@@ -2104,17 +2109,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.error('errore api customer data: ', err);
                 });
 
-              case 13:
-                _context.next = 15;
-                return axios.post('/orders/createOrder', _this.orderInfo).then(function (res) {
-                  console.log("order info SENZA ERRORE", _this.orderInfo);
-                  console.log('orderInfo: ', res);
+              case 12:
+                _context.next = 14;
+                return axios.post('/orders/createOrder', _this.orderInfo).then(function (res) {// console.log("order info SENZA ERRORE", this.orderInfo);
+                  // console.log('orderInfo: ', res)
                 })["catch"](function (err) {
                   console.error('errore api orderInfo: ', err);
                   console.log("order info ERRORE", _this.orderInfo);
                 });
 
-              case 15:
+              case 14:
               case "end":
                 return _context.stop();
             }
