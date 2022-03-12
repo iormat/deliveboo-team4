@@ -16,6 +16,10 @@
                     </li>
 
                     <li v-if="user">
+                        <span @click="userDashboard">Dashboard</span>
+                    </li>
+
+                    <li v-if="user">
                         <span @click="userLogout">Logout</span>
                     </li>
 
@@ -38,6 +42,9 @@ export default {
         user: String,
     },
     methods: {
+        userDashboard(){
+            window.location.href = '/dashboard';
+        },
         userLogout() {
             axios.get('/logout')
                 .then(res => {

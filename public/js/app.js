@@ -3772,11 +3772,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: String
   },
   methods: {
+    userDashboard: function userDashboard() {
+      window.location.href = '/dashboard';
+    },
     userLogout: function userLogout() {
       axios.get('/logout').then(function (res) {
         window.location.href = '/';
@@ -103152,6 +103159,14 @@ var render = function () {
           _vm._v(" "),
           _vm.user
             ? _c("li", [
+                _c("span", { on: { click: _vm.userDashboard } }, [
+                  _vm._v("Dashboard"),
+                ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.user
+            ? _c("li", [
                 _c("span", { on: { click: _vm.userLogout } }, [
                   _vm._v("Logout"),
                 ]),
@@ -116951,8 +116966,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Sughetto\Desktop\ProgettoFinale\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Sughetto\Desktop\ProgettoFinale\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
