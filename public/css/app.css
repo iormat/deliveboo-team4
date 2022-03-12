@@ -11043,6 +11043,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 #dashboard-header {
+  height: 100vh;
   width: 30%;
   padding: 0px;
   margin: 0;
@@ -11450,6 +11451,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 #ristoranti .restourant-container .menu-container .cards-container .card_body p {
+  height: 100px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -11474,7 +11476,7 @@ footer .container .footer-bottom .copyright i {
   width: 100%;
 }
 
-#ristoranti .restourant-container .menu-container .cards-container .card_footer .AddToCart {
+#ristoranti .restourant-container .menu-container .cards-container .card_footer .add-to-cart {
   margin-top: 10px;
   display: flex;
   justify-content: flex-start;
@@ -11482,7 +11484,7 @@ footer .container .footer-bottom .copyright i {
   cursor: pointer;
 }
 
-#ristoranti .restourant-container .menu-container .cards-container .card_footer .AddToCart .fa-plus {
+#ristoranti .restourant-container .menu-container .cards-container .card_footer .add-to-cart .fa-plus {
   font-size: 1.5rem;
   margin-right: 10px;
 }
@@ -11830,9 +11832,9 @@ footer .container .footer-bottom .copyright i {
 }
 
 #dishes_menu {
+  height: 100vh;
   width: 100%;
-  overflow-y: auto;
-  position: relative;
+  overflow-y: scroll;
 }
 
 #menu h2 {
@@ -11878,6 +11880,7 @@ footer .container .footer-bottom .copyright i {
 #menu .mycard .mod-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 #menu .mycard .mod-container .modifiers {

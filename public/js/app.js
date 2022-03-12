@@ -3973,8 +3973,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -103320,13 +103318,9 @@ var render = function () {
               { staticClass: "cards-container" },
               _vm._l(_vm.menu, function (dish) {
                 return _c("li", { key: dish.id, staticClass: "col-sm-12" }, [
-                  _c("div", { staticClass: "card_header" }, [
-                    _c("h3", [
-                      _vm._v("Nome Piatto: " + _vm._s(dish.dish_name)),
-                    ]),
-                  ]),
+                  _c("h3", [_vm._v(_vm._s(dish.dish_name))]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card_body d-flex row" }, [
+                  _c("div", { staticClass: "card_body row" }, [
                     _c(
                       "p",
                       {
@@ -103352,7 +103346,7 @@ var render = function () {
                     _c(
                       "div",
                       {
-                        staticClass: "AddToCart",
+                        staticClass: "add-to-cart",
                         on: {
                           click: function ($event) {
                             return _vm.addToCart(dish)
@@ -116962,8 +116956,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Christ\Desktop\esercizi\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Christ\Desktop\esercizi\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

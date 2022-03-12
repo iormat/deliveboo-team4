@@ -91,6 +91,7 @@
                     width: 100%;
                     // background-color: rgb(61, 107, 107);
                     p{
+                        height: 100px;
                         overflow: hidden;
                         display: -webkit-box;
                         -webkit-line-clamp: 4;
@@ -110,7 +111,7 @@
                     height: 100px;
                     width: 100%;
                     // background-color: rgb(32, 44, 44);
-                    .AddToCart{
+                    .add-to-cart{
                         margin-top: 10px;
                         display: flex;
                         justify-content: flex-start;

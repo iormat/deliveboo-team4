@@ -12,10 +12,8 @@
                 <div class="menu-container col-sm-12 col-md-9 col-lg-9">
                     <ul class="cards-container">
                         <li class="col-sm-12" v-for="dish in menu" :key="dish.id">
-                            <div class="card_header">
-                                <h3>Nome Piatto&colon; {{dish.dish_name}}</h3>
-                            </div>
-                            <div class="card_body d-flex row">
+                            <h3>{{dish.dish_name}}</h3>
+                            <div class="card_body row">
                                 <p class="col-sm-12 col-md-8 col-lg-8 description-dish">Descrizione piatto&colon; {{dish.description}}</p>
                                     
                                 <div class="imgdish col-md-4 col-lg-4">
@@ -25,7 +23,7 @@
                             <div class="card_footer">
                                 Prezzo piatto&colon;
                                     <mark>{{dish.price}} &euro;</mark>
-                                    <div @click="addToCart(dish)" class="AddToCart" >
+                                    <div @click="addToCart(dish)" class="add-to-cart" >
                                         <i class="fas fa-plus"></i> <span>Aggiungi al carrello</span>
                                     </div>
                             </div>
