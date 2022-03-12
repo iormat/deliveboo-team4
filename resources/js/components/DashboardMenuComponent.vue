@@ -6,39 +6,39 @@
         <!-- dish menu -->
         <section v-if="!createForm && !changeForm" id="menu">
             <h2>I tuoi piatti</h2>
-            <div class="container">
-                <div class="row">
-                    <ul class="col-sm-12 col-md-6 col-lg-4" v-for="dish in dishes" :key="dish.id">
-                        <li class="card mycard">
-                            <div class="card-main-info">
-                                <h3>{{dish.dish_name}}</h3>
-                                <span>{{dish.price}} &euro;</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <div class="dish-img">
-                                        <img :src="'/storage/dishes/' + dish.dishes_img" :alt="dish.dish_name">
-                                    </div>
-                                    <div class="details">
-                                        <p>{{dish.description}}</p>
-                                        <p v-for="category in categories" :key="category.id">
-                                            <span v-if="category.id === dish.category_id"> Categoria: {{category.category_name}} </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="mod-container">
-                                    <span class="modifiers" @click="editDish(dish.id)">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </span>
-                                    <span class="modifiers" @click="deleteDish(dish.id)">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </span>
+        
+            <ul v-for="dish in dishes" :key="dish.id">
+                <li class="mycard row m-0">
+                    <div class="container-card col-sm-10">
+                        <div class="dish-img">
+                            <img src="https://picsum.photos/200/200" alt="">
+                            <!-- <img :src="'/storage/dishes/' + dish.dishes_img" :alt="dish.dish_name"> -->
+                        </div>
+                        <div class="card-body">
+                            <div class="card-content">
+                                
+                                <div class="details"> 
+                                    <h3>{{dish.dish_name}}</h3>
+                                    
+                                    <p>{{dish.description}}</p>
+                                    <p v-for="category in categories" :key="category.id">
+                                        <span v-if="category.id === dish.category_id"> Categoria: {{category.category_name}} </span>
+                                    </p>
+                                    <span>{{dish.price}} &euro;</span>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                    <div class="mod-container col-sm-2">
+                        <div class="modifiers" @click="editDish(dish.id)">
+                            <i class="fas fa-pencil-alt"></i> 
+                        </div>
+                        <div class="modifiers" @click="deleteDish(dish.id)">
+                            <i class="fas fa-trash-alt"></i>        
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </section>
 
         <!-- create new dish component -->

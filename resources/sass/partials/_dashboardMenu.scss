@@ -1,16 +1,21 @@
 #dishes_menu {
     width: 100%;
-    height: 100vh;
     overflow-y: auto;
     position: relative;
 }
 #menu {
-    .card.mycard {
+    h2 {
+        margin-left: 15px;
+    }
+    .container-card {
+        display: flex;
+    }
+    .mycard {
         color: var(--clr-neutral-900);
-        padding: .8em;
-        min-height: 40ch;
-        background-color: hsl(var(--clr-accent)/ .2);
-        border-radius: 1.125em;
+        // padding: .8em;
+        // min-height: 40ch;
+        // background-color: hsl(var(--clr-accent)/ .2);
+        // border-radius: 1.125em;
         // card main infoes
         .card-main-info {
             padding: 0 1em;
@@ -26,7 +31,7 @@
             // card content
             .card-content {
                 .dish-img {
-                    width: 25%;
+                    width: 20%;
                     // aspect-ratio: 1;
                     img {
                         object-fit: cover;
@@ -41,8 +46,12 @@
         }
         // card footer
         .mod-container {
-            text-align: right;
+            display: flex;
+            flex-direction: column;
+
             .modifiers {
+                margin-bottom: 10px;
+                cursor: pointer;
                 display: inline-block;
                 height: 2rem;
                 width: 2rem;
@@ -52,6 +61,13 @@
                 cursor: pointer;
                 text-align: center;
             }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        
+        img{
+            display: none;
         }
     }
 }

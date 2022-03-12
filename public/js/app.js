@@ -3975,7 +3975,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -102724,99 +102723,83 @@ var render = function () {
       ),
       _vm._v(" "),
       !_vm.createForm && !_vm.changeForm
-        ? _c("section", { attrs: { id: "menu" } }, [
-            _c("h2", [_vm._v("I tuoi piatti")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c(
-                "div",
-                { staticClass: "row" },
-                _vm._l(_vm.dishes, function (dish) {
-                  return _c(
-                    "ul",
-                    {
-                      key: dish.id,
-                      staticClass: "col-sm-12 col-md-6 col-lg-4",
-                    },
-                    [
-                      _c("li", { staticClass: "card mycard" }, [
-                        _c("div", { staticClass: "card-main-info" }, [
-                          _c("h3", [_vm._v(_vm._s(dish.dish_name))]),
-                          _vm._v(" "),
-                          _c("span", [_vm._v(_vm._s(dish.price) + " €")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card-body" }, [
-                          _c("div", { staticClass: "card-content" }, [
-                            _c("div", { staticClass: "dish-img" }, [
-                              _c("img", {
-                                attrs: {
-                                  src: "/storage/dishes/" + dish.dishes_img,
-                                  alt: dish.dish_name,
-                                },
+        ? _c(
+            "section",
+            { attrs: { id: "menu" } },
+            [
+              _c("h2", [_vm._v("I tuoi piatti")]),
+              _vm._v(" "),
+              _vm._l(_vm.dishes, function (dish) {
+                return _c("ul", { key: dish.id }, [
+                  _c("li", { staticClass: "mycard row m-0" }, [
+                    _c("div", { staticClass: "container-card col-sm-10" }, [
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", { staticClass: "card-content" }, [
+                          _c(
+                            "div",
+                            { staticClass: "details" },
+                            [
+                              _c("h3", [_vm._v(_vm._s(dish.dish_name))]),
+                              _vm._v(" "),
+                              _c("p", [_vm._v(_vm._s(dish.description))]),
+                              _vm._v(" "),
+                              _vm._l(_vm.categories, function (category) {
+                                return _c("p", { key: category.id }, [
+                                  category.id === dish.category_id
+                                    ? _c("span", [
+                                        _vm._v(
+                                          " Categoria: " +
+                                            _vm._s(category.category_name) +
+                                            " "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                ])
                               }),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "details" },
-                              [
-                                _c("p", [_vm._v(_vm._s(dish.description))]),
-                                _vm._v(" "),
-                                _vm._l(_vm.categories, function (category) {
-                                  return _c("p", { key: category.id }, [
-                                    category.id === dish.category_id
-                                      ? _c("span", [
-                                          _vm._v(
-                                            " Categoria: " +
-                                              _vm._s(category.category_name) +
-                                              " "
-                                          ),
-                                        ])
-                                      : _vm._e(),
-                                  ])
-                                }),
-                              ],
-                              2
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mod-container" }, [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "modifiers",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.editDish(dish.id)
-                                  },
-                                },
-                              },
-                              [_c("i", { staticClass: "fas fa-pencil-alt" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "modifiers",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.deleteDish(dish.id)
-                                  },
-                                },
-                              },
-                              [_c("i", { staticClass: "fas fa-trash-alt" })]
-                            ),
-                          ]),
+                              _vm._v(" "),
+                              _c("span", [_vm._v(_vm._s(dish.price) + " €")]),
+                            ],
+                            2
+                          ),
                         ]),
                       ]),
-                    ]
-                  )
-                }),
-                0
-              ),
-            ]),
-          ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "mod-container col-sm-2" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modifiers",
+                          on: {
+                            click: function ($event) {
+                              return _vm.editDish(dish.id)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modifiers",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteDish(dish.id)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-trash-alt" })]
+                      ),
+                    ]),
+                  ]),
+                ])
+              }),
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.createForm
@@ -102842,7 +102825,16 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "dish-img" }, [
+      _c("img", { attrs: { src: "https://picsum.photos/200/200", alt: "" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -116970,8 +116962,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Christ\Desktop\esercizi\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Christ\Desktop\esercizi\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

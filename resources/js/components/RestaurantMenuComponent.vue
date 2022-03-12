@@ -5,8 +5,7 @@
             <div class="jambo-details">
                 <div class="overlay"></div>
                     <h1>nome ristorante</h1>
-                    <img src="https://cdn.create.vista.com/api/media/medium/218509368/stock-photo-salad-grated-pumpkin-scrambled-eggs?token=" alt="" >
-                
+                    <img src="https://cdn.create.vista.com/api/media/medium/218509368/stock-photo-salad-grated-pumpkin-scrambled-eggs?token=" alt="" >  
             </div>
 
             <div class="restourant-container row">
