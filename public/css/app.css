@@ -11837,6 +11837,17 @@ footer .container .footer-bottom .copyright i {
   overflow-y: scroll;
 }
 
+#dishes_menu .button-create {
+  cursor: pointer;
+  margin-left: 20px;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  background-color: hsl(var(--clr-secondary));
+  color: hsl(var(--clr-neutral-900));
+  border-radius: 1.125em;
+}
+
 #menu h2 {
   margin-left: 15px;
 }
@@ -11899,6 +11910,10 @@ footer .container .footer-bottom .copyright i {
 @media screen and (max-width: 768px) {
   #menu img {
     display: none;
+  }
+
+  #menu .card-body {
+    padding: 0;
   }
 }
 

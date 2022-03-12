@@ -1,8 +1,11 @@
 <template>
     <div id="dishes_menu">
-        <!-- button to toggle create - form -->
-        <div @click="createNewDish" class="mb-2 btn btn-success">Create</div>        
-
+    <!-- button to toggle create - form -->
+            <div class="d-flex align-items-center m-3">
+                <h2 class="m-0">Aggiungi piatti al tuo menu</h2>
+                <div class="button-create d-flex align-items-center justify-content-center" @click="createNewDish"><i class="fas fa-plus"></i></div>
+            </div>
+        
         <!-- dish menu -->
         <section v-if="!createForm && !changeForm" id="menu">
             <h2>I tuoi piatti</h2>

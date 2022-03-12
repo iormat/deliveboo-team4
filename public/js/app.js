@@ -3500,6 +3500,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3813,6 +3816,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102711,14 +102720,21 @@ var render = function () {
     "div",
     { attrs: { id: "dishes_menu" } },
     [
-      _c(
-        "div",
-        {
-          staticClass: "mb-2 btn btn-success",
-          on: { click: _vm.createNewDish },
-        },
-        [_vm._v("Create")]
-      ),
+      _c("div", { staticClass: "d-flex align-items-center m-3" }, [
+        _c("h2", { staticClass: "m-0" }, [
+          _vm._v("Aggiungi piatti al tuo menu"),
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "button-create d-flex align-items-center justify-content-center",
+            on: { click: _vm.createNewDish },
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        ),
+      ]),
       _vm._v(" "),
       !_vm.createForm && !_vm.changeForm
         ? _c(
@@ -103229,7 +103245,7 @@ var render = function () {
       "ol",
       { staticClass: "m-3 px-2", attrs: { reversed: "" } },
       _vm._l(_vm.orders, function (order) {
-        return _c("li", { key: order.user_id, staticClass: "lst" }, [
+        return _c("li", { key: order.id, staticClass: "lst" }, [
           _c(
             "div",
             {
@@ -103238,27 +103254,32 @@ var render = function () {
             },
             [
               _vm._v(
-                "\n                      data: " +
-                  _vm._s(order.created_at) +
-                  " "
+                "\n                  data: " + _vm._s(order.created_at) + " "
               ),
               _c("br"),
               _vm._v(
-                "\n                      cliente: " +
-                  _vm._s(order.name) +
+                "\n                  cliente: " +
+                  _vm._s(order.customer.name) +
                   " " +
-                  _vm._s(order.surname) +
+                  _vm._s(order.customer.surname) +
                   " "
               ),
               _c("br"),
-              _vm._v("\n                      indirizzo: "),
-              _c("br"),
-              _vm._v("\n                      " + _vm._s(order.address) + " "),
+              _vm._v(
+                "\n                  indirizzo: " +
+                  _vm._s(order.customer.address)
+              ),
               _c("br"),
               _vm._v(
-                "\n                      totale: " +
+                "\n                  " + _vm._s(order.customer.address) + " "
+              ),
+              _c("br"),
+              _vm._v(
+                "\n                  totale: " +
                   _vm._s(order.total_price) +
-                  "\n\n                      "
+                  "\n                  " +
+                  _vm._s(order.id) +
+                  "\n                  "
               ),
               order.confirmed === 0
                 ? _c(
@@ -103274,6 +103295,26 @@ var render = function () {
                     [_vm._v("conferma")]
                   )
                 : _vm._e(),
+              _vm._v(" "),
+              _c("details", [
+                _c("summary", [_vm._v("Dettagli ordine:")]),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(order.dishes, function (dish) {
+                    return _c("li", { key: dish.id }, [
+                      _vm._v(
+                        "\n                              " +
+                          _vm._s(dish.dish_name) +
+                          " - " +
+                          _vm._s(dish.pivot.amount) +
+                          "\n                          "
+                      ),
+                    ])
+                  }),
+                  0
+                ),
+              ]),
             ]
           ),
         ])
@@ -116956,8 +116997,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Christ\Desktop\esercizi\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Christ\Desktop\esercizi\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
