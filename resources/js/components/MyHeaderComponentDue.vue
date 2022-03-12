@@ -11,7 +11,7 @@
 
                     <li><a href="#">Contact us</a></li>
 
-                    <li>
+                    <li @click="goRestaurants">
                         <span>Restaurant</span> 
                     </li>
 
@@ -42,6 +42,9 @@ export default {
         user: String,
     },
     methods: {
+        goRestaurants(){
+            window.location.href = '/api/restaurants';
+        },
         userDashboard(){
             window.location.href = '/dashboard';
         },

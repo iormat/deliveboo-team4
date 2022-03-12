@@ -11,7 +11,6 @@
                     {{order.customer.address}} <br>
                     totale: {{order.total_price}}
                     {{order.id}}
-                    <button v-if="order.confirmed === 0" @click="confirmed(order.id)" class="btn btn-outline-success button">conferma</button>
                     <details>
                         <summary>Dettagli ordine:</summary>
                         <ul>
@@ -21,6 +20,7 @@
                         </ul>
                     </details>
                 </div>
+                <button v-if="order.confirmed === 0" @click="confirmed(order.id)" class="btn btn-outline-success button">conferma</button>
             </li>
         </ol>
 

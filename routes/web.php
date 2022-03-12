@@ -37,6 +37,8 @@ Route::prefix('/api') -> group(function() {
     Route::get('/restaurants/types', 'ApiController@getTypes');
     Route::post('/user/chosen/restaurants', 'ApiController@chosenRestaurants');
     Route::get('/fav/restaurants', 'ApiController@favRestaurants');
+    Route::get('/allRestaurants', 'ApiController@allRestaurants');
+    Route::get('/restaurants', 'ApiController@restaurants') -> name('restaurants');
 });
 
 // orders routes

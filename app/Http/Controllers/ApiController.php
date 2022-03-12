@@ -158,4 +158,17 @@ class ApiController extends Controller
         $restaurants = User::inRandomOrder() -> limit(4) -> get();
         return response() -> json($restaurants);
     }
+
+    public function allRestaurants() {
+        
+        $restaurants =DB::table('users')
+                        ->select('*')
+                        ->orderBy('business_name', 'asc')
+                        ->get();
+        return response() -> json($restaurants);
+    }
+
+    public function restaurants(){
+        return view('pages.restaurants');
+    }
 }
