@@ -11613,6 +11613,11 @@ header.dash-cont.container-xl .icons {
   align-items: center;
 }
 
+.loginRegister form input {
+  border: none;
+  border-bottom: 2px solid hsl(var(--clr-primary));
+}
+
 .loginRegister form label {
   font-weight: bold;
   letter-spacing: 1px;
@@ -11634,6 +11639,7 @@ header.dash-cont.container-xl .icons {
 }
 
 .loginRegister form .register-button {
+  margin-top: 20px;
   background-color: hsl(var(--clr-primary));
   font-weight: bold;
   color: hsl(var(--clr-neutral-100));
@@ -11644,6 +11650,10 @@ header.dash-cont.container-xl .icons {
   width: 20%;
   height: 40px;
   padding: 5px;
+}
+
+.loginRegister .form-login {
+  margin-bottom: 50px;
 }
 
 :root {

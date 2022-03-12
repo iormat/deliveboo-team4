@@ -19,7 +19,7 @@
         <label for="password">Password</label>
         <input type="password" name="password">
         
-        <div type="submit" class="login-button">LOGIN</div>
+        <input type="submit" value="LOGIN" class="login-button">
     
     </form>
 
@@ -54,7 +54,7 @@
         <input type="text" name="p_iva" >
     
         
-        <div type="submit" class="register-button">REGISTER</div>
+        <input type="submit" value="LOGIN" class="register-button">
     
     </form>
 
