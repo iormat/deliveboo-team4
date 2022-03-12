@@ -47,6 +47,7 @@ class GuestController extends Controller
         //     -> get();
         
         $orders = Order::with('dishes')
+            // -> with('dish_order.amount')
             -> where('orders.id', 304)
             -> whereHas('dishes', function($query) {
                 $query->where('user_id', '=', 1);
@@ -54,6 +55,5 @@ class GuestController extends Controller
             -> get();
 
         return response() -> json($orders);
-
     }
 }

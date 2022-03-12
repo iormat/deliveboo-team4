@@ -15,7 +15,8 @@ class Order extends Model
         "confirmation_date",
     ];
     public function dishes() {
-        return $this -> belongsToMany(Dish::class);
+        return $this -> belongsToMany(Dish::class)
+        -> withPivot('amount');
     }
     public function customer() {
         return $this -> belongsTo(Customer::class);
