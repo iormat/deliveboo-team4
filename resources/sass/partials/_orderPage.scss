@@ -1,20 +1,27 @@
 #order-page{
     width: 100%;
+    overflow: scroll;
+    .orders-list{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        border: solid 2px black;
+        &.itemGray{
+            color: gray;
+        }
+    }
+
 
     .lst{
         display: flex;
         justify-content: space-between;
-        counter-reset: my-sec-counter;
 
         .button{
            height: 40px;
         }
     }
-    .lst:before {
-        counter-increment: section;
-        content: counter(section);
-        position: absolute;
-        margin-left: -20px;
-    }
+    
 
 }

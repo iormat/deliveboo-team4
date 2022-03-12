@@ -11050,11 +11050,11 @@ header.dash-cont.container-xl {
   width: 30%;
 }
 
-header.container-fluid.dash-cont .fas.icons,
-header.dash-cont.container-sm .fas.icons,
-header.dash-cont.container-md .fas.icons,
-header.dash-cont.container-lg .fas.icons,
-header.dash-cont.container-xl .fas.icons {
+header.container-fluid.dash-cont .icons,
+header.dash-cont.container-sm .icons,
+header.dash-cont.container-md .icons,
+header.dash-cont.container-lg .icons,
+header.dash-cont.container-xl .icons {
   display: none;
   color: hsl(var(--clr-accent));
   font-size: 30px;
@@ -11167,7 +11167,7 @@ header.dash-cont.container-xl .fas.icons {
     display: none;
   }
 
-  header .fas.icons {
+  .icons {
     display: block;
   }
 }
@@ -11602,11 +11602,48 @@ header.dash-cont.container-xl .fas.icons {
 }
 
 .loginRegister form {
+  padding: 20px 0;
   border: solid 2px hsl(var(--clr-neutral-900));
   border-radius: 5px;
   width: 50%;
   margin: 0 auto;
   background-color: hsl(var(--clr-accent)/0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginRegister form label {
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.loginRegister form .login-button {
+  margin-top: 20px;
+  background-color: hsl(var(--clr-primary));
+  font-weight: bold;
+  color: hsl(var(--clr-neutral-100));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  width: 70px;
+  height: 40px;
+  padding: 5px;
+}
+
+.loginRegister form .register-button {
+  background-color: hsl(var(--clr-primary));
+  font-weight: bold;
+  color: hsl(var(--clr-neutral-100));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  width: 20%;
+  height: 40px;
+  padding: 5px;
 }
 
 :root {
@@ -11871,18 +11908,18 @@ header.dash-cont.container-xl .fas.icons {
   align-items: center;
 }
 
-.check-btn {
+#dishes-menu .check-btn {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   margin-right: 20px;
 }
 
-input[type=checkbox].check-check {
+#dishes-menu input[type=checkbox].check-check {
   display: none;
 }
 
-.check-after {
+#dishes-menu .check-after {
   width: 1.125em;
   height: 1.125em;
   border: 1px solid hsl(var(--clr-primary));
@@ -11891,7 +11928,7 @@ input[type=checkbox].check-check {
   padding: 0.125em;
 }
 
-.check-after::after {
+#dishes-menu .check-after::after {
   content: "";
   width: 100%;
   height: 100%;
@@ -11902,11 +11939,11 @@ input[type=checkbox].check-check {
   transition: transform 0.3s;
 }
 
-.check-check:checked + .check-after::after {
+#dishes-menu .check-check:checked + .check-after::after {
   transform: scale(1);
 }
 
-button {
+#dishes-menu button {
   all: unset;
   padding: 0.5em 0.75em;
   font-size: 1rem;
@@ -11915,15 +11952,15 @@ button {
   color: hsl(var(--clr-neutral-100));
 }
 
-button:first-child {
+#dishes-menu button:first-child {
   background-color: hsl(var(--clr-secondary));
 }
 
-button:last-child {
+#dishes-menu button:last-child {
   background-color: hsl(var(--clr-primary));
 }
 
-#statistics {
+#dishes-menu #statistics {
   width: 70%;
   height: 100vh;
   overflow-y: scroll;
@@ -11932,23 +11969,29 @@ button:last-child {
 
 #order-page {
   width: 100%;
+  overflow: scroll;
+}
+
+#order-page .orders-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  border: solid 2px black;
+}
+
+#order-page .orders-list.itemGray {
+  color: gray;
 }
 
 #order-page .lst {
   display: flex;
   justify-content: space-between;
-  counter-reset: my-sec-counter;
 }
 
 #order-page .lst .button {
   height: 40px;
-}
-
-#order-page .lst:before {
-  counter-increment: section;
-  content: counter(section);
-  position: absolute;
-  margin-left: -20px;
 }
 
 .charts {

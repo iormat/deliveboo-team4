@@ -22,4 +22,8 @@ class GuestController extends Controller
 
         return view('pages.restaurant-menu', compact('user'));
     }
+
+    public function menu(){
+        return view('pages.dashboard');
+    }
 }

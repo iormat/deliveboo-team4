@@ -15,9 +15,10 @@ Route::prefix('/') -> group(function() {
 });
 
 // return dashboard page
-Route::get('/dashboard', function(){
-    return view('pages.dashboard');
-});
+// Route::get('/dashboard', function(){
+//     return view('pages.dashboard');
+// });
+Route::get('/dashboard', 'GuestController@menu') -> name('dashboard');
 
 
 // api routes

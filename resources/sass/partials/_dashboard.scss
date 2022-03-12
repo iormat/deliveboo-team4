@@ -44,6 +44,8 @@
 //         }
 //     }
     // checkbox styiling
+
+#dishes-menu{
     .check-btn {
         display: inline-flex;
         align-items: center;
@@ -94,9 +96,10 @@
         }
     }
 
-#statistics {
-    width: 70%;
-    height: 100vh;
-    overflow-y: scroll;
-    padding: 2em;
+    #statistics {
+        width: 70%;
+        height: 100vh;
+        overflow-y: scroll;
+        padding: 2em;
+    }
 }

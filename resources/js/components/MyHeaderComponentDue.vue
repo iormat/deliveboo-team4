@@ -8,11 +8,17 @@
                     <li>
                         <span @click="goHome">Home</span>
                     </li>
+
                     <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Restaurant</a></li>
+
+                    <li>
+                        <span>Restaurant</span> 
+                    </li>
+
                     <li v-if="user">
                         <span @click="userLogout">Logout</span>
                     </li>
+
                     <li v-else>
                         <span @click="loginRegister">Registrati/Login</span>
                     </li>
@@ -45,6 +51,7 @@ export default {
         goHome() {
             window.location.href = '/';
         }
+        
     }
 }
 </script>

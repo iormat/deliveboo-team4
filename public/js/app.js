@@ -3766,6 +3766,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: String
@@ -3796,6 +3802,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -103171,7 +103179,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Restaurant")])])
+    return _c("li", [_c("span", [_vm._v("Restaurant")])])
   },
   function () {
     var _vm = this
@@ -103211,46 +103219,54 @@ var render = function () {
     _c(
       "ol",
       { staticClass: "m-3 px-2", attrs: { reversed: "" } },
-      _vm._l(_vm.orders, function (order, i) {
-        return _c("li", { key: i, staticClass: "lst" }, [
-          _c("div", [
-            _vm._v(
-              "\n                      data: " + _vm._s(order.created_at) + " "
-            ),
-            _c("br"),
-            _vm._v(
-              "\n                      nome: " +
-                _vm._s(order.name) +
-                " surname: " +
-                _vm._s(order.success) +
-                " "
-            ),
-            _c("br"),
-            _vm._v("\n                      indirizzo: "),
-            _c("br"),
-            _vm._v(
-              "\n                      " +
-                _vm._s(order.address) +
-                "\n                      confermato: " +
-                _vm._s(order.confirmed) +
-                "\n                  "
-            ),
-          ]),
-          _vm._v(" "),
-          order.confirmed === 0
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-success button",
-                  on: {
-                    click: function ($event) {
-                      return _vm.confirmed(order.id)
+      _vm._l(_vm.orders, function (order) {
+        return _c("li", { key: order.user_id, staticClass: "lst" }, [
+          _c(
+            "div",
+            {
+              staticClass: "orders-list",
+              class: order.confirmed == 1 ? "itemGray" : "",
+            },
+            [
+              _vm._v(
+                "\n                      data: " +
+                  _vm._s(order.created_at) +
+                  " "
+              ),
+              _c("br"),
+              _vm._v(
+                "\n                      cliente: " +
+                  _vm._s(order.name) +
+                  " " +
+                  _vm._s(order.surname) +
+                  " "
+              ),
+              _c("br"),
+              _vm._v("\n                      indirizzo: "),
+              _c("br"),
+              _vm._v("\n                      " + _vm._s(order.address) + " "),
+              _c("br"),
+              _vm._v(
+                "\n                      totale: " +
+                  _vm._s(order.total_price) +
+                  "\n\n                      "
+              ),
+              order.confirmed === 0
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-success button",
+                      on: {
+                        click: function ($event) {
+                          return _vm.confirmed(order.id)
+                        },
+                      },
                     },
-                  },
-                },
-                [_vm._v("conferma")]
-              )
-            : _vm._e(),
+                    [_vm._v("conferma")]
+                  )
+                : _vm._e(),
+            ]
+          ),
         ])
       }),
       0
@@ -116935,8 +116951,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Sughetto\Desktop\ProgettoFinale\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Sughetto\Desktop\ProgettoFinale\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
