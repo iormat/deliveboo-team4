@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PaymentConfirmation extends Mailable
+class PaymentCustomerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +16,23 @@ class PaymentConfirmation extends Mailable
      *
      * @return void
      */
-    public $order;
-    public function __construct($order)
+    // public $order;
+    // public $customer;
+    // public $dishes;
+    // public function __construct($order, $customer, $dishes)
+    // {
+    //     $this -> order = $order;
+    //     $this -> customer = $customer;
+    //     $this -> dishes = $dishes;
+    // }
+
+ public $order;
+    public $customer;
+
+    public function __construct($order, $customer)
     {
         $this -> order = $order;
+        $this -> customer = $customer;
     }
 
     /**
@@ -30,6 +43,6 @@ class PaymentConfirmation extends Mailable
     public function build()
     {
         return $this -> from('admin@deliverboo.com')
-                     -> view('mails.confirmationOrderMail');
+                     -> view('mails.paymentCustomerMail');
     }
 }
