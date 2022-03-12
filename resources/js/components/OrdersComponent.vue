@@ -3,14 +3,14 @@
   <section id="order-page">
       <h2>I tuoi ordini</h2>
         <ol reversed class="m-3 px-2">
-            <li v-for="order in orders" :key="order.user_id" class="lst">
+            <li v-for="order in orders" :key="order.id" class="lst">
                     <div class="orders-list" :class="order.confirmed == 1 ? 'itemGray' : ''">
                         data: {{order.created_at}} <br>
                         cliente: {{order.name}} {{order.surname}} <br>
                         indirizzo: <br>
                         {{order.address}} <br>
                         totale: {{order.total_price}}
-
+                        {{order.id}}
                         <button v-if="order.confirmed === 0" @click="confirmed(order.id)" class="btn btn-outline-success button">conferma</button>
                     </div>
                     

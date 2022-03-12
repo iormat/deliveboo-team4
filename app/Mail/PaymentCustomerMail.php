@@ -16,15 +16,6 @@ class PaymentCustomerMail extends Mailable
      *
      * @return void
      */
-    // public $order;
-    // public $customer;
-    // public $dishes;
-    // public function __construct($order, $customer, $dishes)
-    // {
-    //     $this -> order = $order;
-    //     $this -> customer = $customer;
-    //     $this -> dishes = $dishes;
-    // }
 
  public $order;
     public $customer;

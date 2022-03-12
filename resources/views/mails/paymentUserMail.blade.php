@@ -1,4 +1,6 @@
-ciao {{$user -> name}}
-ordine da: {{$customer -> name}}
- {{$order}}
+Ciao {{$user -> name}},
+<br>
+Hai appena ricevuto un nuovo ordine da: {{$customer -> name}}
+<br>
+{{$order}}
 

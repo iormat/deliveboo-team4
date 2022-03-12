@@ -17,10 +17,8 @@ use App\Mail\PaymentCustomerMail;
 use App\Mail\PaymentUserMail;
 
 
-
-
-class OrderController extends Controller
-{
+class OrderController extends Controller {
+    // generate customer token
     public function generate(Request $request, Gateway $gateway){
         $token = $gateway -> clientToken() -> generate();
         $data = [
@@ -30,8 +28,7 @@ class OrderController extends Controller
      
         return response()->json($data, 200);
     }
-    
-
+    // validate payments
     public function makePayment(OrderRequest $request, Gateway $gateway){
         $total = $request -> total;
         $result = $gateway->transaction()->sale([
@@ -41,28 +38,25 @@ class OrderController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-
+        // handling results
         if($result->success){
             $data = [
                 'success' => true,
                 'message' => 'Transazione completata'
             ];
-
-            
             return response()->json($data, 200);
         }else{
             $data = [
                 'success' => false,
                 'message' => 'Transazione fallita'
             ];
-         
             return response()->json($data, 200);
         }
         return response()->json($total);
     }
 
+    // validate required customer info data
     public function customerInfo(Request $request) {
-        // validate required customer info data
         $data = $request -> validate ([
             'name' => 'required | string | min:2 | max:60',
             'surname' => 'required | string | min:2 | max:60',
@@ -72,14 +66,13 @@ class OrderController extends Controller
             'cap' => 'required | string | min:5 | max:5',
             'telephone' => 'required | string',
         ]);
-
         $customer = Customer::create($data);
  
         return json_encode($customer);
     }
 
-    public function createOrder(Request $request) {
-        
+    // create new order
+    public function createOrder(Request $request) { 
         $data = $request -> validate ([
             "total_price" => 'required',
             "payment_confirmation" => 'required',
@@ -88,21 +81,22 @@ class OrderController extends Controller
         $data['confirmed'] = 0;
         $data['confirmation_date'] = "1977-04-03";
   
-        
-
+        // make order
         $order = Order::make($data);
         $lastCustomer = Customer::orderBy('id', 'desc')->first();
+        // associate customer to order
         $order -> customer() -> associate($lastCustomer);
         $order -> save();
-
+        // order manipulation for DB
         $requestKeys = array_keys($request -> all());
         $nDishes = [];
+        // take only dishes from order
         for ($i = 0; $i < count($requestKeys); $i++) {
             if(strpos($requestKeys[$i], "dish") !== false) {
                 array_push($nDishes, $requestKeys[$i]);
             }
         }
-
+        // create DB association through pivot
         for($i = 0; $i < count($nDishes) ; $i++) {
             $parolaDish = "dish";
             $parolaQuantity ="quantity";
@@ -119,7 +113,7 @@ class OrderController extends Controller
                 ['dish_id' => $dish -> id, 'order_id' => $order -> id, 'amount' => $dishQuantity]
             ]);
         };
-
+        // get relative user info based on dishes in order
         $user = DB::table('orders') 
                 -> select('users.*')
                 -> join('dish_order', 'orders.id', '=', 'dish_order.order_id')
@@ -127,38 +121,42 @@ class OrderController extends Controller
                 -> join('users', 'dishes.user_id', '=', 'users.id')
                 -> where('orders.id', '=', $order -> id)
                 -> get();
-
-        $user = $user[0];   
+        // get only user info
+        $user = $user[0];  
+        // get all order info
+        // $orderDishesInfo = DB::table('orders') 
+        //     -> select('dishes.dish_name', 'dish_order.amount')
+        //     -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
+        //     -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
+        //     -> where('dishes.user_id', $user -> id)
+        //     -> orderBy('dish_order.dish_id', 'desc') -> first()
+        //     -> sum('dish_order.amount')
+        //     -> groupBy('dish_order.dish_id')
+        //     -> get();
         
-
+        // send order confirmation to user and customer
         Mail::to($lastCustomer -> email) -> send(new PaymentCustomerMail($order, $lastCustomer));
         Mail::to($user -> email) -> send(new PaymentUserMail($order, $lastCustomer, $user));
 
         return json_encode($order);
     }
-
-
+    // return orders page
     public function index(){
         return view('pages.orders');
     }
-
-    public function list() {
-        
-        $user = Auth::user();
-
-        $orders = DB::table('orders') 
-        //-> select('*')
-        -> select('dishes.dish_name', 'orders.created_at', 'orders.total_price', 'dishes.user_id', 'customers.name', 'customers.surname', 'customers.address', 'orders.id', 'orders.confirmed')
-        -> distinct()
-        -> join('customers', 'customer_id', '=', 'customers.id')
-        -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
-        -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
-        -> where('dishes.user_id', $user -> id)
-        -> get();
+    // get all authenticated user orders
+    public function list() {  
+        $orders = Order::with('dishes')
+            -> whereHas('dishes', function($query) {
+                $user = Auth::user();
+                $id = $user -> id;
+                $query->where('user_id', $id);
+            })
+            -> get();
 
         return response()->json($orders);    
     }
-
+    // user order confirmation
     public function confirm(Request $request){
         $id = key($request -> all());       
         $order = Order::findOrFail($id);

@@ -62,4 +62,5 @@ Route::prefix('/chart') -> group(function() {
     Route::get('/statistics', 'ChartController@statistics') ->name('statistics');
 });
 
-
+// test
+Route::get('/ordersss', 'GuestController@test');
