@@ -5,13 +5,16 @@ use App\Http\Controllers\Controller;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
-use App\Customer;
-use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Dish;
-use App\Mail\PaymentConfirmation;
 use Illuminate\Support\Facades\Mail;
+
+use App\Customer;
+use App\Order;
+use App\Dish;
+
+use App\Mail\PaymentCustomerMail;
+use App\Mail\PaymentUserMail;
 
 
 
@@ -85,24 +88,37 @@ class OrderController extends Controller
         $data['confirmed'] = 0;
         $data['confirmation_date'] = "1977-04-03";
   
-
-
         
+
         $order = Order::make($data);
         $lastCustomer = Customer::orderBy('id', 'desc')->first();
         $order -> customer() -> associate($lastCustomer);
         $order -> save();
 
-        for($i = 0; $i < count(array_keys($request -> all())) - 3; $i++) {
-            $key = "dish";
-            $key .= strval($i);
-            $dish = Dish::findOrFail($request -> $key);
+        $requestKeys = array_keys($request -> all());
+        $nDishes = [];
+        for ($i = 0; $i < count($requestKeys); $i++) {
+            if(strpos($requestKeys[$i], "dish") !== false) {
+                array_push($nDishes, $requestKeys[$i]);
+            }
+        }
 
-            $order -> dishes() -> attach($dish);
+        for($i = 0; $i < count($nDishes) ; $i++) {
+            $parolaDish = "dish";
+            $parolaQuantity ="quantity";
+            $key = strval($i);
+
+            $dishId = $parolaDish .= $key;
+            $dishQuantity =  $parolaQuantity .= $i;
+
+            $dish = Dish::findOrFail($request -> $dishId);
+            
+            $dishQuantity = $request -> $dishQuantity;
+        
+            DB::table('dish_order') -> insert([
+                ['dish_id' => $dish -> id, 'order_id' => $order -> id, 'amount' => $dishQuantity]
+            ]);
         };
-
-
-
 
         $user = DB::table('orders') 
                 -> select('users.*')
@@ -112,14 +128,15 @@ class OrderController extends Controller
                 -> where('orders.id', '=', $order -> id)
                 -> get();
 
-        $userEmail = $user[0] -> email;    
+        $user = $user[0];   
         
 
-        Mail::to($lastCustomer -> email) -> send(new PaymentConfirmation($order));
-        Mail::to($userEmail) -> send(new PaymentConfirmation($order));
+        Mail::to($lastCustomer -> email) -> send(new PaymentCustomerMail($order, $lastCustomer));
+        Mail::to($user -> email) -> send(new PaymentUserMail($order, $lastCustomer, $user));
 
         return json_encode($order);
     }
+
 
     public function index(){
         return view('pages.orders');

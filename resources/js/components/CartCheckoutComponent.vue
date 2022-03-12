@@ -132,7 +132,7 @@ export default {
             console.error(error);
         },
         check() {
-            console.log(today);
+            console.log(this.buy);
 
         },
 
@@ -149,9 +149,18 @@ export default {
             this.dishesId.forEach((id, i) => {
                 let newDishProperty = "dish" + i;
                 this.orderInfo[newDishProperty] = id; 
+                let newDishQuantity = "quantity" + i;
+                this.orderInfo[newDishQuantity] = this.cart[i].quantity;
+
             }); 
+
+            // this.cart.forEach((dish, i) => {
+            //     let newDishQuantity = "dish" + i + "quantity";
+            //     this.orderInfo[newDishQuantity] = dish.quantity;
+            // });
+
+
             console.log("orderInfo",this.orderInfo);
-            console.log(Object.keys(this.orderInfo).length);
 
             await axios.post('/orders/make/payment', this.form)
                 .then(res => {
@@ -183,8 +192,8 @@ export default {
 
              await axios.post('/orders/createOrder', this.orderInfo)
                     .then(res => {
-                        console.log("order info SENZA ERRORE", this.orderInfo);
-                        console.log('orderInfo: ', res)
+                        // console.log("order info SENZA ERRORE", this.orderInfo);
+                        // console.log('orderInfo: ', res)
                     })
                     .catch(err => {
                         console.error('errore api orderInfo: ', err)
