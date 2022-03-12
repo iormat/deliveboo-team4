@@ -2004,7 +2004,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         total_price: "",
         payment_confirmation: "",
         date: ""
-      }
+      },
+      dishesId: []
     };
   },
   computed: {
@@ -2021,6 +2022,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    getDishesId: function getDishesId(e) {
+      this.dishesId = e;
+      console.log(this.dishesId);
+    },
     showForm: function showForm() {
       this.showF = false;
     },
@@ -2064,7 +2069,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 yyyy = today.getFullYear();
                 today = yyyy + '/' + mm + '/' + dd;
                 _this.orderInfo.date = today;
-                _context.next = 8;
+
+                _this.dishesId.forEach(function (id, i) {
+                  var newDishProperty = "dish" + i;
+                  _this.orderInfo[newDishProperty] = id;
+                });
+
+                console.log("orderInfo", _this.orderInfo);
+                console.log(Object.keys(_this.orderInfo).length);
+                _context.next = 11;
                 return axios.post('/orders/make/payment', _this.form).then(function (res) {
                   sessionStorage.removeItem('cart');
                   _this.transition = res.data.message;
@@ -2082,8 +2095,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.error('errore api buy: ', err);
                 });
 
-              case 8:
-                _context.next = 10;
+              case 11:
+                _context.next = 13;
                 return axios.post('/orders/customerInfo', _this.customerData).then(function (res) {
                   sessionStorage.removeItem('customerData');
                   console.log('customer data: ', res);
@@ -2091,8 +2104,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.error('errore api customer data: ', err);
                 });
 
-              case 10:
-                _context.next = 12;
+              case 13:
+                _context.next = 15;
                 return axios.post('/orders/createOrder', _this.orderInfo).then(function (res) {
                   console.log("order info SENZA ERRORE", _this.orderInfo);
                   console.log('orderInfo: ', res);
@@ -2101,7 +2114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log("order info ERRORE", _this.orderInfo);
                 });
 
-              case 12:
+              case 15:
               case "end":
                 return _context.stop();
             }
@@ -2216,6 +2229,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2240,15 +2258,15 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     onSuccess: function onSuccess(payload) {
       var nonce = payload.nonce;
-      console.log('successo ', nonce); // Do something great with the nonce...
+      console.log("successo ", nonce); // Do something great with the nonce...
     },
     onError: function onError(error) {
       var message = error.message;
-      console.log('errore: ', error); // Whoops, an error has occured while trying to get the nonce
+      console.log("errore: ", error); // Whoops, an error has occured while trying to get the nonce
     },
     // send dish info to parent
     removeFromCart: function removeFromCart(dish) {
-      this.$emit('removeDish', dish);
+      this.$emit("removeDish", dish);
     },
     checkout: function checkout() {
       window.location.href = "/api/cart/checkout";
@@ -3323,10 +3341,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     paymetnConfirmation: Number
@@ -3337,6 +3351,7 @@ __webpack_require__.r(__webpack_exports__);
       customerForm: {
         name: "",
         surname: "",
+        email: "",
         address: "",
         note: "",
         cap: "",
@@ -3344,12 +3359,15 @@ __webpack_require__.r(__webpack_exports__);
       },
       name: "",
       surname: "",
+      email: "",
       address: "",
       note: "",
       cap: "",
       telephone: "",
       showForm: true,
-      showPayment: false
+      showPayment: false,
+      dishesId: [],
+      cart: []
     };
   },
   mounted: function mounted() {
@@ -3357,23 +3375,44 @@ __webpack_require__.r(__webpack_exports__);
       var storageCustomerData = JSON.parse(sessionStorage.getItem('customerData'));
       this.name = storageCustomerData.name;
       this.surname = storageCustomerData.surname;
+      this.email = storageCustomerData.email;
       this.address = storageCustomerData.address;
       this.note = storageCustomerData.note;
       this.cap = storageCustomerData.cap;
       this.telephone = storageCustomerData.telephone;
     }
+
+    if (sessionStorage.getItem('cart')) {
+      try {
+        this.cart = JSON.parse(sessionStorage.getItem('cart'));
+      } catch (e) {
+        sessionStorage.removeItem('cart');
+      }
+    }
+
+    console.log("cart", this.cart);
   },
   methods: {
     infoCustomer: function infoCustomer() {
+      var _this = this;
+
       this.showForm = false;
       this.customerForm.name = this.name;
       this.customerForm.surname = this.surname;
+      this.customerForm.email = this.email;
       this.customerForm.address = this.address;
       this.customerForm.note = this.note;
       this.customerForm.cap = this.cap;
       this.customerForm.telephone = this.telephone;
       var parsed = JSON.stringify(this.customerForm);
       sessionStorage.setItem('customerData', parsed);
+      this.cart.forEach(function (dish) {
+        console.log("dish", dish.id);
+
+        _this.dishesId.push(dish.id);
+      });
+      console.log("ids", this.dishesId);
+      this.$emit("getDishesId", this.dishesId);
       this.$emit("showForm");
       this.$emit("showPayment");
       this.$emit("getCustomerData", this.customerForm);
@@ -3739,6 +3778,78 @@ __webpack_require__.r(__webpack_exports__);
     },
     loginRegister: function loginRegister() {
       window.location.href = '/login';
+    },
+    goHome: function goHome() {
+      window.location.href = '/';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      orders: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/orders/list').then(function (r) {
+      _this.orders = r.data;
+      console.log(r.data);
+    });
+  },
+  methods: {
+    confirmed: function confirmed(id) {
+      var _this2 = this;
+
+      var _loop = function _loop(i) {
+        var order = _this2.orders[i];
+
+        if (order.id === id) {
+          // order.confirmed = 1;
+          axios.post('/orders/confirm', order.id).then(function (r) {
+            console.log(r.data);
+            order.confirmed = 1;
+          });
+        }
+      };
+
+      for (var i = 0; i < this.orders.length; i++) {
+        _loop(i);
+      }
     }
   }
 });
@@ -3980,12 +4091,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       types: [],
       selectType: 'Tutti',
-      restaurants: []
+      restaurants: [],
+      favRestaurants: []
     };
   },
   methods: {
@@ -4010,12 +4145,11 @@ __webpack_require__.r(__webpack_exports__);
               element.type = type;
 
               _this.restaurants.push(element);
-
-              console.log(element);
             }
           });
         });
       } else {
+        // remove restaurants from list if type unchecked
         this.restaurants = this.restaurants.filter(function (element) {
           if (element.type != type) {
             return element;
@@ -4029,6 +4163,11 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/restaurants/types').then(function (res) {
       _this2.types = res.data;
+    });
+    axios.get('/api/fav/restaurants').then(function (res) {
+      res.data.forEach(function (element) {
+        _this2.favRestaurants.push(element);
+      });
     });
   }
 });
@@ -101866,12 +102005,9 @@ var render = function () {
     "div",
     { staticClass: "container" },
     [
-      _c("button", { on: { click: _vm.check } }, [
-        _vm._v("CHECKKKKKKKKKKKKKKKKKKK"),
-      ]),
-      _vm._v(" "),
       _c("customer-form-component", {
         on: {
+          getDishesId: _vm.getDishesId,
           showForm: _vm.showForm,
           showPayment: _vm.showPayment,
           getCustomerData: _vm.getCustomerData,
@@ -101991,43 +102127,51 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { attrs: { id: "cart" } }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", [
-        _c(
-          "ul",
-          _vm._l(_vm.cart, function (dish) {
-            return _c("li", { key: dish.id }, [
+    _c("div", { staticClass: "mobile-cart" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.cart, function (dish) {
+          return _c("li", { key: dish.id, staticClass: "chart-object trash" }, [
+            _c("span", { staticClass: "chart-info" }, [
               _vm._v(
-                "\n                    " +
+                "\n          " +
                   _vm._s(dish.dish_name) +
-                  "\n                    " +
-                  _vm._s(dish.price) +
-                  "\n                    " +
+                  " x\n          " +
                   _vm._s(dish.quantity) +
-                  "\n                    "
+                  "\n        "
               ),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  on: {
-                    click: function ($event) {
-                      return _vm.removeFromCart(dish)
-                    },
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "active",
+                on: {
+                  click: function ($event) {
+                    return _vm.removeFromCart(dish)
                   },
                 },
-                [_vm._v(" delete ")]
-              ),
-            ])
-          }),
-          0
-        ),
-        _vm._v("\n            " + _vm._s(_vm.totalPrice) + "\n        "),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "buy-button", on: { click: _vm.checkout } }, [
-        _c("div", [_vm._v("Vai al pagamento")]),
-      ]),
+              },
+              [
+                _c("span", { staticClass: "chart-info" }, [
+                  _vm._v(_vm._s(dish.price) + "€"),
+                ]),
+                _vm._v(" "),
+                _c("i", { staticClass: "far fa-trash-alt" }),
+              ]
+            ),
+          ])
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "totalPrice" }, [
+      _vm._v(_vm._s(_vm.totalPrice) + "€"),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "buy-button", on: { click: _vm.checkout } }, [
+      _c("div", [_vm._v("Vai al pagamento")]),
     ]),
   ])
 }
@@ -102281,7 +102425,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "loginRegister" }, [
     _vm.showForm
       ? _c(
           "form",
@@ -102359,6 +102503,38 @@ var render = function () {
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
+            _c("label", { attrs: { for: "email" } }, [
+              _vm._v("Email\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.email,
+                    expression: "email",
+                  },
+                ],
+                attrs: {
+                  type: "email",
+                  name: "email",
+                  min: "2",
+                  max: "60",
+                  required: "",
+                },
+                domProps: { value: _vm.email },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.email = $event.target.value
+                  },
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _c("label", { attrs: { for: "address" } }, [
               _vm._v("Address\n            "),
               _c("input", {
@@ -102384,38 +102560,6 @@ var render = function () {
                       return
                     }
                     _vm.address = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "note" } }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.note,
-                    expression: "note",
-                  },
-                ],
-                attrs: {
-                  name: "note",
-                  id: "",
-                  cols: "30",
-                  rows: "10",
-                  max: "255",
-                  required: "",
-                },
-                domProps: { value: _vm.note },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.note = $event.target.value
                   },
                 },
               }),
@@ -102479,6 +102623,37 @@ var render = function () {
                       return
                     }
                     _vm.telephone = $event.target.value
+                  },
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "note" } }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.note,
+                    expression: "note",
+                  },
+                ],
+                attrs: {
+                  name: "note",
+                  id: "",
+                  cols: "30",
+                  rows: "5",
+                  max: "255",
+                },
+                domProps: { value: _vm.note },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.note = $event.target.value
                   },
                 },
               }),
@@ -102959,11 +103134,13 @@ var render = function () {
       _vm._v(" "),
       _c("nav", { staticClass: "nav-nav" }, [
         _c("ul", { staticClass: "ul-links" }, [
+          _c("li", [
+            _c("span", { on: { click: _vm.goHome } }, [_vm._v("Home")]),
+          ]),
+          _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
           _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
           _vm._v(" "),
           _vm.user
             ? _c("li", [
@@ -102979,19 +103156,11 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(3),
+      _vm._m(2),
     ]),
-    _vm._v(" "),
-    _vm._m(4),
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Home")])])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -103014,20 +103183,81 @@ var staticRenderFns = [
       [_c("span")]
     )
   },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "home-jumbo" } }, [
-      _c("img", {
-        attrs: {
-          src: "/storage/assets/pexels-ray-piedra-1565982.jpg",
-          alt: "header jumbo",
-        },
-      }),
-    ])
-  },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { attrs: { id: "order-page" } }, [
+    _c("h2", [_vm._v("I tuoi ordini")]),
+    _vm._v(" "),
+    _c(
+      "ol",
+      { staticClass: "m-3 px-2", attrs: { reversed: "" } },
+      _vm._l(_vm.orders, function (order, i) {
+        return _c("li", { key: i, staticClass: "lst" }, [
+          _c("div", [
+            _vm._v(
+              "\n                      data: " + _vm._s(order.created_at) + " "
+            ),
+            _c("br"),
+            _vm._v(
+              "\n                      nome: " +
+                _vm._s(order.name) +
+                " surname: " +
+                _vm._s(order.success) +
+                " "
+            ),
+            _c("br"),
+            _vm._v("\n                      indirizzo: "),
+            _c("br"),
+            _vm._v(
+              "\n                      " +
+                _vm._s(order.address) +
+                "\n                      confermato: " +
+                _vm._s(order.confirmed) +
+                "\n                  "
+            ),
+          ]),
+          _vm._v(" "),
+          order.confirmed === 0
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-success button",
+                  on: {
+                    click: function ($event) {
+                      return _vm.confirmed(order.id)
+                    },
+                  },
+                },
+                [_vm._v("conferma")]
+              )
+            : _vm._e(),
+        ])
+      }),
+      0
+    ),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -103116,21 +103346,25 @@ var render = function () {
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "chart-container-1 col-md-3 col-lg-3" }, [
-          _c(
-            "div",
-            { staticClass: "chart-container" },
-            [
-              _vm.shoppingCart
-                ? _c("cart-component", {
-                    attrs: { cart: _vm.cart },
-                    on: { removeDish: _vm.removeDish },
-                  })
-                : _vm._e(),
-            ],
-            1
-          ),
-        ]),
+        _c(
+          "div",
+          { staticClass: "chart-container-1 col-sm-12 col-md-3 col-lg-3" },
+          [
+            _c(
+              "div",
+              { staticClass: "chart-container" },
+              [
+                _vm.shoppingCart
+                  ? _c("cart-component", {
+                      attrs: { cart: _vm.cart },
+                      on: { removeDish: _vm.removeDish },
+                    })
+                  : _vm._e(),
+              ],
+              1
+            ),
+          ]
+        ),
       ]),
     ]),
   ])
@@ -103184,49 +103418,81 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { attrs: { id: "restaurants" } }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "d-flex align-items-center justify-content-center h-25 divisore",
-      },
-      [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "container" }, [
+      _c("h2", [_vm._v("I nostri consigliati")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "fav-restaurants" }, [
         _c(
-          "div",
-          {
-            staticClass:
-              " container-select-type d-flex align-items-center justify-content-center",
-          },
-          _vm._l(_vm.types, function (type) {
-            return _c("div", { key: type.id, staticClass: "type" }, [
-              _c("label", { attrs: { for: type.type_name } }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(type.type_name) +
-                    "\n                    "
-                ),
-                _c("input", {
-                  attrs: { type: "checkbox", id: type.type_name },
-                  domProps: { value: type.type_name },
-                  on: {
-                    click: function ($event) {
-                      return _vm.getRestaurants($event, type.type_name)
+          "ul",
+          { staticClass: "row flex-nowrap" },
+          _vm._l(_vm.favRestaurants, function (favRes) {
+            return _c(
+              "li",
+              { key: favRes.id, staticClass: "col-sm-12 col-md-6 p-3" },
+              [
+                _c(
+                  "div",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.goToRestaurant(favRes.id)
+                      },
                     },
                   },
-                }),
-              ]),
-            ])
+                  [
+                    _c("div", { staticClass: "card flex-row" }, [
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h3", [_vm._v(_vm._s(favRes.business_name))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(favRes.business_description))]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]
+            )
           }),
           0
         ),
-      ]
-    ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("h2", [_vm._v("Quale cucina vorresti provare?")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "types_container" },
+        _vm._l(_vm.types, function (type) {
+          return _c("div", { key: type.id, staticClass: "type" }, [
+            _c("input", {
+              attrs: { type: "checkbox", id: type.type_name },
+              domProps: { value: type.type_name },
+              on: {
+                click: function ($event) {
+                  return _vm.getRestaurants($event, type.type_name)
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: type.type_name } }, [
+              _vm._v(_vm._s(type.type_name)),
+            ]),
+          ])
+        }),
+        0
+      ),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c(
         "ul",
         { staticClass: "row" },
-        _vm._l(_vm.showFiltered, function (restaurant) {
+        _vm._l(_vm.restaurants, function (restaurant) {
           return _c(
             "li",
             { key: restaurant.id, staticClass: "col-sm-12 col-md-6 p-3" },
@@ -103242,7 +103508,7 @@ var render = function () {
                 },
                 [
                   _c("div", { staticClass: "card flex-row" }, [
-                    _vm._m(0, true),
+                    _vm._m(2, true),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-body" }, [
                       _c("h3", [_vm._v(_vm._s(restaurant.business_name))]),
@@ -103263,6 +103529,27 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "home-jumbo" } }, [
+      _c("img", {
+        attrs: {
+          src: "/storage/assets/pexels-ray-piedra-1565982.jpg",
+          alt: "header jumbo",
+        },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "business-img" }, [
+      _c("img", { attrs: { src: "https://picsum.photos/300/300", alt: "" } }),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -115510,6 +115797,7 @@ var map = {
 	"./components/DashboardMenuComponent.vue": "./resources/js/components/DashboardMenuComponent.vue",
 	"./components/EditDishComponent.vue": "./resources/js/components/EditDishComponent.vue",
 	"./components/MyHeaderComponentDue.vue": "./resources/js/components/MyHeaderComponentDue.vue",
+	"./components/OrdersComponent.vue": "./resources/js/components/OrdersComponent.vue",
 	"./components/RestaurantMenuComponent.vue": "./resources/js/components/RestaurantMenuComponent.vue",
 	"./components/homepageComponent.vue": "./resources/js/components/homepageComponent.vue"
 };
@@ -116422,6 +116710,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/OrdersComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/OrdersComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OrdersComponent_vue_vue_type_template_id_14426806___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrdersComponent.vue?vue&type=template&id=14426806& */ "./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&");
+/* harmony import */ var _OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrdersComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrdersComponent_vue_vue_type_template_id_14426806___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OrdersComponent_vue_vue_type_template_id_14426806___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OrdersComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./OrdersComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_template_id_14426806___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./OrdersComponent.vue?vue&type=template&id=14426806& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_template_id_14426806___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_template_id_14426806___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/RestaurantMenuComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/RestaurantMenuComponent.vue ***!
@@ -116578,8 +116935,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matteoiorio/Documents/Personale/progetto _finale/deliveboo-team4/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/matteoiorio/Documents/Personale/progetto _finale/deliveboo-team4/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
