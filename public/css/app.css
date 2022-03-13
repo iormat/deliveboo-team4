@@ -11704,12 +11704,12 @@ footer .container .footer-bottom .copyright i {
 }
 
 #restaurants-list .flex-row .card .business-img {
-  width: 25%;
+  display: flex;
   min-width: 15ch;
 }
 
 #restaurants-list .flex-row .card .business-img img {
-  width: 100%;
+  width: 25%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -11717,8 +11717,15 @@ footer .container .footer-bottom .copyright i {
      object-position: center;
 }
 
+#restaurants-list .flex-row .card .business-img .title-category {
+  margin: 10px;
+}
+
+#restaurants-list .flex-row .card .business-img h3 {
+  width: 100%;
+}
+
 #restaurants-list .flex-row .card .card-body {
-  max-width: 65%;
   padding: 1em;
 }
 
@@ -11729,11 +11736,16 @@ footer .container .footer-bottom .copyright i {
   -webkit-box-orient: vertical;
 }
 
-#restaurants-list .flex-row .card .card-body h3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+@media screen and (max-width: 996px) {
+  #restaurants-list .flex-row .card {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #restaurants-list .flex-row .card .business-img img {
+    display: none;
+  }
 }
 
 :root {

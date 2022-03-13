@@ -161,10 +161,10 @@ class ApiController extends Controller
 
     public function allRestaurants() {
         
-        $restaurants =DB::table('users')
-                        ->select('*')
-                        ->orderBy('business_name', 'asc')
-                        ->get();
+        $restaurants = User::with('types')
+                           ->orderBy('business_name', 'asc')
+                           ->get();
+                           
         return response() -> json($restaurants);
     }
 

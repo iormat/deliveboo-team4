@@ -4101,7 +4101,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: String
+  },
   data: function data() {
     return {
       restaurants: {}
@@ -103539,7 +103547,7 @@ var render = function () {
     "section",
     { attrs: { id: "restaurants-list" } },
     [
-      _c("my-header-component-due"),
+      _c("my-header-component-due", { attrs: { user: _vm.user } }),
       _vm._v(" "),
       _c(
         "div",
@@ -103557,11 +103565,32 @@ var render = function () {
               },
             },
             [
-              _vm._m(0, true),
+              _c("div", { staticClass: "business-img" }, [
+                _c("img", {
+                  attrs: { src: "https://picsum.photos/300/300", alt: "" },
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "title-category" },
+                  [
+                    _c("h3", [_vm._v(_vm._s(restaurant.business_name))]),
+                    _vm._v(" "),
+                    _vm._l(restaurant.types, function (type, i) {
+                      return _c("div", { key: i }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(type.type_name) +
+                            "\n              "
+                        ),
+                      ])
+                    }),
+                  ],
+                  2
+                ),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c("h3", [_vm._v(_vm._s(restaurant.business_name))]),
-                _vm._v(" "),
                 _c("p", [_vm._v(_vm._s(restaurant.business_description))]),
               ]),
             ]
@@ -103573,16 +103602,7 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "business-img" }, [
-      _c("img", { attrs: { src: "https://picsum.photos/300/300", alt: "" } }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

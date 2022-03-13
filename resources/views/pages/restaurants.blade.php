@@ -2,6 +2,6 @@
 
 @section('content')
  
-        <restaurants-component></restaurants-component>
+        <restaurants-component user="{{Auth::check()}}"></restaurants-component>
 
 @endsection

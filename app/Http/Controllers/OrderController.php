@@ -136,7 +136,7 @@ class OrderController extends Controller {
         
         // send order confirmation to user and customer
         Mail::to($lastCustomer -> email) -> send(new PaymentCustomerMail($order, $lastCustomer));
-        Mail::to($user -> email) -> send(new PaymentUserMail($order, $lastCustomer, $user));
+        // Mail::to($user -> email) -> send(new PaymentUserMail($order, $lastCustomer, $user));
 
         return json_encode($order);
     }
@@ -152,6 +152,7 @@ class OrderController extends Controller {
                 $id = $user -> id;
                 $query->where('user_id', $id);
             })
+            ->orderBy('orders.id', 'desc')
             -> get();
 
         return response()->json($orders);    

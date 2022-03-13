@@ -15,17 +15,22 @@
             display: flex;
 
             .business-img {
-                width: 25%;
+                display: flex;
                 min-width: 15ch;
                 img {
-                    width: 100%;
+                    width: 25%;
                     height: 100%;
                     object-fit: cover;
                     object-position: center;
                 }
+                .title-category {
+                    margin: 10px;
+                }
+                h3{
+                    width: 100%;
+                }
             }
             .card-body {
-                max-width: 65%;
                 padding: 1em;
                 p {
                     overflow: hidden;
@@ -33,15 +38,30 @@
                     -webkit-line-clamp: 5;
                     -webkit-box-orient: vertical;
                 }
-                h3 {
-                    overflow: hidden;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                }
             }
     
         }
     }
 
+    
+    @media screen and (max-width: 996px) {
+                .flex-row{
+                    .card{
+                        width: 100%;
+                        // overflow: hidden;
+                    }
+                }
+        }
+    
+        @media screen and (max-width: 450px) {
+            .flex-row{
+                .card {
+                    .business-img {
+                        img{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
 }
