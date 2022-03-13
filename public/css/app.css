@@ -12244,6 +12244,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 #order-page .mycard .card-body {
+  position: relative;
   background-color: hsl(var(--clr-neutral-100));
   color: hsl(var(--clr-neutral-900));
   border-radius: 1.125em;
@@ -12286,13 +12287,15 @@ footer .container .footer-bottom .copyright i {
   list-style-type: none;
 }
 
-#order-page .mycard .mod-container {
+#order-page .mycard .details {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-#order-page .mycard .mod-container .modifiers {
+#order-page .mycard .details .mod-container {
+  margin-left: 1rem;
+}
+
+#order-page .mycard .details .mod-container .modifiers {
   cursor: pointer;
   display: inline-block;
   height: 2rem;

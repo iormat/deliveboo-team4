@@ -13,32 +13,35 @@
                             <p> Totale Ordine: {{order.total_price}} &euro;</p>
                         </div>
                         <!-- order details -->
-                        <details>
-                            <summary>Dettagli ordine:</summary>
-                            <ul>
-                                <li v-for="dish in order.dishes" :key="dish.id">
-                                    <p>
-                                        <strong>{{dish.dish_name}}</strong> - Quantit&agrave;&colon; {{dish.pivot.amount}}
-                                    </p>
-                                </li>
-                                <!-- client details -->
-                                <li>
-                                    <details>
-                                        <summary>
-                                            Dettagli cliente:
-                                        </summary>
-                                        <p><strong>Email&colon;</strong> {{order.customer.email}}</p>
-                                        <p><strong>Indirizzo&colon;</strong> {{order.customer.address}}</p>
-                                        <p><strong>Cap&colon;</strong> {{order.customer.cap}}</p>
-                                        <p><strong>Telefono&colon;</strong> {{order.customer.telephone}}</p>
-                                    </details>
-                                </li>
-                            </ul>
-                        </details>
-                    </div>
-                    <div class="mod-container col-sm-2">
-                        <div class="modifiers" v-if="order.confirmed === 0" @click="confirmed(order.id)">
-                            <i class="fas fa-check"></i>
+                        <div class="details">
+                            <details>
+                                <summary>Dettagli ordine:</summary>
+                                <ul>
+                                    <li v-for="dish in order.dishes" :key="dish.id">
+                                        <p>
+                                            <strong>{{dish.dish_name}}</strong> - Quantit&agrave;&colon; {{dish.pivot.amount}}
+                                        </p>
+                                    </li>
+                                    <!-- client details -->
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                Dettagli cliente:
+                                            </summary>
+                                            <p><strong>Email&colon;</strong> {{order.customer.email}}</p>
+                                            <p><strong>Indirizzo&colon;</strong> {{order.customer.address}}</p>
+                                            <p><strong>Cap&colon;</strong> {{order.customer.cap}}</p>
+                                            <p><strong>Telefono&colon;</strong> {{order.customer.telephone}}</p>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <!-- order confirmation -->
+                            <div class="mod-container">
+                                <div class="modifiers" v-if="order.confirmed === 0" @click="confirmed(order.id)">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,7 +52,7 @@
 </template>
 
 <script>
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { format } from 'date-fns';
 
 // format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 export default {

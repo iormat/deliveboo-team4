@@ -24,6 +24,7 @@
         color: var(--clr-primary); 
         // card body
         .card-body {
+            position: relative;
             &.itemGray {
                 color: gray;
             }
@@ -61,22 +62,22 @@
                 }
             }
         }
-        // card footer
-        .mod-container {
+        .details {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .modifiers {
-                cursor: pointer;
-                display: inline-block;
-                height: 2rem;
-                width: 2rem;
-                line-height: 2rem;
-                border-radius: 1.125em;
-                color: hsl(var(--clr-primary));
-                background-color: hsl(var(--clr-secondary));
-                text-align: center;
+            // card footer
+            .mod-container {
+                margin-left: 1rem;
+                .modifiers {
+                    cursor: pointer;
+                    display: inline-block;
+                    height: 2rem;
+                    width: 2rem;
+                    line-height: 2rem;
+                    border-radius: 1.125em;
+                    color: hsl(var(--clr-primary));
+                    background-color: hsl(var(--clr-secondary));
+                    text-align: center;
+                }
             }
         }
     }
