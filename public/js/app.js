@@ -4288,6 +4288,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -103813,38 +103814,110 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { attrs: { id: "restaurants" } }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("section", { staticClass: "container" }, [
-      _c("h2", [_vm._v("I nostri consigliati")]),
+  return _c(
+    "section",
+    { attrs: { id: "restaurants" } },
+    [
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "fav-restaurants" }, [
+      _c("section", { staticClass: "container" }, [
+        _c("h2", [_vm._v("I nostri consigliati")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "fav-restaurants" }, [
+          _c(
+            "ul",
+            { staticClass: "row flex-nowrap" },
+            _vm._l(_vm.favRestaurants, function (favRes) {
+              return _c(
+                "li",
+                { key: favRes.id, staticClass: "col-sm-12 col-md-6 p-3" },
+                [
+                  _c(
+                    "div",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.goToRestaurant(favRes.id)
+                        },
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "card flex-row" }, [
+                        _vm._m(1, true),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-body" }, [
+                          _c("h3", [_vm._v(_vm._s(favRes.business_name))]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(_vm._s(favRes.business_description)),
+                          ]),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]
+              )
+            }),
+            0
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v("Quale cucina vorresti provare?")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "types_container" },
+          _vm._l(_vm.types, function (type) {
+            return _c("div", { key: type.id, staticClass: "type" }, [
+              _c("input", {
+                attrs: { type: "checkbox", id: type.type_name },
+                domProps: { value: type.type_name },
+                on: {
+                  click: function ($event) {
+                    return _vm.getRestaurants($event, type.type_name)
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: type.type_name } }, [
+                _vm._v(_vm._s(type.type_name)),
+              ]),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
         _c(
           "ul",
-          { staticClass: "row flex-nowrap" },
-          _vm._l(_vm.favRestaurants, function (favRes) {
+          { staticClass: "row" },
+          _vm._l(_vm.restaurants, function (restaurant) {
             return _c(
               "li",
-              { key: favRes.id, staticClass: "col-sm-12 col-md-6 p-3" },
+              { key: restaurant.id, staticClass: "col-sm-12 col-md-6 p-3" },
               [
                 _c(
                   "div",
                   {
                     on: {
                       click: function ($event) {
-                        return _vm.goToRestaurant(favRes.id)
+                        return _vm.goToRestaurant(restaurant.id)
                       },
                     },
                   },
                   [
                     _c("div", { staticClass: "card flex-row" }, [
-                      _vm._m(1, true),
+                      _vm._m(2, true),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-body" }, [
-                        _c("h3", [_vm._v(_vm._s(favRes.business_name))]),
+                        _c("h3", [_vm._v(_vm._s(restaurant.business_name))]),
                         _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(favRes.business_description))]),
+                        _c("p", [
+                          _vm._v(_vm._s(restaurant.business_description)),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -103855,74 +103928,11 @@ var render = function () {
           0
         ),
       ]),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c("h2", [_vm._v("Quale cucina vorresti provare?")]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "types_container" },
-        _vm._l(_vm.types, function (type) {
-          return _c("div", { key: type.id, staticClass: "type" }, [
-            _c("input", {
-              attrs: { type: "checkbox", id: type.type_name },
-              domProps: { value: type.type_name },
-              on: {
-                click: function ($event) {
-                  return _vm.getRestaurants($event, type.type_name)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: type.type_name } }, [
-              _vm._v(_vm._s(type.type_name)),
-            ]),
-          ])
-        }),
-        0
-      ),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c(
-        "ul",
-        { staticClass: "row" },
-        _vm._l(_vm.restaurants, function (restaurant) {
-          return _c(
-            "li",
-            { key: restaurant.id, staticClass: "col-sm-12 col-md-6 p-3" },
-            [
-              _c(
-                "div",
-                {
-                  on: {
-                    click: function ($event) {
-                      return _vm.goToRestaurant(restaurant.id)
-                    },
-                  },
-                },
-                [
-                  _c("div", { staticClass: "card flex-row" }, [
-                    _vm._m(2, true),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h3", [_vm._v(_vm._s(restaurant.business_name))]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(_vm._s(restaurant.business_description)),
-                      ]),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]
-          )
-        }),
-        0
-      ),
-    ]),
-  ])
+      _c("banner-component"),
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {

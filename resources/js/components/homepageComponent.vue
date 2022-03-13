@@ -53,6 +53,7 @@
                 </li>
             </ul>
         </div>
+        <banner-component></banner-component>
     </section>
 </template>
 
