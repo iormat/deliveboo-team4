@@ -124,12 +124,14 @@ export default {
         },
         // delete dish
         deleteDish(id) {
-            axios.get(`/api/dishDelete/${id}`)
-            .then(res => { 
-                const dish = res.data;
-                let dishInd = this.getDishIndById(dish.id);
-                this.dishes.splice(dishInd, 1); 
-            })
+            if(confirm('Sei sicuro di voler eliminare il piatto? Il processo è irreversibile!')) {
+                axios.get(`/api/dishDelete/${id}`)
+                .then(res => { 
+                    const dish = res.data;
+                    let dishInd = this.getDishIndById(dish.id);
+                    this.dishes.splice(dishInd, 1); 
+                })
+            }
         },
         // get dish index to delete
         getDishIndById(id){
