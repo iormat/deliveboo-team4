@@ -1,0 +1,54 @@
+#check-out{
+    
+    .chart-object{
+        margin: 10px 0;
+        width: 100%;
+        display: flex;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        .chart-info{
+            width: 20%;
+            text-transform: uppercase;
+        }
+    }
+    .contain-dishes{
+        width: 100%;
+        border-radius: 2px;
+        .check-out-dishes{
+        width: 100%;
+    }}
+    
+    .add-to-cart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        .fa-plus{
+            font-size: 1rem;
+            margin-right: 10px
+        }
+    }
+    .fa-trash-alt, .fa-plus{
+        margin-left: 20px;
+    }
+    .fa-trash-alt{
+        color: hsl(var(--clr-red));
+    }
+    @media screen and (max-width: 768px) {
+        .chart-object{
+            .chart-info{
+                width: 30%;
+                text-transform: uppercase;
+            }
+        }
+    }
+    @media screen and (max-width: 576px) {
+        .chart-object{
+            .chart-info{
+                width: 50%;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
