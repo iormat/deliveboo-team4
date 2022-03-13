@@ -7,7 +7,7 @@
 <div class="loginRegister">
     @guest
 
-    <h2>Register</h2>
+    <h2 class="text-order">Registrati</h2>
     <form action="{{ route('register') }}" method="POST">
     
         @method('POST')
@@ -28,7 +28,7 @@
         <label for="password">Password</label>
         <input type="password" name="password">
     
-        <label for="password_confirmation">Password confirmation</label>
+        <label for="password_confirmation">Conferma password</label>
         <input type="password"  name="password_confirmation">
     
         <label for="address">Indirizzo</label>
@@ -38,12 +38,12 @@
         <input type="text" name="p_iva" >
     
         
-        <input type="submit" value="LOGIN" class="register-button">
+        <input type="submit" value="REGISTRATI" class="register-button">
     
     </form>
 
     @else
-    <h2>Register</h2>
+    <h2>Registrati</h2>
     <form action="{{ route('register') }}" method="POST">
     
         @method('POST')
@@ -64,7 +64,7 @@
         <label for="password">Password</label><br>
         <input type="password" name="password"><br>
     
-        <label for="password_confirmation">Password confirmation</label><br>
+        <label for="password_confirmation">Conferma password</label><br>
         <input type="password"  name="password_confirmation"><br>
     
         <label for="address">Indirizzo</label><br>
@@ -74,7 +74,7 @@
         <input type="text" name="p_iva" ><br>
     
         <br>
-        <input type="submit" value="REGISTER">
+        <input type="submit" value="REGISTRATI">
     
     </form>
     @endguest

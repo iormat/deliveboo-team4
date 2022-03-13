@@ -1,24 +1,32 @@
 .loginRegister{
     margin: 100px auto;
-    width: 50%;
+    width: 60%;
     text-align: center;
+    .blocktonone{
+        display: block;
+    }
+    .nonetoblock{
+        display: none;
+    }
 
     form{
         padding: 20px 0;
         border: solid 2px hsl(var(--clr-neutral-900));
         border-radius: 5px;
-        width: 50%;
+        width: 60%;
         margin: 0 auto;
-        background-color: hsl(var(--clr-accent)/.6);
         display: flex;
         flex-direction: column;
         align-items: center;
+        
         input{
-            border: none;
-            border-bottom: 2px solid hsl(var(--clr-primary));
+            border: solid 1px hsl(var(--clr-neutral-900));
+            width: 70%;
           }
           
         label{
+            width: 70%;
+            text-align: left;
             font-weight: bold;
             letter-spacing: 1px;
             margin-top: 5px;
@@ -29,11 +37,8 @@
             background-color: hsl(var(--clr-primary));
             font-weight: bold;
             color: hsl(var(--clr-neutral-100));
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-radius: 2px;
-            width: 70px;
+            width: 70%;
             height: 40px;
             padding: 5px;
         }
@@ -47,16 +52,32 @@
             justify-content: center;
             align-items: center;
             border-radius: 2px;
-            width: 20%;
+            width: 70%;
             height: 40px;
             padding: 5px;
         }
     }
     .form-login{
         margin-bottom: 50px;
+        width: 60%;
+    }
+    .customer-form{
+        width: 80%;
+        .text-area{
+            width: 70%;
+            margin-bottom: 20px;
+        }
+    }
+    .text-order{
+        text-transform: uppercase;
+        font-size: 30px;
+        letter-spacing: 1px;
     }
     
+    
 }
+
+
 
 @media screen and (max-width:992px) {
     .loginRegister{
@@ -65,5 +86,19 @@
     input{
         max-width: 70%;
     }
+    
 
+}
+@media screen and (max-width:768px) {
+    
+    .loginRegister{
+        width: 100%;
+        .blocktonone{
+            display: none;
+        }
+        .nonetoblock{
+            display: block;
+        }
+    }
+    
 }

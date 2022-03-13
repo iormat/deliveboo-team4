@@ -1,42 +1,44 @@
 
 <template>
      <div class="loginRegister" >
+         <p class="text-order">Inserisci qui i dati del tuo ordine</p>
         
          <form
          v-if="showForm"
          method="POST" 
          enctype="multipart/form-data" 
-         @submit.prevent="infoCustomer">
+         @submit.prevent="infoCustomer" class="customer-form">
 
-            <label for="name">Name
+            <label for="name">Name</label>
                 <input type="text" name="name" min="2" max="60" v-model="name"  required>
-            </label>
-            <br>
-            <label for="surname">Cognome
+            
+
+            <label for="surname">Cognome</label>
                 <input type="text" name="surname" min="2" max="60" v-model="surname"  required>
-            </label>
-            <br>
-            <label for="email">Email
+            
+
+            <label for="email">Email</label>
                 <input type="email" name="email" min="2" max="60" v-model="email"  required>
-            </label>
-            <br>
-            <label for="address">Address
+            
+
+            <label for="address">Address</label>
                 <input type="text" name="address" min="5" max="60" v-model="address"  required>
-            </label>
-            <br>
-            <label for="cap">CAP             
+            
+
+            <label for="cap">CAP</label>             
                 <input type="text" name="cap" min="5" max="5" v-model="cap"  required>
-            </label>
-            <br>
-            <label for="telephone">Telefono
+            
+
+            <label for="telephone">Telefono</label>
                 <input type="text" name="telephone" max="20" v-model="telephone"  required>
-            </label>
-            <br>
-            <label for="note">
-                <textarea name="note" id="" cols="30" rows="5" max="255" v-model="note"></textarea>
-            </label>
-            <br>
-            <input type="submit" value="Procedi al pagamento">
+            
+
+            <label for="note"></label>
+                <textarea name="note" id="" rows="5" max="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>
+            
+
+            <input type="submit" value="Procedi al pagamento" class="blocktonone login-button">
+            <input type="submit" value="Paga" class="nonetoblock login-button">
          </form>
 
     </div>
