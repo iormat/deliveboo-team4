@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="header-nav">
-            <h1>DeliverBoo</h1>
+            <h1>DeliveBoo</h1>
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <nav class="nav-nav">
                 <ul class="ul-links">
@@ -9,10 +9,10 @@
                         <span @click="goHome">Home</span>
                     </li>
 
-                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Contattaci</a></li>
 
                     <li @click="goRestaurants">
-                        <span>Restaurant</span> 
+                        <span>Ristoranti</span> 
                     </li>
 
                     <li v-if="user">
@@ -32,7 +32,6 @@
                 <span></span>
             </label>    
         </div>
-        
     </header>
 </template>
 
@@ -42,26 +41,29 @@ export default {
         user: String,
     },
     methods: {
+        // redirect to all restaurants
         goRestaurants(){
             window.location.href = '/api/restaurants';
         },
+        // redirect to user dashboard
         userDashboard(){
             window.location.href = '/dashboard';
         },
+        // user logout
         userLogout() {
             axios.get('/logout')
                 .then(res => {
                     window.location.href = '/';
                 });
         },
+        // redirect to login/registration
         loginRegister() {
             window.location.href = '/login';
         },
-
+        // redirect to homepage
         goHome() {
             window.location.href = '/';
         }
-        
     }
 }
 </script>

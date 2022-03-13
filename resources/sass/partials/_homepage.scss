@@ -1,30 +1,30 @@
 #restaurants,
 #restaurantMenu {
     width: 100%;   
-    // margin: auto;
-    .container-select-type { 
-        width: 100px;
-        height: 50px;
-        select{
-            width: 100px;
-            padding: 5px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            color: hsl(var(--clr-accent));
-            background-color: hsl(var(--clr-primary));
-            border: 6px solid transparent;
-            border-color: #fff transparent transparent transparent;
-            option {
-                padding: 5px;
-            }
-        }
-        select:after {
-            border: 6px solid transparent;
-            border-color: #fff transparent transparent transparent;
-        }
+    // // margin: auto;
+    // .container-select-type { 
+    //     width: 100px;
+    //     height: 50px;
+    //     select{
+    //         width: 100px;
+    //         padding: 5px;
+    //         -webkit-appearance: none;
+    //         -moz-appearance: none;
+    //         appearance: none;
+    //         color: hsl(var(--clr-accent));
+    //         background-color: hsl(var(--clr-primary));
+    //         border: 6px solid transparent;
+    //         border-color: #fff transparent transparent transparent;
+    //         option {
+    //             padding: 5px;
+    //         }
+    //     }
+    //     select:after {
+    //         border: 6px solid transparent;
+    //         border-color: #fff transparent transparent transparent;
+    //     }
    
-    }
+   // }
     li {
         padding: 1em 0;
         list-style-type: none;

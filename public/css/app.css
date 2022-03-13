@@ -11951,36 +11951,6 @@ footer .container .footer-bottom .copyright i {
   width: 100%;
 }
 
-#restaurants .container-select-type,
-#restaurantMenu .container-select-type {
-  width: 100px;
-  height: 50px;
-}
-
-#restaurants .container-select-type select,
-#restaurantMenu .container-select-type select {
-  width: 100px;
-  padding: 5px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  color: hsl(var(--clr-accent));
-  background-color: hsl(var(--clr-primary));
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
-#restaurants .container-select-type select option,
-#restaurantMenu .container-select-type select option {
-  padding: 5px;
-}
-
-#restaurants .container-select-type select:after,
-#restaurantMenu .container-select-type select:after {
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
 #restaurants li,
 #restaurantMenu li {
   padding: 1em 0;
