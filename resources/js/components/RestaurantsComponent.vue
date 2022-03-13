@@ -7,8 +7,8 @@
                 <img src="https://picsum.photos/300/300" alt="">
                 <div class="title-category">
                   <h3>{{restaurant.business_name}}</h3>
-                  <div v-for="type, i in restaurant.types" :key="i">
-                    {{type.type_name}}
+                  <div v-for="typology in restaurant.types" :key="typology.id">
+                    {{typology.type_name}}
                   </div>
                 </div>
             </div>

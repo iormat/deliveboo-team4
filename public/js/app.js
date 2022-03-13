@@ -3345,6 +3345,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     paymetnConfirmation: Number
@@ -3437,7 +3439,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateDishComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateDishComponent.vue */ "./resources/js/components/CreateDishComponent.vue");
 /* harmony import */ var _EditDishComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditDishComponent.vue */ "./resources/js/components/EditDishComponent.vue");
-//
 //
 //
 //
@@ -3819,6 +3820,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102519,10 +102541,15 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "loginRegister" }, [
+    _c("p", { staticClass: "text-order" }, [
+      _vm._v("Inserisci qui i dati del tuo ordine"),
+    ]),
+    _vm._v(" "),
     _vm.showForm
       ? _c(
           "form",
           {
+            staticClass: "customer-form",
             attrs: { method: "POST", enctype: "multipart/form-data" },
             on: {
               submit: function ($event) {
@@ -102532,230 +102559,217 @@ var render = function () {
             },
           },
           [
-            _c("label", { attrs: { for: "name" } }, [
-              _vm._v("Name\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.name,
-                    expression: "name",
-                  },
-                ],
-                attrs: {
-                  type: "text",
-                  name: "name",
-                  min: "2",
-                  max: "60",
-                  required: "",
-                },
-                domProps: { value: _vm.name },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.name = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "surname" } }, [
-              _vm._v("Cognome\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.surname,
-                    expression: "surname",
-                  },
-                ],
-                attrs: {
-                  type: "text",
-                  name: "surname",
-                  min: "2",
-                  max: "60",
-                  required: "",
-                },
-                domProps: { value: _vm.surname },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.surname = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "email" } }, [
-              _vm._v("Email\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.email,
-                    expression: "email",
-                  },
-                ],
-                attrs: {
-                  type: "email",
-                  name: "email",
-                  min: "2",
-                  max: "60",
-                  required: "",
-                },
-                domProps: { value: _vm.email },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.email = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "address" } }, [
-              _vm._v("Address\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.address,
-                    expression: "address",
-                  },
-                ],
-                attrs: {
-                  type: "text",
-                  name: "address",
-                  min: "5",
-                  max: "60",
-                  required: "",
-                },
-                domProps: { value: _vm.address },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.address = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "cap" } }, [
-              _vm._v("CAP             \n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.cap,
-                    expression: "cap",
-                  },
-                ],
-                attrs: {
-                  type: "text",
-                  name: "cap",
-                  min: "5",
-                  max: "5",
-                  required: "",
-                },
-                domProps: { value: _vm.cap },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.cap = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "telephone" } }, [
-              _vm._v("Telefono\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.telephone,
-                    expression: "telephone",
-                  },
-                ],
-                attrs: {
-                  type: "text",
-                  name: "telephone",
-                  max: "20",
-                  required: "",
-                },
-                domProps: { value: _vm.telephone },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.telephone = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "note" } }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.note,
-                    expression: "note",
-                  },
-                ],
-                attrs: {
-                  name: "note",
-                  id: "",
-                  cols: "30",
-                  rows: "5",
-                  max: "255",
-                },
-                domProps: { value: _vm.note },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.note = $event.target.value
-                  },
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("br"),
+            _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name",
+                },
+              ],
+              attrs: {
+                type: "text",
+                name: "name",
+                min: "2",
+                max: "60",
+                required: "",
+              },
+              domProps: { value: _vm.name },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "surname" } }, [_vm._v("Cognome")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.surname,
+                  expression: "surname",
+                },
+              ],
+              attrs: {
+                type: "text",
+                name: "surname",
+                min: "2",
+                max: "60",
+                required: "",
+              },
+              domProps: { value: _vm.surname },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.surname = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email",
+                },
+              ],
+              attrs: {
+                type: "email",
+                name: "email",
+                min: "2",
+                max: "60",
+                required: "",
+              },
+              domProps: { value: _vm.email },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "address" } }, [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.address,
+                  expression: "address",
+                },
+              ],
+              attrs: {
+                type: "text",
+                name: "address",
+                min: "5",
+                max: "60",
+                required: "",
+              },
+              domProps: { value: _vm.address },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.address = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "cap" } }, [_vm._v("CAP")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.cap,
+                  expression: "cap",
+                },
+              ],
+              attrs: {
+                type: "text",
+                name: "cap",
+                min: "5",
+                max: "5",
+                required: "",
+              },
+              domProps: { value: _vm.cap },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.cap = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "telephone" } }, [_vm._v("Telefono")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.telephone,
+                  expression: "telephone",
+                },
+              ],
+              attrs: {
+                type: "text",
+                name: "telephone",
+                max: "20",
+                required: "",
+              },
+              domProps: { value: _vm.telephone },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.telephone = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "note" } }),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.note,
+                  expression: "note",
+                },
+              ],
+              staticClass: "text-area",
+              attrs: {
+                name: "note",
+                id: "",
+                rows: "5",
+                max: "255",
+                placeholder: "Note al ristorante...",
+              },
+              domProps: { value: _vm.note },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.note = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "blocktonone login-button",
               attrs: { type: "submit", value: "Procedi al pagamento" },
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "nonetoblock login-button",
+              attrs: { type: "submit", value: "Paga" },
             }),
           ]
         )
@@ -103305,86 +103319,122 @@ var render = function () {
   return _c("section", { attrs: { id: "order-page" } }, [
     _c("h2", [_vm._v("I tuoi ordini")]),
     _vm._v(" "),
-    _c(
-      "ol",
-      { staticClass: "m-3 px-2", attrs: { reversed: "" } },
-      _vm._l(_vm.orders, function (order) {
-        return _c("li", { key: order.id, staticClass: "lst" }, [
-          _c(
-            "div",
-            {
-              staticClass: "orders-list",
-              class: order.confirmed == 1 ? "itemGray" : "",
-            },
-            [
-              _vm._v(
-                "\n                  data: " + _vm._s(order.created_at) + " "
-              ),
-              _c("br"),
-              _vm._v(
-                "\n                  cliente: " +
-                  _vm._s(order.customer.name) +
-                  " " +
-                  _vm._s(order.customer.surname) +
-                  " "
-              ),
-              _c("br"),
-              _vm._v(
-                "\n                  indirizzo: " +
-                  _vm._s(order.customer.address)
-              ),
-              _c("br"),
-              _vm._v(
-                "\n                  " + _vm._s(order.customer.address) + " "
-              ),
-              _c("br"),
-              _vm._v(
-                "\n                  totale: " +
-                  _vm._s(order.total_price) +
-                  "\n                  " +
-                  _vm._s(order.id) +
-                  "\n                  "
-              ),
-              _c("details", [
-                _c("summary", [_vm._v("Dettagli ordine:")]),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  _vm._l(order.dishes, function (dish) {
-                    return _c("li", { key: dish.id }, [
-                      _vm._v(
-                        "\n                              " +
-                          _vm._s(dish.dish_name) +
-                          " - " +
-                          _vm._s(dish.pivot.amount) +
-                          "\n                          "
-                      ),
-                    ])
-                  }),
-                  0
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          order.confirmed === 0
-            ? _c(
-                "button",
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "ol",
+        _vm._l(_vm.orders, function (order) {
+          return _c("li", { key: order.id, staticClass: "mycard mb-3 m-0" }, [
+            _c("div", { staticClass: "container-card col-sm-10" }, [
+              _c(
+                "div",
                 {
-                  staticClass: "btn btn-outline-success button",
-                  on: {
-                    click: function ($event) {
-                      return _vm.confirmed(order.id)
-                    },
-                  },
+                  staticClass: "card-body",
+                  class: order.confirmed == 1 ? "itemGray" : "",
                 },
-                [_vm._v("conferma")]
-              )
-            : _vm._e(),
-        ])
-      }),
-      0
-    ),
+                [
+                  _c("div", { staticClass: "order-info" }, [
+                    _c("span", [
+                      _vm._v(
+                        " Data: " +
+                          _vm._s(
+                            _vm._f("dateFormat")(order.created_at, "YYYY.MM.DD")
+                          )
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", [
+                      _vm._v(
+                        " Cliente: " +
+                          _vm._s(order.customer.name) +
+                          " " +
+                          _vm._s(order.customer.surname)
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        " Totale Ordine: " + _vm._s(order.total_price) + " €"
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("details", [
+                    _c("summary", [_vm._v("Dettagli ordine:")]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      [
+                        _vm._l(order.dishes, function (dish) {
+                          return _c("li", { key: dish.id }, [
+                            _c("p", [
+                              _c("strong", [_vm._v(_vm._s(dish.dish_name))]),
+                              _vm._v(
+                                " - Quantità: " +
+                                  _vm._s(dish.pivot.amount) +
+                                  "\n                                  "
+                              ),
+                            ]),
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c("details", [
+                            _c("summary", [
+                              _vm._v(
+                                "\n                                          Dettagli cliente:\n                                      "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Email:")]),
+                              _vm._v(" " + _vm._s(order.customer.email)),
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Indirizzo:")]),
+                              _vm._v(" " + _vm._s(order.customer.address)),
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Cap:")]),
+                              _vm._v(" " + _vm._s(order.customer.cap)),
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("strong", [_vm._v("Telefono:")]),
+                              _vm._v(" " + _vm._s(order.customer.telephone)),
+                            ]),
+                          ]),
+                        ]),
+                      ],
+                      2
+                    ),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "mod-container col-sm-2" }, [
+                order.confirmed === 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "modifiers",
+                        on: {
+                          click: function ($event) {
+                            return _vm.confirmed(order.id)
+                          },
+                        },
+                      },
+                      [_c("i", { staticClass: "fas fa-check" })]
+                    )
+                  : _vm._e(),
+              ]),
+            ]),
+          ])
+        }),
+        0
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -103576,11 +103626,11 @@ var render = function () {
                   [
                     _c("h3", [_vm._v(_vm._s(restaurant.business_name))]),
                     _vm._v(" "),
-                    _vm._l(restaurant.types, function (type, i) {
-                      return _c("div", { key: i }, [
+                    _vm._l(restaurant.types, function (typology) {
+                      return _c("div", { key: typology.id }, [
                         _vm._v(
                           "\n                " +
-                            _vm._s(type.type_name) +
+                            _vm._s(typology.type_name) +
                             "\n              "
                         ),
                       ])
@@ -116077,7 +116127,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 });
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_braintree__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_braintree__WEBPACK_IMPORTED_MODULE_1__["default"]); // import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
+// Vue.use(VueFilterDateFormat);
 
 /***/ }),
 
