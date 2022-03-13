@@ -11748,6 +11748,64 @@ footer .container .footer-bottom .copyright i {
   }
 }
 
+#check-out .chart-object {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  padding: 0;
+  width: 100%;
+  display: flex;
+}
+
+#check-out .chart-object .chart-info {
+  width: 20%;
+  text-transform: uppercase;
+}
+
+#check-out .contain-dishes {
+  width: 100%;
+  border-radius: 2px;
+}
+
+#check-out .contain-dishes .check-out-dishes {
+  width: 100%;
+}
+
+#check-out .add-to-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#check-out .add-to-cart .fa-plus {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+#check-out .fa-trash-alt,
+#check-out .fa-plus {
+  margin-left: 20px;
+}
+
+#check-out .fa-trash-alt {
+  color: hsl(var(--clr-red));
+}
+
+@media screen and (max-width: 768px) {
+  #check-out .chart-object .chart-info {
+    width: 30%;
+    text-transform: uppercase;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #check-out .chart-object .chart-info {
+    width: 50%;
+    text-transform: uppercase;
+  }
+}
+
 :root {
   --clr-red: 0, 100%, 50%;
   --clr-neutral-100: 0, 0%, 100%;

@@ -1,7 +1,7 @@
 
 <template>
      <div class="loginRegister" >
-         <p class="text-order">Inserisci qui i dati del tuo ordine</p>
+         <p class="text-order">Inserisci i dati per procedere al pagamento dell'ordine</p>
         
          <form
          v-if="showForm"

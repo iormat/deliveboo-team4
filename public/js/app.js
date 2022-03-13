@@ -1980,19 +1980,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'customer-form-component': _CustomerFormComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    "customer-form-component": _CustomerFormComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       cart: [],
       transition: "",
-      authorization: '',
+      authorization: "",
       form: {
-        token: '',
-        total: ''
+        token: "",
+        total: ""
       },
       paymetnConfirmation: 1,
       errors: [],
@@ -2018,7 +2020,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       this.orderInfo.total_price = total;
-      return this.total = total;
+      return this.total = total.toFixed(2);
     }
   },
   methods: {
@@ -2063,11 +2065,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 today = new Date();
-                dd = String(today.getDate()).padStart(2, '0');
-                mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                dd = String(today.getDate()).padStart(2, "0");
+                mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
 
                 yyyy = today.getFullYear();
-                today = yyyy + '/' + mm + '/' + dd;
+                today = yyyy + "/" + mm + "/" + dd;
                 _this.orderInfo.date = today;
 
                 _this.dishesId.forEach(function (id, i) {
@@ -2083,8 +2085,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 console.log("orderInfo", _this.orderInfo);
                 _context.next = 10;
-                return axios.post('/orders/make/payment', _this.form).then(function (res) {
-                  sessionStorage.removeItem('cart');
+                return axios.post("/orders/make/payment", _this.form).then(function (res) {
+                  sessionStorage.removeItem("cart");
                   _this.transition = res.data.message;
 
                   if (_this.transition === "Transazione completata") {
@@ -2094,27 +2096,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
 
                   console.log(_this.orderInfo.payment_confirmation);
-                  console.log('conferma api buy: ', res);
+                  console.log("conferma api buy: ", res);
                 })["catch"](function (err) {
                   _this.transition = err.data.message;
-                  console.error('errore api buy: ', err);
+                  console.error("errore api buy: ", err);
                 });
 
               case 10:
                 _context.next = 12;
-                return axios.post('/orders/customerInfo', _this.customerData).then(function (res) {
-                  sessionStorage.removeItem('customerData');
-                  console.log('customer data: ', res);
+                return axios.post("/orders/customerInfo", _this.customerData).then(function (res) {
+                  sessionStorage.removeItem("customerData");
+                  console.log("customer data: ", res);
                 })["catch"](function (err) {
-                  console.error('errore api customer data: ', err);
+                  console.error("errore api customer data: ", err);
                 });
 
               case 12:
                 _context.next = 14;
-                return axios.post('/orders/createOrder', _this.orderInfo).then(function (res) {// console.log("order info SENZA ERRORE", this.orderInfo);
+                return axios.post("/orders/createOrder", _this.orderInfo).then(function (res) {// console.log("order info SENZA ERRORE", this.orderInfo);
                   // console.log('orderInfo: ', res)
                 })["catch"](function (err) {
-                  console.error('errore api orderInfo: ', err);
+                  console.error("errore api orderInfo: ", err);
                   console.log("order info ERRORE", _this.orderInfo);
                 });
 
@@ -2163,7 +2165,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     saveCart: function saveCart() {
       var parsed = JSON.stringify(this.cart);
-      sessionStorage.setItem('cart', parsed);
+      sessionStorage.setItem("cart", parsed);
     }
   },
   mounted: function mounted() {
@@ -2175,16 +2177,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              if (sessionStorage.getItem('cart')) {
+              if (sessionStorage.getItem("cart")) {
                 try {
-                  _this2.cart = JSON.parse(sessionStorage.getItem('cart'));
+                  _this2.cart = JSON.parse(sessionStorage.getItem("cart"));
                 } catch (e) {
-                  sessionStorage.removeItem('cart');
+                  sessionStorage.removeItem("cart");
                 }
               }
 
               _context2.next = 3;
-              return axios.get('/orders/generate');
+              return axios.get("/orders/generate");
 
             case 3:
               response = _context2.sent;
@@ -102118,7 +102120,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container", attrs: { id: "check-out" } },
     [
       _c("customer-form-component", {
         on: {
@@ -102133,59 +102135,58 @@ var render = function () {
         ? _c("div", [
             _vm.transition === ""
               ? _c("div", [
-                  _c("div", [
+                  _c("div", { staticClass: "contain-dishes" }, [
                     _c(
                       "ul",
+                      { staticClass: "check-out-dishes" },
                       _vm._l(_vm.cart, function (dish) {
-                        return _c("li", { key: dish.id }, [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(dish.dish_name) +
-                              "\n                        " +
-                              _vm._s(dish.price) +
-                              "\n                        " +
-                              _vm._s(dish.quantity) +
-                              "\n                        "
-                          ),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.removeFromCart(dish)
+                        return _c(
+                          "li",
+                          { key: dish.id, staticClass: "chart-object" },
+                          [
+                            _c("span", { staticClass: "chart-info" }, [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(dish.dish_name) +
+                                  "\n              X " +
+                                  _vm._s(dish.quantity) +
+                                  "\n              \n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "active chart-info" }, [
+                              _c("i", {
+                                staticClass: "fas fa-plus",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.addToCart(dish)
+                                  },
                                 },
-                              },
-                            },
-                            [_vm._v(" delete ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.addToCart(dish)
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "far fa-trash-alt",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.removeFromCart(dish)
+                                  },
                                 },
-                              },
-                            },
-                            [_vm._v(" Add ")]
-                          ),
-                        ])
+                              }),
+                            ]),
+                          ]
+                        )
                       }),
                       0
                     ),
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(_vm.totalPrice) +
-                        " €\n            "
-                    ),
+                    _vm._v(" "),
+                    _c("h4", [_vm._v("Prezzo totale:")]),
+                    _vm._v(" "),
+                    _c("h3", [_vm._v(_vm._s(_vm.totalPrice) + "€")]),
                   ]),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "container container-xl" },
+                    { staticClass: "contain-paycheck" },
                     [
                       _vm.authorization != ""
                         ? _c("v-braintree", {
@@ -102207,7 +102208,7 @@ var render = function () {
       _vm._v(" "),
       _vm.transition != ""
         ? _c("div", [
-            _vm._v("\n        " + _vm._s(_vm.transition) + "\n        "),
+            _vm._v("\n    " + _vm._s(_vm.transition) + "\n    "),
             _c(
               "button",
               { staticClass: "btn btn-success", on: { click: _vm.home } },
@@ -102542,7 +102543,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "loginRegister" }, [
     _c("p", { staticClass: "text-order" }, [
-      _vm._v("Inserisci qui i dati del tuo ordine"),
+      _vm._v("Inserisci i dati per procedere al pagamento dell'ordine"),
     ]),
     _vm._v(" "),
     _vm.showForm
@@ -117263,8 +117264,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\emanu\OneDrive\Desktop\boolean\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Sughetto\Desktop\ProgettoFinale\deliveboo-team4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Sughetto\Desktop\ProgettoFinale\deliveboo-team4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
