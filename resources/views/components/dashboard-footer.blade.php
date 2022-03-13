@@ -24,8 +24,8 @@
             </div>
             <div class="col-sm-12 col-lg-3 mt-3 p-3">
                 <div class="subscribe">
-                    <h5>Vuoi il tuo ristorante su Deliveboo?</h5>
-                    <a href="*">Registrati</a>
+                    <h5>Diventa partner di Deliveboo</h5>
+                    <a href="{{route('login')}}">Registrati</a>
                 </div>
             </div>
             
