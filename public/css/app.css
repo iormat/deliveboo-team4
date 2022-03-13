@@ -10965,7 +10965,6 @@ a.text-dark:focus {
 footer {
   text-align: left;
   color: hsl(var(--clr-neutral-100));
-  min-height: 300px;
   background-color: hsl(var(--clr-primary));
 }
 
@@ -11858,12 +11857,12 @@ footer .container .footer-bottom .copyright i {
 }
 
 #banner .container .container-rider .ristoranti .overlay .details {
-  padding: 150px 20px 20px 20px;
+  padding: 150px 40px 20px 20px;
 }
 
 @media screen and (max-width: 390px) {
   #banner .container .container-rider .ristoranti .overlay .details {
-    padding: 50px 20px 20px 20px;
+    padding: 100px 20px 20px 20px;
   }
 }
 
@@ -11907,7 +11906,7 @@ footer .container .footer-bottom .copyright i {
 
 @media screen and (max-width: 390px) {
   #banner .container .container-lavora .lavora-con-noi .overlay .details {
-    padding: 50px 20px 20px 20px;
+    padding: 100px 20px 20px 20px;
   }
 }
 

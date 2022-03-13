@@ -30,11 +30,11 @@
                         color: rgb(61,22,22);
                     }
                     .details {
-                        padding: 150px 20px 20px 20px;
+                        padding: 150px 40px 20px 20px;
                     }
                     @media screen and (max-width: 390px) {
                         .details {
-                            padding: 50px 20px 20px 20px;
+                            padding: 100px 20px 20px 20px;
                         }
                     }  
                 }
@@ -73,7 +73,7 @@
                     }
                     @media screen and (max-width: 390px) {
                         .details {
-                            padding: 50px 20px 20px 20px;
+                            padding: 100px 20px 20px 20px;
                         }
                     } 
                 }
