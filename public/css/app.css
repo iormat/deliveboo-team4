@@ -12211,7 +12211,7 @@ footer .container .footer-bottom .copyright i {
   background-color: hsl(var(--clr-primary));
 }
 
-#dishes-menu #statistics {
+#statistics {
   width: 70%;
   height: 100vh;
   overflow-y: scroll;
