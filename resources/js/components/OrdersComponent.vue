@@ -8,7 +8,7 @@
                 <div class="container-card col-sm-10">
                     <div class="card-body" :class="order.confirmed == 1 ? 'itemGray' : ''">
                         <div class="order-info">
-                            <span> Data: {{order.created_at | dateFormat('YYYY.MM.DD') }}</span>
+                            <span> Data: {{format(order.created_at)}}</span>
                             <h3> Cliente: {{order.customer.name}} {{order.customer.surname}}</h3>
                             <p> Totale Ordine: {{order.total_price}} &euro;</p>
                         </div>
@@ -49,6 +49,9 @@
 </template>
 
 <script>
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+
+// format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 export default {
     data: function(){
         return{
@@ -75,6 +78,9 @@ export default {
                         })
                 }
             }
+        },
+        format(date){
+            return format(new Date(date), "dd/MM/yyyy  HH:MM")
         }
     }
 }
