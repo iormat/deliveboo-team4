@@ -1,6 +1,7 @@
 <template>
     <section id="banner">
-        <div class="container">                      
+        <div class="container">  
+            <h2>Lavora con Deliveboo</h2>                    
             <div class="row">
                 <div class="container-rider col-sm-12 col-md-6 ">
                     <div class="ristoranti">
