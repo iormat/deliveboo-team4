@@ -22,7 +22,7 @@ class CreateDishesTable extends Migration
             $table->decimal("price", 5,2) -> unsigned();
             $table->string("dishes_img") -> nullable();
             $table->boolean("available");
-            $table->text("ingredients");
+            $table->text("ingredients") -> nullable();
             $table->timestamps();
         });
     }

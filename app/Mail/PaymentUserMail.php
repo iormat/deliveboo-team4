@@ -20,13 +20,15 @@ class PaymentUserMail extends Mailable
     public $order;
     public $customer;
     public $user;
-    public $orderDishesInfo;
+    public $dishes;
+    // public $orderDishesInfo;
 
-    public function __construct($order, $customer, $user, $orderDishesInfo) {
+    public function __construct($order, $customer, $user, $dishes) {
         $this -> order = $order;
         $this -> customer = $customer;
         $this -> user = $user;
-        $this -> orderDishesInfo = $orderDishesInfo;
+        $this -> dishes = $dishes;
+        // $this -> orderDishesInfo = $orderDishesInfo;
     }
 
     /**

@@ -97,6 +97,8 @@ class OrderController extends Controller {
                 array_push($nDishes, $requestKeys[$i]);
             }
         }
+
+        $dishes = [];
         // create DB association through pivot
         for($i = 0; $i < count($nDishes) ; $i++) {
             $parolaDish = "dish";
@@ -107,9 +109,10 @@ class OrderController extends Controller {
             $dishQuantity =  $parolaQuantity .= $i;
 
             $dish = Dish::findOrFail($request -> $dishId);
-            
+            array_push($dishes, $dish);
             $dishQuantity = $request -> $dishQuantity;
-        
+            $dishes[$i]['quantity'] = $dishQuantity;
+
             DB::table('dish_order') -> insert([
                 ['dish_id' => $dish -> id, 'order_id' => $order -> id, 'amount' => $dishQuantity]
             ]);
@@ -124,20 +127,11 @@ class OrderController extends Controller {
                 -> get();
         // get only user info
         $user = $user[0];  
-        // get all order info
-        // $orderDishesInfo = DB::table('orders') 
-        //     -> select('dishes.dish_name', 'dish_order.amount')
-        //     -> join('dish_order', 'orders.id', '=', 'dish_order.order_id') 
-        //     -> join('dishes', 'dish_order.dish_id', '=', 'dishes.id') 
-        //     -> where('dishes.user_id', $user -> id)
-        //     -> orderBy('dish_order.dish_id', 'desc') -> first()
-        //     -> sum('dish_order.amount')
-        //     -> groupBy('dish_order.dish_id')
-        //     -> get();
         
+
         // send order confirmation to user and customer
-        Mail::to($lastCustomer -> email) -> send(new PaymentCustomerMail($order, $lastCustomer));
-        // Mail::to($user -> email) -> send(new PaymentUserMail($order, $lastCustomer, $user));
+        Mail::to($lastCustomer -> email) -> send(new PaymentCustomerMail($order, $lastCustomer, $dishes));
+        Mail::to($user -> email) -> send(new PaymentUserMail($order, $lastCustomer, $user, $dishes));
 
         return json_encode($order);
     }

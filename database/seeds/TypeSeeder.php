@@ -15,23 +15,20 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        factory(Type::class, 5) -> create();
+        // factory(Type::class, 5) -> create();
         
-        for($i = 0; $i < 10; $i++) {
-            DB::table('type_user') -> insert([
-                ['type_id' => rand(1,5), 'user_id' => rand(1,5)]
+        $types = ['Cinese', 'Giapponese', 'Italiano', 'Gelato','Pizza',];
+        
+        for($i = 0; $i < count($types); $i++) {
+            DB::table('types') -> insert([
+                ['type_name' => $types[$i]]
             ]);
         }
 
-        //  -> each(function($type) {
-
-        //     $users = User::inRandomOrder() -> limit(rand(1,10)) -> get();
-        //     $type -> users() -> attach($users);
-
-        //     $type -> save();
-        // });
-            
+        for($i = 1; $i < 6; $i++) {
+            DB::table('type_user') -> insert([
+                ['type_id' => $i, 'user_id' => $i]
+            ]);
+        }
     }
 }
-
-

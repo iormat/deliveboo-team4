@@ -15,7 +15,7 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 300) -> make() -> each(function($order) {
+        factory(Order::class, 2000) -> make() -> each(function($order) {
 
             $customer = Customer::inRandomOrder() -> limit(1) -> first();
             $order -> customer() -> associate($customer);
@@ -23,9 +23,9 @@ class OrderSeeder extends Seeder
             $order -> save();
         });
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 1; $i < 2001; $i++) {
             DB::table('dish_order')->insert([
-                ['dish_id' => rand(1, 10), 'order_id' => rand(1, 300), 'amount' => rand(1,5)]
+                ['dish_id' => rand(1, 10), 'order_id' => $i, 'amount' => rand(1,5)]
             ]);
         }
 

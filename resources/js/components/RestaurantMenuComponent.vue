@@ -14,10 +14,13 @@
                         <li class="col-sm-12" v-for="dish in menu" :key="dish.id">
                             <h3>{{dish.dish_name}}</h3>
                             <div class="card_body row">
-                                <p class="col-sm-12 col-md-8 col-lg-8 description-dish">Descrizione piatto&colon; {{dish.description}}</p>
-                                    
+                                <p class="col-sm-12 col-md-8 col-lg-8 description-dish">
+                                    <span v-if="dish.description">Descrizione piatto&colon; {{dish.description}}</span>
+                                </p>
                                 <div class="imgdish col-md-4 col-lg-4">
-                                    <img src="https://picsum.photos/300/300" alt="">
+                                    <!-- <img src="https://picsum.photos/300/300" alt=""> -->
+                                    <img v-if="dish.dishes_img" :src="'/storage/dishes/' + dish.dishes_img" width="100px">
+                                    <p v-else>image</p>
                                 </div>
                             </div>
                             <div class="card_footer">
