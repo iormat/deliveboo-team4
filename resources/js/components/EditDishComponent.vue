@@ -1,5 +1,5 @@
 <template>
-    <section id="edit" class="container">
+    <section id="edit" class="login-register" >
         <form id="edit_form" method="POST" enctype="multipart/form-data" @submit.prevent="updateDish">
             <!-- dish name - edit -->
             <label for="name">

@@ -3,7 +3,7 @@
 @section('content')
 
 <my-header-component-due></my-header-component-due>
-<div class="loginRegister">
+<div class="login-register">
     @guest
 
     <h2 class="text-order">Login</h2>

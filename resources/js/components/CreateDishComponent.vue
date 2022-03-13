@@ -1,6 +1,6 @@
 <template>
     <!-- <section> -->
-    <section class="loginRegister">
+    <section class="login-register">
         <form id="create_form" method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
             <!-- dish name - create -->
             <label for="name">

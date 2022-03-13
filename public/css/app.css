@@ -11583,21 +11583,21 @@ footer .container .footer-bottom .copyright i {
   }
 }
 
-.loginRegister {
+.login-register {
   margin: 100px auto;
   width: 60%;
   text-align: center;
 }
 
-.loginRegister .blocktonone {
+.login-register .blocktonone {
   display: block;
 }
 
-.loginRegister .nonetoblock {
+.login-register .nonetoblock {
   display: none;
 }
 
-.loginRegister form {
+.login-register form {
   padding: 20px 0;
   border: solid 2px hsl(var(--clr-neutral-900));
   border-radius: 5px;
@@ -11608,12 +11608,12 @@ footer .container .footer-bottom .copyright i {
   align-items: center;
 }
 
-.loginRegister form input {
+.login-register form input {
   border: solid 1px hsl(var(--clr-neutral-900));
   width: 70%;
 }
 
-.loginRegister form label {
+.login-register form label {
   width: 70%;
   text-align: left;
   font-weight: bold;
@@ -11621,7 +11621,7 @@ footer .container .footer-bottom .copyright i {
   margin-top: 5px;
 }
 
-.loginRegister form .login-button {
+.login-register form .login-button {
   cursor: pointer;
   margin-top: 20px;
   background-color: hsl(var(--clr-primary));
@@ -11633,7 +11633,7 @@ footer .container .footer-bottom .copyright i {
   padding: 5px;
 }
 
-.loginRegister form .register-button {
+.login-register form .register-button {
   cursor: pointer;
   margin-top: 20px;
   background-color: hsl(var(--clr-primary));
@@ -11648,21 +11648,21 @@ footer .container .footer-bottom .copyright i {
   padding: 5px;
 }
 
-.loginRegister .form-login {
+.login-register .form-login {
   margin-bottom: 50px;
   width: 60%;
 }
 
-.loginRegister .customer-form {
+.login-register .customer-form {
   width: 80%;
 }
 
-.loginRegister .customer-form .text-area {
+.login-register .customer-form .text-area {
   width: 70%;
   margin-bottom: 20px;
 }
 
-.loginRegister .text-order {
+.login-register .text-order {
   text-transform: uppercase;
   font-size: 30px;
   letter-spacing: 1px;

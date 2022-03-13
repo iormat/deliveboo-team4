@@ -1,6 +1,6 @@
 
 <template>
-     <div class="loginRegister" >
+     <div class="login-register" >
          <p class="text-order">Inserisci i dati per procedere al pagamento dell'ordine</p>
         
          <form
