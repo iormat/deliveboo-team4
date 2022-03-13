@@ -47,6 +47,7 @@
             </div>
         </form>
     </section>
+  
 </template>
 
 <script>
@@ -88,19 +89,19 @@ export default {
             }
             form.append("available", this.editAvailable);
 
-            // post form 
-            axios.post(`/api/updateDish/${this.editDishArr.id}`, form)
-            .then( response => {
-                this.$emit('updateDish', response.data)
-                this.$emit('toggleEditDish',)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-        },
-        toggleForm() {
-            this.$emit('toggleEditDish',)
-        }
+      // post form
+      axios
+        .post(`/api/updateDish/${this.editDishArr.id}`, form)
+        .then((response) => {
+          this.$emit("updateDish", response.data);
+          this.$emit("toggleEditDish");
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
+    toggleForm() {
+      this.$emit("toggleEditDish");
     },
     mounted() {
         this.editAvailable = this.editDishArr.available;
@@ -110,5 +111,5 @@ export default {
         this.editCategory = this.editDishArr.category_id; 
         this.editDishes_img = this.editDishArr.dishes_img; 
     }
-}
+}}
 </script>

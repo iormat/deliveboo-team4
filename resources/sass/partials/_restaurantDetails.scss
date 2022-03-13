@@ -129,6 +129,7 @@
 
        //chart/CartComponent
        .buy-button{
+           cursor: pointer;
            background-color: hsl(var(--clr-primary));
            width: 100%;
            height: 40px;
@@ -147,6 +148,7 @@
             }
        }
        .trash{
+           cursor: pointer;
            display: flex;
            justify-content: space-between;
         .fa-trash-alt{

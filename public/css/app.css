@@ -11490,6 +11490,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 #ristoranti .restourant-container .buy-button {
+  cursor: pointer;
   background-color: hsl(var(--clr-primary));
   width: 100%;
   height: 40px;
@@ -11510,6 +11511,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 #ristoranti .restourant-container .trash {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
 }
@@ -11620,6 +11622,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 .loginRegister form .login-button {
+  cursor: pointer;
   margin-top: 20px;
   background-color: hsl(var(--clr-primary));
   font-weight: bold;
@@ -11631,6 +11634,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 .loginRegister form .register-button {
+  cursor: pointer;
   margin-top: 20px;
   background-color: hsl(var(--clr-primary));
   font-weight: bold;
@@ -11685,6 +11689,13 @@ footer .container .footer-bottom .copyright i {
 
   .loginRegister .nonetoblock {
     display: block;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #edit_form {
+    width: 90%;
+    border: none;
   }
 }
 
@@ -11785,6 +11796,7 @@ footer .container .footer-bottom .copyright i {
 
 #check-out .fa-trash-alt,
 #check-out .fa-plus {
+  cursor: pointer;
   margin-left: 20px;
 }
 
@@ -12142,15 +12154,6 @@ footer .container .footer-bottom .copyright i {
   #menu .card-body {
     padding: 0;
   }
-}
-
-#edit {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
 }
 
 #create_dish {
