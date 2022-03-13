@@ -1,27 +1,96 @@
 #order-page{
+    // general rules
     width: 100%;
-    overflow: scroll;
-    .orders-list{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    // header
+    h2 {
+        font-size: 2rem;
+        padding: 1em;
+        color: hsl(var(--clr-primary));
+    }
+    // list rules
+    ol {
+        list-style-type: none;
+    }
+    
+    .container-card {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin: 10px 0;
-        border: solid 2px black;
-        &.itemGray{
-            color: gray;
+        
+    }
+    // card rules
+    .mycard {
+        color: var(--clr-primary); 
+        // card body
+        .card-body {
+            &.itemGray {
+                color: gray;
+            }
+            background-color: hsl(var(--clr-neutral-100));
+            color: hsl(var(--clr-neutral-900));
+            border-radius: 1.125em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            // order details
+            details {
+                width: 100%;
+                overflow: hidden;
+                li {
+                    list-style-type: none;
+                    padding-left: 1rem;
+                    p {
+                        margin: .1rem 0;
+                    }
+                    details {
+                        p {
+                            padding-left: 1rem;
+                        }
+                    }
+                }
+                summary {
+                    border-radius: 1rem;
+                    background-color: hsl(var(--clr-primary));
+                    font-size: 1rem;
+                    color: hsl(var(--clr-neutral-100));
+                    padding: .2em 1em;
+                    li {
+                        list-style-type: none;
+                    }
+                }
+            }
+        }
+        // card footer
+        .mod-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .modifiers {
+                cursor: pointer;
+                display: inline-block;
+                height: 2rem;
+                width: 2rem;
+                line-height: 2rem;
+                border-radius: 1.125em;
+                color: hsl(var(--clr-primary));
+                background-color: hsl(var(--clr-secondary));
+                text-align: center;
+            }
         }
     }
 
-
-    .lst{
-        display: flex;
-        justify-content: space-between;
-
-        .button{
-           height: 40px;
+    @media screen and (max-width: 768px) {
+        
+        img{
+            display: none;
+        }
+        .card-body {
+            padding: 0;
         }
     }
+
     
 
 }

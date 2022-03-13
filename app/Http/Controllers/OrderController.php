@@ -8,6 +8,7 @@ use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 use App\Customer;
 use App\Order;
@@ -146,6 +147,7 @@ class OrderController extends Controller {
     }
     // get all authenticated user orders
     public function list() {  
+
         $orders = Order::with('dishes', 'customer')
             -> whereHas('dishes', function($query) {
                 $user = Auth::user();

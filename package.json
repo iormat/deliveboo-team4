@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@vuejs-community/vue-filter-date-format": "^1.6.3",
         "chart.js": "2.9",
         "vue-braintree": "^2.1.0",
         "vue-chartjs": "^3.5.1"

@@ -12099,29 +12099,98 @@ footer .container .footer-bottom .copyright i {
 
 #order-page {
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
 }
 
-#order-page .orders-list {
+#order-page h2 {
+  font-size: 2rem;
+  padding: 1em;
+  color: hsl(var(--clr-primary));
+}
+
+#order-page ol {
+  list-style-type: none;
+}
+
+#order-page .container-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
-  border: solid 2px black;
 }
 
-#order-page .orders-list.itemGray {
+#order-page .mycard {
+  color: var(--clr-primary);
+}
+
+#order-page .mycard .card-body {
+  background-color: hsl(var(--clr-neutral-100));
+  color: hsl(var(--clr-neutral-900));
+  border-radius: 1.125em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#order-page .mycard .card-body.itemGray {
   color: gray;
 }
 
-#order-page .lst {
-  display: flex;
-  justify-content: space-between;
+#order-page .mycard .card-body details {
+  width: 100%;
+  overflow: hidden;
 }
 
-#order-page .lst .button {
-  height: 40px;
+#order-page .mycard .card-body details li {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+#order-page .mycard .card-body details li p {
+  margin: 0.1rem 0;
+}
+
+#order-page .mycard .card-body details li details p {
+  padding-left: 1rem;
+}
+
+#order-page .mycard .card-body details summary {
+  border-radius: 1rem;
+  background-color: hsl(var(--clr-primary));
+  font-size: 1rem;
+  color: hsl(var(--clr-neutral-100));
+  padding: 0.2em 1em;
+}
+
+#order-page .mycard .card-body details summary li {
+  list-style-type: none;
+}
+
+#order-page .mycard .mod-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#order-page .mycard .mod-container .modifiers {
+  cursor: pointer;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
+  border-radius: 1.125em;
+  color: hsl(var(--clr-primary));
+  background-color: hsl(var(--clr-secondary));
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  #order-page img {
+    display: none;
+  }
+
+  #order-page .card-body {
+    padding: 0;
+  }
 }
 
 .charts {

@@ -8,8 +8,7 @@
         
         <!-- dish menu -->
         <section v-if="!createForm && !changeForm" id="menu">
-            <h2>I tuoi piatti</h2>
-        
+            <h2>I tuoi piatti</h2>      
             <ul v-for="dish in dishes" :key="dish.id">
                 <li class="mycard row m-0">
                     <div class="container-card col-sm-10">
@@ -19,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-content">
-                                
+             
                                 <div class="details"> 
                                     <h3>{{dish.dish_name}}</h3>
                                     

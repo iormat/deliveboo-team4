@@ -2,28 +2,49 @@
 <template>
   <section id="order-page">
       <h2>I tuoi ordini</h2>
-        <ol reversed class="m-3 px-2">
-            <li v-for="order in orders" :key="order.id" class="lst">
-                <div class="orders-list" :class="order.confirmed == 1 ? 'itemGray' : ''">
-                    data: {{order.created_at}} <br>
-                    cliente: {{order.customer.name}} {{order.customer.surname}} <br>
-                    indirizzo: {{order.customer.address}}<br>
-                    {{order.customer.address}} <br>
-                    totale: {{order.total_price}}
-                    {{order.id}}
-                    <details>
-                        <summary>Dettagli ordine:</summary>
-                        <ul>
-                            <li v-for="dish in order.dishes" :key="dish.id">
-                                {{dish.dish_name}} - {{dish.pivot.amount}}
-                            </li>
-                        </ul>
-                    </details>
+      <div class="container">
+        <ol>
+            <li v-for="order in orders" :key="order.id" class="mycard mb-3 m-0">
+                <div class="container-card col-sm-10">
+                    <div class="card-body" :class="order.confirmed == 1 ? 'itemGray' : ''">
+                        <div class="order-info">
+                            <span> Data: {{order.created_at | dateFormat('YYYY.MM.DD') }}</span>
+                            <h3> Cliente: {{order.customer.name}} {{order.customer.surname}}</h3>
+                            <p> Totale Ordine: {{order.total_price}} &euro;</p>
+                        </div>
+                        <!-- order details -->
+                        <details>
+                            <summary>Dettagli ordine:</summary>
+                            <ul>
+                                <li v-for="dish in order.dishes" :key="dish.id">
+                                    <p>
+                                        <strong>{{dish.dish_name}}</strong> - Quantit&agrave;&colon; {{dish.pivot.amount}}
+                                    </p>
+                                </li>
+                                <!-- client details -->
+                                <li>
+                                    <details>
+                                        <summary>
+                                            Dettagli cliente:
+                                        </summary>
+                                        <p><strong>Email&colon;</strong> {{order.customer.email}}</p>
+                                        <p><strong>Indirizzo&colon;</strong> {{order.customer.address}}</p>
+                                        <p><strong>Cap&colon;</strong> {{order.customer.cap}}</p>
+                                        <p><strong>Telefono&colon;</strong> {{order.customer.telephone}}</p>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="mod-container col-sm-2">
+                        <div class="modifiers" v-if="order.confirmed === 0" @click="confirmed(order.id)">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
                 </div>
-                <button v-if="order.confirmed === 0" @click="confirmed(order.id)" class="btn btn-outline-success button">conferma</button>
             </li>
         </ol>
-
+      </div>
   </section>
 </template>
 

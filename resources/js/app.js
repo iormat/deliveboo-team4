@@ -34,3 +34,6 @@ import Vue from 'vue';
 import vuebraintree from 'vue-braintree';
 
 Vue.use(vuebraintree)
+
+import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
+Vue.use(VueFilterDateFormat);
