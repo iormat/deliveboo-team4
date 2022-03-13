@@ -5,7 +5,7 @@
             <!-- dish name - create -->
             <label for="name">
                 Inserisci il nome del piatto&colon;
-                <input class="form-control" type="text" id="name" v-model="dish_name" min="4" max="50" required>
+                <input class="form-control" type="text" id="name" v-model="dish_name" min="4" maxlength="50" required>
             </label>
             <!-- dish description - create -->
             <label for="desription">
@@ -15,12 +15,7 @@
             <!-- dish price - create -->
             <label for="price">
                 Inserisci il prezzo&colon;
-                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required>
-            </label>
-            <!-- dish ingredients - create -->
-            <label for="ingredients">
-                Aggiungi gli ingredienti&colon;
-                <textarea class="form-control" v-model="ingredients" id="ingredients" cols="50" rows="3" required></textarea>
+                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required onkeypress="return event.charCode>=48 && event.charCode<=57">
             </label>
             <!-- dish img - create -->
             <label for="dish_img">

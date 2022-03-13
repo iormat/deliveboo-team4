@@ -10,28 +10,33 @@
          @submit.prevent="infoCustomer" class="customer-form">
 
             <label for="name">Name</label>
-                <input type="text" name="name" min="2" max="60" v-model="name"  required>
+                <input type="text" name="name" min="2" maxlength="60" v-model="name"  required 
+                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)">
             
 
             <label for="surname">Cognome</label>
-                <input type="text" name="surname" min="2" max="60" v-model="surname"  required>
+                <input type="text" name="surname" min="2" maxlength="60" v-model="surname"  required
+                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)">
             
 
             <label for="email">Email</label>
-                <input type="email" name="email" min="2" max="60" v-model="email"  required>
+                <input type="email" name="email" min="2" maxlength="60" v-model="email"  required>
             
 
             <label for="address">Address</label>
-                <input type="text" name="address" min="5" max="60" v-model="address"  required>
+                <input type="text" name="address" min="5" maxlength="60" v-model="address"  required>
             
 
             <label for="cap">CAP</label>             
-                <input type="text" name="cap" min="5" max="5" v-model="cap"  required>
+                <input type="number" name="cap" min="5" maxlength="5" v-model="cap"  required 
+                    ondrop="return false;" onpaste="return false;" 
+                    onkeypress="return event.charCode>=48 && event.charCode<=57">
             
 
             <label for="telephone">Telefono</label>
-                <input type="text" name="telephone" max="20" v-model="telephone"  required>
-            
+                <input type="number" name="telephone" maxlength="20" v-model="telephone"  required 
+                    ondrop="return false;" onpaste="return false;" 
+                    onkeypress="return event.charCode>=48 && event.charCode<=57">  
 
             <label for="note"></label>
                 <textarea name="note" id="" rows="5" max="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>

@@ -4,17 +4,17 @@
             <!-- dish name - edit -->
             <label for="name">
                 Inserisci il nome&colon;
-                <input class="form-control" type="text" id="name" min="4" max="50" required v-model="editDish_name" name="dish_name">
+                <input class="form-control" type="text" id="name" min="4" maxlength="120" required v-model="editDish_name" name="dish_name">
             </label>
             <!-- dish description - edit -->
             <label for="desription">
                 Inserisci il una descrizione&colon;
-                <textarea class="form-control" v-model="editDescription" id="desription" cols="50" rows="3" required></textarea>
+                <textarea class="form-control" v-model="editDescription" id="desription" maxlenght="300" cols="50" rows="3" required></textarea>
             </label>
             <!-- dish price - edit -->
             <label for="price">
                 Inserisci il prezzo&colon;
-                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice">
+                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice" onkeypress="return event.charCode>=48 && event.charCode<=57">
             </label>
             <!-- dish category - edit -->
             <label for="category">
@@ -25,11 +25,6 @@
                         {{category.id}}
                     </option>
                 </select>
-            </label>
-            <!-- dish ingredients - edit -->
-            <label for="ingredients">
-                Aggiungi gli ingredienti&colon;
-                <textarea class="form-control" v-model="editIngredients" id="ingredients" cols="50" rows="3" required></textarea>
             </label>
             <!-- dish image - edit -->
             <label for="img">
@@ -62,7 +57,6 @@ export default {
             editDish_name: '',
             editDescription: '',
             editPrice: 0,
-            editIngredients: '',
             editCategory: 0,
             editDishes_img: "",
 
@@ -83,7 +77,6 @@ export default {
             form.append("dish_name", this.editDish_name);
             form.append("description", this.editDescription);
             form.append("price", this.editPrice);
-            form.append("ingredients", this.editIngredients);
             if(this.editDishes_img != ''){
                 form.append("dishes_img",this.editDishes_img);  
             };
@@ -114,7 +107,6 @@ export default {
         this.editDish_name = this.editDishArr.dish_name;
         this.editDescription = this.editDishArr.description; 
         this.editPrice = this.editDishArr.price;
-        this.editIngredients = this.editDishArr.ingredients; 
         this.editCategory = this.editDishArr.category_id; 
         this.editDishes_img = this.editDishArr.dishes_img; 
     }

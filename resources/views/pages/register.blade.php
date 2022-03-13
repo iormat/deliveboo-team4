@@ -14,28 +14,28 @@
         @csrf
     
         <label for="name">Nome</label>
-        <input type="text" name="name" >
+        <input type="text" name="name" maxlength="255" onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)" required>
     
         <label for="surname">Cognome</label>
-        <input type="text" name="surname" >
+        <input type="text" name="surname" maxlength="255" onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)" required>
     
         <label for="business_name">Nome Attività</label>
-        <input type="text" name="business_name" >
+        <input type="text" name="business_name" maxlength="255" required >
     
         <label for="email">Email</label>
-        <input type="email" name="email">
+        <input type="email" name="email" maxlength="255" required>
     
         <label for="password">Password</label>
-        <input type="password" name="password">
+        <input type="password" name="password" maxlength="20" required>
     
         <label for="password_confirmation">Conferma password</label>
-        <input type="password"  name="password_confirmation">
+        <input type="password"  name="password_confirmation" maxlength="20" required>
     
         <label for="address">Indirizzo</label>
-        <input type="text" name="address" >
+        <input type="text" name="address" maxlength="255" required >
     
         <label for="p_iva">Partita IVA</label>
-        <input type="text" name="p_iva" >
+        <input type="text" name="p_iva"  maxlength="11" required onkeypress="return event.charCode>=48 && event.charCode<=57">
     
         
         <input type="submit" value="REGISTRATI" class="register-button">

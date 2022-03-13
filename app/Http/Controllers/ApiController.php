@@ -34,7 +34,6 @@ class ApiController extends Controller
             'dish_name' => 'required | string | min:4 | max:50',
             'description' => 'required | string',
             'price' => 'required',
-            'ingredients' => 'required | string',      
         ]);
         // validate dish img if present
         if ($request -> file('dishes_img') != '') {
@@ -71,7 +70,6 @@ class ApiController extends Controller
             'dish_name' => 'required | string | min:4 | max:50',
             'description' => 'required | string',
             'price' => 'required',
-            'ingredients' => 'required | string',
             // 'available' => 'boolean'
         ]);
         // validate dish img if present
