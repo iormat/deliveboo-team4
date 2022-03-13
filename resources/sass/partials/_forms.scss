@@ -55,4 +55,15 @@
     .form-login{
         margin-bottom: 50px;
     }
+    
+}
+
+@media screen and (max-width:992px) {
+    .loginRegister{
+        width: 100%;
+    }
+    input{
+        max-width: 70%;
+    }
+
 }

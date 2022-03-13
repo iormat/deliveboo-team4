@@ -54,7 +54,7 @@
         <input type="text" name="p_iva" >
     
         
-        <input type="submit" value="LOGIN" class="register-button">
+        <input type="submit" value="REGISTER" class="register-button">
     
     </form>
 
@@ -90,7 +90,7 @@
         <input type="text" name="p_iva" ><br>
     
         <br>
-        <input type="submit" value="REGISTER">
+        <input type="submit" value="REGISTER" class="register-button">
     
     </form> --}}
     @endguest
