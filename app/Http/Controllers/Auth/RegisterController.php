@@ -73,7 +73,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         $user = [
+        $data = [
             'name' => $data['name'],
             'surname' => $data['surname'],
             'business_name' => $data['business_name'],
@@ -84,7 +84,8 @@ class RegisterController extends Controller
             'img_rest' => $data['img_rest']
         ];
 
-        $imageFile = $user['img_rest'];
+
+        $imageFile = $data['img_rest'];
         $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
         $imageFile -> storeAs('/restaurants/', $imageName, 'public');
         $data['img_rest'] = $imageName;
