@@ -11966,6 +11966,11 @@ footer .container .footer-bottom .copyright i {
   color: #3d1616;
 }
 
+#banner .container .container-rider .ristoranti .overlay .my-button:hover {
+  background-color: hsl(var(--clr-accent));
+  color: hsl(var(--clr-primary));
+}
+
 #banner .container .container-rider .ristoranti .overlay .details {
   padding: 150px 40px 20px 20px;
 }
@@ -12010,6 +12015,11 @@ footer .container .footer-bottom .copyright i {
   border-radius: 2px;
   background-color: white;
   color: #3d1616;
+}
+
+#banner .container .container-lavora .lavora-con-noi .overlay .my-button:hover {
+  background-color: hsl(var(--clr-accent));
+  color: hsl(var(--clr-primary));
 }
 
 #banner .container .container-lavora .lavora-con-noi .overlay .details {
