@@ -11429,12 +11429,16 @@ footer .container .footer-bottom .copyright i {
 }
 
 #ristoranti .restourant-container .chart-container-1 {
-  background-color: hsl(var(--clr-accent)/0.5);
+  background-color: rgba(235, 235, 235, 0.849);
   display: flex;
 }
 
 #ristoranti .restourant-container .chart-container-1 #cart {
   width: 100%;
+}
+
+#ristoranti .restourant-container .chart-container-1 #cart .cart-icon {
+  margin-top: 10px;
 }
 
 #ristoranti .restourant-container .chart-container-1 ul {
@@ -11565,31 +11569,31 @@ footer .container .footer-bottom .copyright i {
     height: 200px;
   }
 
-  #ristoranti .chart-container-1 {
+  #ristoranti .restourant-container .chart-container-1 {
+    background-color: hsl(var(--clr-accent));
     z-index: 9999;
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: hsl(var(--clr-accent));
     display: flex;
     justify-content: space-around;
   }
 
-  #ristoranti .chart-container-1 .chart-container {
+  #ristoranti .restourant-container .chart-container-1 .chart-container {
     display: flex;
     justify-content: space-around;
     width: 100%;
   }
 
-  #ristoranti #cart {
+  #ristoranti .restourant-container .chart-container-1 #cart {
     width: 100%;
   }
 
-  #ristoranti #cart .mobile-cart {
+  #ristoranti .restourant-container .chart-container-1 #cart .mobile-cart {
     padding: 0 20px;
     height: 100px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
   #ristoranti .buy-button {
@@ -12031,6 +12035,7 @@ footer .container .footer-bottom .copyright i {
 
 #restaurants li .card,
 #restaurantMenu li .card {
+  cursor: pointer;
   height: 25ch;
 }
 
@@ -12280,8 +12285,13 @@ footer .container .footer-bottom .copyright i {
   background-color: hsl(var(--clr-primary));
 }
 
+<<<<<<< Updated upstream
 .login-register #statistics {
   width: 70%;
+=======
+#statistics {
+  width: 100%;
+>>>>>>> Stashed changes
   height: 100vh;
   overflow-y: scroll;
   padding: 2em;

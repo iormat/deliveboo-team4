@@ -1,6 +1,9 @@
 <template>
   <section id="cart">
     <div class="mobile-cart">
+      <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
       <ul>
         <li v-for="dish in cart" :key="dish.id" class="chart-object trash">
           <span class="chart-info">
