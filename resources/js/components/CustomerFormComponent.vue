@@ -1,7 +1,7 @@
 
 <template>
      <div class="login-register" >
-        
+
          <p v-if="showForm" class="text-order">Inserisci i tuoi dati per procedere al pagamento dell'ordine</p>
          <form
          v-if="showForm"
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import FormErrorComponent from "./FormErrorComponent.vue";
 export default {
     props:{
         paymetnConfirmation: Number
@@ -83,6 +84,10 @@ export default {
             dishesId: [],
             cart: [],
         }
+    },
+
+    components: {
+        FormErrorComponent,
     },
 
  mounted() {
@@ -134,7 +139,6 @@ export default {
             this.$emit("showPayment");
             this.$emit("getCustomerData", this.customerForm);
         },
-    }
-        
+    }       
 }
 </script>

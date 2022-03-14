@@ -12222,8 +12222,8 @@ footer .container .footer-bottom .copyright i {
   background-color: hsl(var(--clr-primary));
 }
 
-#dishes-menu #statistics {
-  width: 70%;
+#statistics {
+  width: 100%;
   height: 100vh;
   overflow-y: scroll;
   padding: 2em;

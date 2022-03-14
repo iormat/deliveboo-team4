@@ -1,5 +1,11 @@
 <template>
     <section id="edit" class="login-register" >
+
+        <FormErrorComponent
+        v-if="validationErrors"
+        :errors="validationErrors"
+        />
+
         <form id="edit_form" method="POST" enctype="multipart/form-data" @submit.prevent="updateDish">
             <!-- dish name - edit -->
             <label for="name">
@@ -51,6 +57,7 @@
 </template>
 
 <script>
+import FormErrorComponent from "./FormErrorComponent.vue";
 export default {
     data: function() {
         return {
@@ -61,18 +68,25 @@ export default {
             editCategory: 0,
             editDishes_img: "",
 
+            validationErrors: '',
         }
     },
+
+    components: {
+        FormErrorComponent,
+    },
+
     props: {
         categories: Array,
         editDishArr: Object,
     },
+
     methods: {
         // save updated user img - useful format
         saveUpdatedImg(img) {
             this.editDishes_img = img.target.files[0];
         },
-                // update existing dish
+        // update existing dish
         updateDish(event) {
             let form = new FormData(event.target);
             form.append("dish_name", this.editDish_name);
@@ -89,19 +103,21 @@ export default {
             }
             form.append("available", this.editAvailable);
 
-      // post form
-      axios
-        .post(`/api/updateDish/${this.editDishArr.id}`, form)
-        .then((response) => {
-          this.$emit("updateDish", response.data);
-          this.$emit("toggleEditDish");
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    },
-    toggleForm() {
-      this.$emit("toggleEditDish");
+            // post form
+            axios.post(`/api/updateDish/${this.editDishArr.id}`, form)
+                .then((response) => {
+                    this.$emit("updateDish", response.data);
+                    this.$emit("toggleEditDish");
+                })
+                .catch(error => {
+                    if(error.response.status == 422) {
+                        this.validationErrors = error.response.data.errors
+                    }
+                });
+        },
+        toggleForm() {
+        this.$emit("toggleEditDish");
+        },
     },
     mounted() {
         this.editAvailable = this.editDishArr.available;
@@ -111,5 +127,5 @@ export default {
         this.editCategory = this.editDishArr.category_id; 
         this.editDishes_img = this.editDishArr.dishes_img; 
     }
-}}
+}
 </script>

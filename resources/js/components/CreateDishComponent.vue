@@ -1,6 +1,12 @@
 <template>
     <!-- <section> -->
     <section class="login-register">
+        
+        <FormErrorComponent
+        v-if="validationErrors"
+        :errors="validationErrors"
+        />
+
         <form id="create_form" method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
             <!-- dish name - create -->
             <label for="name">
@@ -41,6 +47,7 @@
     </section>
 </template>
 <script>
+import FormErrorComponent from "./FormErrorComponent.vue";
 export default {
     data: function(){
         return{     
@@ -53,8 +60,13 @@ export default {
             dishes_img: "",
 
             newDishes: [],
+            validationErrors: '',
         };
     },
+    components: {
+        FormErrorComponent,
+    },
+
 
     props: {
         dishes: Array,
@@ -87,8 +99,10 @@ export default {
                 self.newDishes.push(response.data);
                 self.$emit("getNewDishes", self.newDishes);
             })
-            .catch(function (error) {
-                console.error(error);
+            .catch(error => {
+                if(error.response.status == 422) {
+                    this.validationErrors = error.response.data.errors
+                }
             });
 
             // reset all dish properties

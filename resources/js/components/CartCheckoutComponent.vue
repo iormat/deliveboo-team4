@@ -9,6 +9,11 @@
     >
     </customer-form-component>
 
+    <FormErrorComponent
+    v-if="validationErrors"
+    :errors="validationErrors"
+    />
+
     <!-- PAGAMENTO -->
     <div v-if="showP">
       <div v-if="transition === ''">
@@ -55,10 +60,12 @@
 
 <script>
 import CustomerFormComponent from "./CustomerFormComponent.vue";
+import FormErrorComponent from "./FormErrorComponent.vue";
 
 export default {
   components: {
-    "customer-form-component": CustomerFormComponent,
+      "customer-form-component": CustomerFormComponent,
+      FormErrorComponent,
   },
   data: function () {
     return {
