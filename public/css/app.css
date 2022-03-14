@@ -12247,7 +12247,7 @@ footer .container .footer-bottom .copyright i {
 @media screen and (max-width: 576px) {
   #menu .mycard .mod-container {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: start;
   }
 }
 
@@ -12262,6 +12262,8 @@ footer .container .footer-bottom .copyright i {
   background-color: hsl(var(--clr-secondary));
   cursor: pointer;
   text-align: center;
+  margin-right: 10px;
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 768px) {
