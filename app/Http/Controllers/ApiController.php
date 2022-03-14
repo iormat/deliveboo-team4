@@ -15,7 +15,9 @@ class ApiController extends Controller
     // get all menu
     public function getMenu() {
         $user = Auth::user();
-        $menu = Dish::where('user_id', $user -> id) -> get();
+        $menu = Dish::where('user_id', $user -> id) 
+            -> orderBy('dish_name', 'asc')
+            -> get();
 
         return json_encode($menu);
     }
@@ -157,8 +159,7 @@ class ApiController extends Controller
         return response() -> json($restaurants);
     }
 
-    public function allRestaurants() {
-        
+    public function allRestaurants() {       
         $restaurants = User::with('types')
                            ->orderBy('business_name', 'asc')
                            ->get();

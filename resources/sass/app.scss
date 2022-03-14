@@ -34,8 +34,16 @@
 }
 
 ::selection {
-    color: hsl(var(--clr-secondary));
-    background-color: hsl(var(--clr-primary));
+    color: hsl(var(--clr-primary));
+    background-color: hsl(var(--clr-accent));
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none !important;
+    border: 1px solid hsl(var(--clr-primary)) !important;
+    box-shadow: 0 0 10px hsl(var(--clr-primary)) !important;
 }
 
 *{

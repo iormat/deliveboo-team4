@@ -63,7 +63,7 @@ class OrderController extends Controller {
             'surname' => 'required | string | min:2 | max:60',
             'email' => 'required | string | min:2 | max:60',
             'address' => 'required| string | min:5 | max:60',
-            'note' => 'max:255',
+            'note' => 'nullable| string | max:255',
             'cap' => 'required | string | min:5 | max:5',
             'telephone' => 'required | string',
         ]);
@@ -127,7 +127,6 @@ class OrderController extends Controller {
                 -> get();
         // get only user info
         $user = $user[0];  
-        
 
         // send order confirmation to user and customer
         Mail::to($lastCustomer -> email) -> send(new PaymentCustomerMail($order, $lastCustomer, $dishes));
@@ -135,10 +134,12 @@ class OrderController extends Controller {
 
         return json_encode($order);
     }
+
     // return orders page
     public function index(){
         return view('pages.orders');
     }
+
     // get all authenticated user orders
     public function list() {  
 

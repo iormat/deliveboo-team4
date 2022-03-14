@@ -11185,7 +11185,7 @@ footer .container .footer-bottom .copyright i {
   padding: 1.5rem;
   height: 100px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -12032,13 +12032,13 @@ footer .container .footer-bottom .copyright i {
 }
 
 ::-moz-selection {
-  color: hsl(var(--clr-secondary));
-  background-color: hsl(var(--clr-primary));
+  color: hsl(var(--clr-primary));
+  background-color: hsl(var(--clr-accent));
 }
 
 ::selection {
-  color: hsl(var(--clr-secondary));
-  background-color: hsl(var(--clr-primary));
+  color: hsl(var(--clr-primary));
+  background-color: hsl(var(--clr-accent));
 }
 
 * {

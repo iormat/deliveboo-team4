@@ -48,8 +48,8 @@
             <!-- submit edit form -->
             <!-- close edit form -->
             <div class="form-edit-buttons">
-                <button form="create_form" class="btn edit-button blocktonone modifica">Modifica</button>
-                <button form="create_form" class="btn edit-button nonetoblock">Modifica</button>
+                <button form="edit_form" class="btn edit-button blocktonone modifica">Modifica</button>
+                <button form="edit_form" class="btn edit-button nonetoblock">Modifica</button>
                 <button class="btn edit-button nonetoblock" @click="toggleForm">Chiudi</button>
                 <button class="btn edit-button blocktonone chiudi" @click="toggleForm">Chiudi</button>
             </div>
@@ -90,6 +90,7 @@ export default {
         },
         // update existing dish
         updateDish(event) {
+            console.log('ci sono')
             let form = new FormData(event.target);
             form.append("dish_name", this.editDish_name);
             form.append("description", this.editDescription);
