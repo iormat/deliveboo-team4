@@ -79,6 +79,12 @@
                 .chart-info{
                     margin: 2px 5px 2px 0;
                     text-transform: uppercase;
+                    width: 70%;
+                }
+
+                .active {
+                    width: 30%;
+                    text-align: right;
                 }
             }
         }
@@ -182,6 +188,8 @@
     .active{
         display: block;
     }
+
+
     .totalPrice{
         font-weight: bold;
         width: 100%;

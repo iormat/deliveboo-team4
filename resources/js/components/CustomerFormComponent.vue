@@ -28,17 +28,16 @@
             
 
             <label for="cap">CAP</label>             
-                <input type="number" name="cap" min="5" maxlength="5" v-model="cap"  required 
-                    ondrop="return false;" onpaste="return false;" 
+                <input type="text" name="cap" min="5" maxlength="5" v-model="cap"  required 
                     onkeypress="return event.charCode>=48 && event.charCode<=57">
             
 
             <label for="telephone">Telefono</label>
-                <input type="number" name="telephone" maxlength="20" v-model="telephone"  required 
-                    ondrop="return false;" onpaste="return false;" 
+                <input type="text" name="telephone" maxlength="20" v-model="telephone"  required 
                     onkeypress="return event.charCode>=48 && event.charCode<=57">  
 
             <label for="note">
+                Note
                 <textarea name="note" rows="5" maxlength="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>
             </label>
 
