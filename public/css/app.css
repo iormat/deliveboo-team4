@@ -11567,6 +11567,10 @@ footer .container .footer-bottom .copyright i {
 }
 
 @media screen and (max-width: 768px) {
+  #ristoranti .totalPrice {
+    padding-right: 20px;
+  }
+
   #ristoranti .imgdish {
     display: none;
   }
@@ -11594,6 +11598,10 @@ footer .container .footer-bottom .copyright i {
 
   #ristoranti .restourant-container .chart-container-1 #cart {
     width: 100%;
+  }
+
+  #ristoranti .restourant-container .chart-container-1 #cart .cart-icon {
+    display: none;
   }
 
   #ristoranti .restourant-container .chart-container-1 #cart .mobile-cart {

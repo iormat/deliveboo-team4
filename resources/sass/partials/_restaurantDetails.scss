@@ -198,6 +198,10 @@
     //         background-color: hsl(var(--clr-accent));
     //     }
     @media screen and (max-width: 768px) {
+
+        .totalPrice{
+            padding-right: 20px;
+        }
         
         .imgdish{
             display: none;
@@ -226,11 +230,13 @@
     
                 #cart{
                     width: 100%;
+                    .cart-icon{
+                        display: none;
+                    }
                     .mobile-cart{
                         padding: 0 20px;
                         height: 100px;
                         overflow-y: scroll;
-
                     }
                 }
             }

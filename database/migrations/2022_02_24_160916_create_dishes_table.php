@@ -24,6 +24,8 @@ class CreateDishesTable extends Migration
             $table->boolean("available");
             $table->text("ingredients") -> nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
