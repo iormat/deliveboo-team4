@@ -2,6 +2,21 @@
     height: 100vh;
     width: 100%;
     overflow-y: scroll;
+    .aggiungi-piatti {
+        display: flex;
+        align-items: center;
+    }
+    @media screen and (max-width: 576px) {
+        .aggiungi-piatti {
+            display: block;
+            .button-create {
+                margin: 10px;
+                margin-left: 0px;
+                width: 30px;
+            }
+        }
+       
+    }
     .button-create {
         cursor: pointer;
         margin-left: 20px;
@@ -12,6 +27,7 @@
         color: hsl(var(--clr-neutral-900));
         border-radius: 1.125em;
     }
+    
 }
 #menu {
     h2 {

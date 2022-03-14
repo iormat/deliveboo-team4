@@ -12187,6 +12187,23 @@ footer .container .footer-bottom .copyright i {
   overflow-y: scroll;
 }
 
+#dishes_menu .aggiungi-piatti {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  #dishes_menu .aggiungi-piatti {
+    display: block;
+  }
+
+  #dishes_menu .aggiungi-piatti .button-create {
+    margin: 10px;
+    margin-left: 0px;
+    width: 30px;
+  }
+}
+
 #dishes_menu .button-create {
   cursor: pointer;
   margin-left: 20px;
