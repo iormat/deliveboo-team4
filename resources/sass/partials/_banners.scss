@@ -12,6 +12,7 @@
                 background-image: url(/storage/assets/pexels-khaled-hossain-3028127.jpg);
                 background-position: center;
                 background-size: cover;
+                border-radius: 5px;
                 .overlay{
                     color: white;
                     position: absolute;
@@ -19,6 +20,7 @@
                     background: linear-gradient(0deg, rgba(61,22,22,0.6783088235294117) 35%, rgba(250,111,42,0.6699054621848739) 55%, rgba(69,252,164,0.4990371148459384) 85%);
                     width: 100%;
                     height: 100%;
+                    border-radius: 5px;
                     .my-button {
                         cursor: pointer;
                         text-align: center;
@@ -51,7 +53,9 @@
                 background-image: url(/storage/assets/pexels-yente-van-eynde-2403391.jpg);
                 background-position: center;
                 background-size: cover;
+                border-radius: 5px;
                 .overlay{
+                    border-radius: 5px;
                     color: white;
                     position: absolute;
                     background: rgb(61,22,22);

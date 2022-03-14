@@ -9,6 +9,10 @@
     width: 100%;
     padding: 1.5rem;
     height: 100px;
+    img {
+        width: 75px;
+        height: 75px;
+    }
     h1{
         text-align: right;
         color: hsl(var(--clr-neutral-100));
@@ -114,6 +118,7 @@
         &.header-nav{
             display: flex;
             justify-content: space-between;
+            align-items: center;
             h1 {
                 text-align: left;
             }

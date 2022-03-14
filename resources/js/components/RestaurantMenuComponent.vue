@@ -4,7 +4,7 @@
             
             <div class="jambo-details">
                 <div class="overlay"></div>
-                    <h1>nome ristorante</h1>
+                    <h1>{{restaurant.business_name}}</h1>
                     <img src="https://cdn.create.vista.com/api/media/medium/218509368/stock-photo-salad-grated-pumpkin-scrambled-eggs?token=" alt="" >  
             </div>
 
@@ -99,8 +99,8 @@ export default {
         return {
             menu: [],
             cart:[],
-
             shoppingCart: false,
+            restaurant: []
         }
     },
 
@@ -170,6 +170,14 @@ export default {
         axios.get(`/api/get/restaurant/menu/${this.user.id}`)
             .then(res => {
                 this.menu = res.data;
+            })
+            .catch(err => {
+                console.error(err);
+            })
+
+             axios.get(`/api/get/restaurant/info/${this.user.id}`)
+            .then(res => {
+                this.restaurant = res.data;
             })
             .catch(err => {
                 console.error(err);

@@ -169,4 +169,9 @@ class ApiController extends Controller
     public function restaurants(){
         return view('pages.restaurants');
     }
+
+    public function restaurantInfo($id) {
+        $user = User::findOrFail($id);
+        return response() -> json($user);
+    }
 }

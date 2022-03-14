@@ -11186,6 +11186,11 @@ footer .container .footer-bottom .copyright i {
   height: 100px;
 }
 
+.header-nav img {
+  width: 75px;
+  height: 75px;
+}
+
 .header-nav h1 {
   text-align: right;
   color: hsl(var(--clr-neutral-100));
@@ -11303,6 +11308,7 @@ footer .container .footer-bottom .copyright i {
   div.header-nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   div.header-nav h1 {
@@ -11754,8 +11760,15 @@ footer .container .footer-bottom .copyright i {
   }
 }
 
+#restaurants-list .jumbo-restaurants {
+  height: 60ch;
+  background-image: url(/storage/assets/pexels-negative-space-34650.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
 #restaurants-list .flex-row {
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -11775,7 +11788,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 #restaurants-list .flex-row .card .business-img img {
-  width: 25%;
+  width: 35%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -11800,6 +11813,18 @@ footer .container .footer-bottom .copyright i {
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
+}
+
+#restaurants-list .flex-row .card .card-body .categories {
+  height: 30px;
+}
+
+#restaurants-list .flex-row .card .card-body .space::after {
+  content: " - ";
+}
+
+#restaurants-list .flex-row .card .card-body .space:nth-last-child(1)::after {
+  content: "";
 }
 
 @media screen and (max-width: 996px) {
@@ -11899,6 +11924,7 @@ footer .container .footer-bottom .copyright i {
   background-image: url(/storage/assets/pexels-khaled-hossain-3028127.jpg);
   background-position: center;
   background-size: cover;
+  border-radius: 5px;
 }
 
 #banner .container .container-rider .ristoranti .overlay {
@@ -11908,6 +11934,7 @@ footer .container .footer-bottom .copyright i {
   background: linear-gradient(0deg, rgba(61, 22, 22, 0.6783088235) 35%, rgba(250, 111, 42, 0.6699054622) 55%, rgba(69, 252, 164, 0.4990371148) 85%);
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 
 #banner .container .container-rider .ristoranti .overlay .my-button {
@@ -11943,9 +11970,11 @@ footer .container .footer-bottom .copyright i {
   background-image: url(/storage/assets/pexels-yente-van-eynde-2403391.jpg);
   background-position: center;
   background-size: cover;
+  border-radius: 5px;
 }
 
 #banner .container .container-lavora .lavora-con-noi .overlay {
+  border-radius: 5px;
   color: white;
   position: absolute;
   background: #3d1616;
@@ -12285,13 +12314,8 @@ footer .container .footer-bottom .copyright i {
   background-color: hsl(var(--clr-primary));
 }
 
-<<<<<<< Updated upstream
-.login-register #statistics {
-  width: 70%;
-=======
 #statistics {
   width: 100%;
->>>>>>> Stashed changes
   height: 100vh;
   overflow-y: scroll;
   padding: 2em;
