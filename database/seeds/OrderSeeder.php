@@ -25,7 +25,7 @@ class OrderSeeder extends Seeder
 
         for ($i = 1; $i < 2001; $i++) {
             DB::table('dish_order')->insert([
-                ['dish_id' => rand(1, 10), 'order_id' => $i, 'amount' => rand(1,5)]
+                ['dish_id' => rand(1, 38), 'order_id' => $i, 'amount' => rand(1,5)]
             ]);
         }
 

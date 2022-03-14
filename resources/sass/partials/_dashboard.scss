@@ -96,10 +96,11 @@
         }
     }
 
-    #statistics {
-        width: 70%;
-        height: 100vh;
-        overflow-y: scroll;
-        padding: 2em;
-    }
+}
+
+#statistics {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 2em;
 }
