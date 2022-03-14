@@ -2,13 +2,25 @@
     margin: 100px auto;
     width: 60%;
     text-align: center;
+    @media screen and (max-width:576px){
+        width: 100%;
+    }
     .blocktonone{
         display: block;
     }
     .nonetoblock{
         display: none;
     }
-
+    .nonetoblock{
+        @media screen and (max-width:768px){
+                display: block;
+        }
+    }
+    .blocktonone{
+        @media screen and (max-width:768px){
+                display: none;
+        }
+    }
     form{
         padding: 20px 0;
         border: solid 2px hsl(var(--clr-neutral-900));
@@ -102,12 +114,24 @@
             display: block;
         }
     }
+    #edit_form{
+        width: 80%;
+    }
     
 }
 
 @media screen and (max-width:576px) {
-    #edit_form{
-        width: 90%;
-        border: none;
+    .loginRegister{
+        width: 100%;
+        .form-control{
+            height: 0;
+            padding: 0;
+        }
+        .button-create{
+            width: 60px;
+        }
     }
+    #edit_form{
+        width: 100%;
+    }  
 }

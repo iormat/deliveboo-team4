@@ -45,12 +45,11 @@
 //     }
     // checkbox styiling
 
-#dishes-menu{
+.login-register{
     .check-btn {
         display: inline-flex;
         align-items: center;
         cursor: pointer;
-        margin-right: 20px;
     }
     
     input[type="checkbox"].check-check {
@@ -104,3 +103,18 @@
     overflow-y: scroll;
     padding: 2em;
 }
+@media screen and (max-width:576px) {
+    #dishes_menu{
+        .button-create{
+            width: 60px;
+        }
+        .check-btn{
+            width: 80%;
+        }
+        .check-after{
+            margin-left: 0;
+        }
+    }
+}
+    
+

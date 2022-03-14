@@ -38,18 +38,20 @@
                 <input class="form-control" type="file" @change="saveUpdatedImg" id="img">
             </label> 
             <!-- dish availabiliy - edit -->
-            <div class="check-button">
-                <label for="available" class="check-btn" name="available">
+            <!-- <div class="check-button"> -->
+                <label for="available" class="check-btn check-width" name="available">
                     Disponibile&colon; 
                     <input type="checkbox" id="available" class="check-check" v-model="editAvailable">
                     <div class="check-after"></div>
                 </label>
-            </div>
+            <!-- </div> -->
             <!-- submit edit form -->
             <!-- close edit form -->
             <div class="text-right">
-                <button  form="edit_form" class="btn">Modifica</button>
-                <button class="btn" @click="toggleForm">Chiudi</button>
+                <button class="btn btn-success edit-button blocktonone">Modifica</button>
+                <button form="create_form" class="btn btn-success edit-button nonetoblock">Penna</button>
+                <button class="btn btn-danger edit-button nonetoblock" @click="toggleForm"><i class="fas fa-times"></i></button>
+                <button class="btn btn-danger edit-button blocktonone" @click="toggleForm">Chiudi</button>
             </div>
         </form>
     </section>

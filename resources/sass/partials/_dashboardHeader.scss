@@ -4,6 +4,10 @@
             padding: 0px;
             margin: 0;
             background-color: hsl(var(--clr-primary));
+            @media screen and (max-width:576px){
+                width: 15%;
+            }
+                 
             .auth{
                 text-transform: uppercase;
                 letter-spacing: 2px;
@@ -50,9 +54,12 @@
     .icons{
         display: none;
         color: hsl(var(--clr-accent));
-        font-size: 30px;
+        font-size: 20px;
         margin: 0 auto;
         text-align: center;
+        @media screen and (max-width:576px){
+            width: 15px;
+        }
     }
     
     // .d-flex{
@@ -64,6 +71,9 @@
         height: 90%;
         justify-content: flex-start;
         align-items: center;
+        @media screen and (max-width:576px){
+            padding: 0;
+        }
         
         h1{
             color: hsl(var(--clr-neutral-100));
@@ -99,7 +109,7 @@
        
     }
     
-    @media screen and (max-width:837px) {
+    @media screen and (max-width:992px) {
         .logout-text{
             display:none;
         }
@@ -110,12 +120,6 @@
         .icons{
             display:block;
         }
-        
-        
-        //icons
-       
-        
-        
-}
+    }
 }
     

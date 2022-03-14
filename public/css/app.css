@@ -11049,6 +11049,12 @@ footer .container .footer-bottom .copyright i {
   background-color: hsl(var(--clr-primary));
 }
 
+@media screen and (max-width: 576px) {
+  #dashboard-header {
+    width: 15%;
+  }
+}
+
 #dashboard-header .auth {
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -11097,9 +11103,15 @@ footer .container .footer-bottom .copyright i {
 #dashboard-header .icons {
   display: none;
   color: hsl(var(--clr-accent));
-  font-size: 30px;
+  font-size: 20px;
   margin: 0 auto;
   text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+  #dashboard-header .icons {
+    width: 15px;
+  }
 }
 
 #dashboard-header .dash-nav {
@@ -11108,6 +11120,12 @@ footer .container .footer-bottom .copyright i {
   height: 90%;
   justify-content: flex-start;
   align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  #dashboard-header .dash-nav {
+    padding: 0;
+  }
 }
 
 #dashboard-header .dash-nav h1 {
@@ -11142,7 +11160,7 @@ footer .container .footer-bottom .copyright i {
   }
 }
 
-@media screen and (max-width: 837px) {
+@media screen and (max-width: 992px) {
   #dashboard-header .logout-text {
     display: none;
   }
@@ -11588,12 +11606,30 @@ footer .container .footer-bottom .copyright i {
   text-align: center;
 }
 
+@media screen and (max-width: 576px) {
+  .login-register {
+    width: 100%;
+  }
+}
+
 .login-register .blocktonone {
   display: block;
 }
 
 .login-register .nonetoblock {
   display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .login-register .nonetoblock {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-register .blocktonone {
+    display: none;
+  }
 }
 
 .login-register form {
@@ -11689,12 +11725,28 @@ footer .container .footer-bottom .copyright i {
   .loginRegister .nonetoblock {
     display: block;
   }
+
+  #edit_form {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 576px) {
+  .loginRegister {
+    width: 100%;
+  }
+
+  .loginRegister .form-control {
+    height: 0;
+    padding: 0;
+  }
+
+  .loginRegister .button-create {
+    width: 60px;
+  }
+
   #edit_form {
-    width: 90%;
-    border: none;
+    width: 100%;
   }
 }
 
@@ -12141,6 +12193,13 @@ footer .container .footer-bottom .copyright i {
   justify-content: center;
 }
 
+@media screen and (max-width: 576px) {
+  #menu .mycard .mod-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
 #menu .mycard .mod-container .modifiers {
   margin-bottom: 10px;
   cursor: pointer;
@@ -12170,18 +12229,17 @@ footer .container .footer-bottom .copyright i {
   align-items: center;
 }
 
-#dishes-menu .check-btn {
+.login-register .check-btn {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  margin-right: 20px;
 }
 
-#dishes-menu input[type=checkbox].check-check {
+.login-register input[type=checkbox].check-check {
   display: none;
 }
 
-#dishes-menu .check-after {
+.login-register .check-after {
   width: 1.125em;
   height: 1.125em;
   border: 1px solid hsl(var(--clr-primary));
@@ -12190,7 +12248,7 @@ footer .container .footer-bottom .copyright i {
   padding: 0.125em;
 }
 
-#dishes-menu .check-after::after {
+.login-register .check-after::after {
   content: "";
   width: 100%;
   height: 100%;
@@ -12201,11 +12259,11 @@ footer .container .footer-bottom .copyright i {
   transition: transform 0.3s;
 }
 
-#dishes-menu .check-check:checked + .check-after::after {
+.login-register .check-check:checked + .check-after::after {
   transform: scale(1);
 }
 
-#dishes-menu button {
+.login-register button {
   all: unset;
   padding: 0.5em 0.75em;
   font-size: 1rem;
@@ -12214,19 +12272,33 @@ footer .container .footer-bottom .copyright i {
   color: hsl(var(--clr-neutral-100));
 }
 
-#dishes-menu button:first-child {
+.login-register button:first-child {
   background-color: hsl(var(--clr-secondary));
 }
 
-#dishes-menu button:last-child {
+.login-register button:last-child {
   background-color: hsl(var(--clr-primary));
 }
 
-#statistics {
-  width: 100%;
+.login-register #statistics {
+  width: 70%;
   height: 100vh;
   overflow-y: scroll;
   padding: 2em;
+}
+
+@media screen and (max-width: 576px) {
+  #dishes_menu .button-create {
+    width: 60px;
+  }
+
+  #dishes_menu .check-btn {
+    width: 80%;
+  }
+
+  #dishes_menu .check-after {
+    margin-left: 0;
+  }
 }
 
 #order-page {
