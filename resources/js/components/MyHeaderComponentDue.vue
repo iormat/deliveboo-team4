@@ -9,8 +9,6 @@
                         <span @click="goHome">Home</span>
                     </li>
 
-                    <li><a href="#">Contattaci</a></li>
-
                     <li @click="goRestaurants">
                         <span>Ristoranti</span> 
                     </li>
