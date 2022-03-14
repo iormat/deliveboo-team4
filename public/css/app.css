@@ -11802,6 +11802,7 @@ footer .container .footer-bottom .copyright i {
 #restaurants-list .flex-row .card .business-img {
   display: flex;
   min-width: 15ch;
+  height: 100%;
 }
 
 #restaurants-list .flex-row .card .business-img img {
