@@ -51,7 +51,9 @@
     </div>
 
     <div class="transition-result" v-if="transition != ''">
-      {{ start() }}
+      <div v-if="transition == 'Transazione completata' ">
+        {{ start() }}
+        </div>
       <h2>{{transition}}</h2>
       <button @click="home" class="btn btn-success">HOME</button>
     </div>
@@ -69,6 +71,7 @@ export default {
   },
   data: function () {
     return {
+      validationErrors: '',
       cart: [],
       transition: "",
       authorization: "",
