@@ -12,6 +12,7 @@
     <!-- PAGAMENTO -->
     <div v-if="showP">
       <div v-if="transition === ''">
+        <h2>Riepilogo ordine</h2>
         <div class="contain-dishes">
           <ul class="check-out-dishes">
             <li v-for="dish in cart" :key="dish.id" class="chart-object">
@@ -44,8 +45,9 @@
       </div>
     </div>
 
-    <div v-if="transition != ''">
-      {{ transition }}
+    <div class="transition-result" v-if="transition != ''">
+      {{ start() }}
+      <h2>{{transition}}</h2>
       <button @click="home" class="btn btn-success">HOME</button>
     </div>
   </div>
@@ -99,6 +101,9 @@ export default {
     },
   },
   methods: {
+    start () {
+      this.$confetti.start()
+    },
     getDishesId(e) {
       this.dishesId = e;
       console.log(this.dishesId);

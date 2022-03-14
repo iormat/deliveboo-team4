@@ -37,6 +37,16 @@
     .fa-trash-alt{
         color: hsl(var(--clr-red));
     }
+
+    .contain-paycheck{
+        margin-bottom: 25px;
+    }
+
+    .transition-result{
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
     @media screen and (max-width: 768px) {
         .chart-object{
             .chart-info{

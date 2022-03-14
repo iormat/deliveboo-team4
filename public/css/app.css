@@ -11803,6 +11803,15 @@ footer .container .footer-bottom .copyright i {
   color: hsl(var(--clr-red));
 }
 
+#check-out .contain-paycheck {
+  margin-bottom: 25px;
+}
+
+#check-out .transition-result {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
 @media screen and (max-width: 768px) {
   #check-out .chart-object .chart-info {
     width: 30%;

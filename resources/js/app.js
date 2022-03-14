@@ -34,3 +34,7 @@ import Vue from 'vue';
 import vuebraintree from 'vue-braintree';
 
 Vue.use(vuebraintree)
+
+import VueConfetti from 'vue-confetti'
+ 
+Vue.use(VueConfetti)
