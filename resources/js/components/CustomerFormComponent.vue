@@ -11,12 +11,12 @@
 
             <label for="name">Name</label>
                 <input type="text" name="name" min="2" maxlength="60" v-model="name"  required 
-                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key) && return ' ' ">
+                onkeypress="return /[a-zA-Z\u00C0-\u00FF\u0020]/i.test(event.key) ">
             
 
             <label for="surname">Cognome</label>
                 <input type="text" name="surname" min="2" maxlength="60" v-model="surname"  required
-                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key) && return ' '">
+                onkeypress="return /[a-zA-Z\u00C0-\u00FF\u0020]/i.test(event.key)">
             
 
             <label for="email">Email</label>

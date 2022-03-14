@@ -23,10 +23,10 @@
         @csrf
     
         <label for="name">Nome</label>
-        <input type="text" name="name" maxlength="255" onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)" required>
+        <input type="text" name="name" maxlength="255" onkeypress="return /[a-zA-Z\u00C0-\u00FF\u0020]/i.test(event.key)" required>
     
         <label for="surname">Cognome</label>
-        <input type="text" name="surname" maxlength="255" onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)" required>
+        <input type="text" name="surname" maxlength="255" onkeypress="return /[a-zA-Z\u00C0-\u00FF\u0020]/i.test(event.key)" required>
     
         <label for="business_name">Nome Attività</label>
         <input type="text" name="business_name" maxlength="255" required >
