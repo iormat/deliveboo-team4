@@ -7,6 +7,7 @@ use App\User;
 use App\Dish;
 use App\Order;
 use Illuminate\Support\Facades\DB;
+use App\Type;
 
 
 class GuestController extends Controller
@@ -21,7 +22,8 @@ class GuestController extends Controller
     }
 
     public function register() {
-        return view('pages.register');
+        $types = Type::all();
+        return view('pages.register', compact('types'));
     }
 
     public function getRestaurant($id) {

@@ -4,14 +4,15 @@
             <img src="/storage/assets/pexels-ray-piedra-1565982.jpg" alt="header jumbo">
         </div>
         <section class="container">
-            <h2>I nostri consigliati</h2>
+            <h2>I nostri ristoranti consigliati</h2>
             <div class="fav-restaurants">
                 <ul class="row flex-nowrap">
                     <li v-for="favRes in favRestaurants" :key="favRes.id" class="col-sm-12 col-md-6 p-3">
                         <div @click="goToRestaurant(favRes.id)">
                             <div class="card flex-row">
                                 <div class="business-img">
-                                    <img src="https://picsum.photos/300/300" alt="">
+                                    <img v-if="favRes.img_rest" :src="'/storage/restaurants/' + favRes.img_rest" width="100px">
+                                    <p v-else>image</p>
                                 </div>
                                 <div class="card-body">
                                     <h3>{{favRes.business_name}}</h3>
@@ -42,7 +43,8 @@
                     <div @click="goToRestaurant(restaurant.id)">
                         <div class="card flex-row">
                             <div class="business-img">
-                                <img src="https://picsum.photos/300/300" alt="">
+                                <img v-if="restaurant.img_rest" :src="'/storage/restaurants/' + restaurant.img_rest" width="100px">
+                                <p v-else>image</p>
                             </div>
                             <div class="card-body">
                                 <h3>{{restaurant.business_name}}</h3>

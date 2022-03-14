@@ -1,13 +1,19 @@
 #dashboard-header{
             height: 100vh;
-            width: 30%;
+            width: 25%;
             padding: 0px;
             margin: 0;
             background-color: hsl(var(--clr-primary));
             @media screen and (max-width:576px){
                 width: 15%;
+                min-width: 55px;
             }
-                 
+              
+            @media screen and (max-width:992px){
+                width: 15%;
+                min-width: 55px;
+            }
+
             .auth{
                 text-transform: uppercase;
                 letter-spacing: 2px;
@@ -41,6 +47,7 @@
                         letter-spacing: 2px;
                         font-weight: bold;
                         color: hsl(var(--clr-neutral-100));
+                        font-size: 1.5rem;
                     }
                     li{
                         list-style: none;
@@ -100,26 +107,28 @@
     
     
     @media screen and (max-width:1175px) {
-        .auth{
+        .auth {
             display: none;
         }
-        .nav-links{
+        .nav-links {
             height: 100%;
         }
        
     }
     
     @media screen and (max-width:992px) {
-        .logout-text{
+        .logout-text {
             display:none;
         }
-        .li-text{
+        .li-text {
             display: none;
         }
     
-        .icons{
+        .icons {
             display:block;
         }
+
+        
     }
 }
     

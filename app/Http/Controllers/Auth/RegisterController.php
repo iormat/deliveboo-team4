@@ -7,7 +7,10 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Validator;
+use App\Type;
 
 class RegisterController extends Controller
 {
@@ -48,7 +51,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
@@ -57,7 +60,9 @@ class RegisterController extends Controller
             'p_iva' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'img_rest' => ['required', 'image'],
         ]);
+
     }
 
     /**
@@ -68,7 +73,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+         $user = [
             'name' => $data['name'],
             'surname' => $data['surname'],
             'business_name' => $data['business_name'],
@@ -76,6 +81,26 @@ class RegisterController extends Controller
             'p_iva' => $data['p_iva'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+            'img_rest' => $data['img_rest']
+        ];
+
+        $imageFile = $user['img_rest'];
+        $imageName = rand(100000, 999999) . '_' . time() . '.' . $imageFile -> getClientOriginalExtension();
+        $imageFile -> storeAs('/restaurants/', $imageName, 'public');
+        $data['img_rest'] = $imageName;
+
+        $user = User::create($data);
+
+        foreach ($data as $key => $value) {
+            if($value == 'on'){
+                DB::table('type_user') -> insert([
+                    ['type_id' => $key, 'user_id' => $user -> id] 
+                ]);
+            }
+        }           
+        
+        return $user;
+        
     }
+
 }

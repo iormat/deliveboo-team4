@@ -1,5 +1,5 @@
 .login-register{
-    margin: 160px auto 40px auto;
+    margin: 100px auto;
     width: 60%;
     text-align: center;
     @media screen and (max-width:576px){
@@ -111,9 +111,10 @@
             display: block;
         }
     }
-    #edit_form{
+    #edit_form, 
+    #create_form{
         width: 80%;
-        
+  
     }
     
 }
@@ -129,10 +130,10 @@
             width: 60px;
         }
     }
-    #edit_form{
+    #edit_form,
+    #create_form {
         width: 100%;
         border: unset;
-
     }  
 }
 
