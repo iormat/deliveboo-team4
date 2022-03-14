@@ -39,7 +39,7 @@
                     onkeypress="return event.charCode>=48 && event.charCode<=57">  
 
             <label for="note"></label>
-                <textarea name="note" id="" rows="5" max="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>
+                <textarea name="note" id="" rows="5" min="4" maxlength="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>
             
 
             <input type="submit" value="Procedi al pagamento" class="blocktonone login-button">

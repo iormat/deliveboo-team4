@@ -8,7 +8,7 @@ use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Carbon\Carbon;
+
 
 use App\Customer;
 use App\Order;
@@ -62,8 +62,8 @@ class OrderController extends Controller {
             'name' => 'required | string | min:2 | max:60',
             'surname' => 'required | string | min:2 | max:60',
             'email' => 'required | string | min:2 | max:60',
-            'address' => 'required| string | min:4 | max:60',
-            'note' => 'string | min:4 | max:60',
+            'address' => 'required| string | min:5 | max:60',
+            'note' => 'string | min:4 | max:255',
             'cap' => 'required | string | min:5 | max:5',
             'telephone' => 'required | string',
         ]);

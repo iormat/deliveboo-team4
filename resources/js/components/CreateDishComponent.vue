@@ -5,7 +5,7 @@
             <!-- dish name - create -->
             <label for="name">
                 Inserisci il nome del piatto&colon;
-                <input class="form-control" type="text" id="name" v-model="dish_name" min="4" maxlength="50" required>
+                <input class="form-control" type="text" id="name" v-model="dish_name" min="4" maxlength="120" required>
             </label>
             <!-- dish description - create -->
             <label for="desription">

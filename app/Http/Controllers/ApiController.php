@@ -31,7 +31,7 @@ class ApiController extends Controller
     public function addDish(Request $request) {
         // validate required dish data
         $data = $request -> validate ([
-            'dish_name' => 'required | string | min:4 | max:50',
+            'dish_name' => 'required | string | min:4 | max:120',
             'description' => 'required | string',
             'price' => 'required',
         ]);
@@ -67,7 +67,7 @@ class ApiController extends Controller
     public function updateDish(Request $request, $id) {
         //  validate required dish data
         $data = $request -> validate([
-            'dish_name' => 'required | string | min:4 | max:50',
+            'dish_name' => 'required | string | min:4 | max:120',
             'description' => 'required | string',
             'price' => 'required',
             // 'available' => 'boolean'
