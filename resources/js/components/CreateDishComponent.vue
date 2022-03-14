@@ -21,7 +21,7 @@
             <!-- dish price - create -->
             <label for="price">
                 Inserisci il prezzo&colon;
-                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required onkeypress="return event.charCode>=48 && event.charCode<=57">
+                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required onkeypress="return event.charCode>=48 && event.charCode<=57 && return ',' &&  return '.' ">
             </label>
             <!-- dish img - create -->
             <label for="dish_img">

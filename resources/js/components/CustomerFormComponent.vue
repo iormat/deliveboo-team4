@@ -11,12 +11,12 @@
 
             <label for="name">Name</label>
                 <input type="text" name="name" min="2" maxlength="60" v-model="name"  required 
-                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)">
+                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key) && return ' ' ">
             
 
             <label for="surname">Cognome</label>
                 <input type="text" name="surname" min="2" maxlength="60" v-model="surname"  required
-                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key)">
+                onkeypress="return /[a-zA-Z\u00C0-\u00FF]/i.test(event.key) && return ' '">
             
 
             <label for="email">Email</label>
@@ -38,9 +38,9 @@
                     ondrop="return false;" onpaste="return false;" 
                     onkeypress="return event.charCode>=48 && event.charCode<=57">  
 
-            <label for="note"></label>
-                <textarea name="note" id="" rows="5" min="4" maxlength="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>
-            
+            <label for="note">
+                <textarea name="note" rows="5" maxlength="255" v-model="note" class="text-area" placeholder="Note al ristorante..."></textarea>
+            </label>
 
             <input type="submit" value="Procedi al pagamento" class="blocktonone login-button">
             <input type="submit" value="Paga" class="nonetoblock login-button">

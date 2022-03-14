@@ -63,7 +63,7 @@ class OrderController extends Controller {
             'surname' => 'required | string | min:2 | max:60',
             'email' => 'required | string | min:2 | max:60',
             'address' => 'required| string | min:5 | max:60',
-            'note' => 'string | min:4 | max:255',
+            'note' => 'max:255',
             'cap' => 'required | string | min:5 | max:5',
             'telephone' => 'required | string',
         ]);

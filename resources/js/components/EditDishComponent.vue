@@ -20,7 +20,7 @@
             <!-- dish price - edit -->
             <label for="price">
                 Inserisci il prezzo&colon;
-                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice" onkeypress="return event.charCode>=48 && event.charCode<=57">
+                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice" onkeypress="return event.charCode>=48 && event.charCode<=57 && return '.' && return ','">
             </label>
             <!-- dish category - edit -->
             <label for="category">
@@ -47,11 +47,11 @@
             <!-- </div> -->
             <!-- submit edit form -->
             <!-- close edit form -->
-            <div class="text-right">
-                <button class="btn btn-success edit-button blocktonone">Modifica</button>
-                <button form="create_form" class="btn btn-success edit-button nonetoblock">Penna</button>
-                <button class="btn btn-danger edit-button nonetoblock" @click="toggleForm"><i class="fas fa-times"></i></button>
-                <button class="btn btn-danger edit-button blocktonone" @click="toggleForm">Chiudi</button>
+            <div class="form-edit-buttons">
+                <button form="create_form" class="btn edit-button blocktonone modifica">Modifica</button>
+                <button form="create_form" class="btn edit-button nonetoblock">Penna</button>
+                <button class="btn edit-button nonetoblock" @click="toggleForm"><i class="fas fa-times"></i></button>
+                <button class="btn edit-button blocktonone chiudi" @click="toggleForm">Chiudi</button>
             </div>
         </form>
     </section>

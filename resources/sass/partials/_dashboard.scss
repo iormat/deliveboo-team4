@@ -87,10 +87,11 @@
         border-radius: .75rem;
         cursor: pointer;
         color: hsl(var(--clr-neutral-100));
-        &:first-child {
+        &:nth-child(odd) {
             background-color: hsl(var(--clr-secondary));
+            margin: 0 7px;
         }
-        &:last-child {
+        &:nth-child(even) {
             background-color: hsl(var(--clr-primary));
         }
     }
