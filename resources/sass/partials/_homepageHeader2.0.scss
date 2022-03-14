@@ -9,6 +9,9 @@
     width: 100%;
     padding: 1.5rem;
     height: 100px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
     img {
         width: 75px;
         height: 75px;
@@ -27,6 +30,7 @@
     width: 100%;
     transform: scale(1,0);
     transform-origin: top;
+    top: 100px;
     ul{
         margin: 0;
         padding: 0;

@@ -11097,7 +11097,7 @@ footer .container .footer-bottom .copyright i {
 
 #dashboard-header .container .nav-links li {
   list-style: none;
-  margin: 30px 0;
+  margin: 25px 0;
 }
 
 #dashboard-header .icons {
@@ -11184,6 +11184,9 @@ footer .container .footer-bottom .copyright i {
   width: 100%;
   padding: 1.5rem;
   height: 100px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .header-nav img {
@@ -11204,6 +11207,7 @@ footer .container .footer-bottom .copyright i {
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
+  top: 100px;
 }
 
 .nav-nav ul {
@@ -11619,7 +11623,7 @@ footer .container .footer-bottom .copyright i {
 }
 
 .login-register {
-  margin: 100px auto;
+  margin: 160px auto 40px auto;
   width: 60%;
   text-align: center;
 }
@@ -11651,23 +11655,20 @@ footer .container .footer-bottom .copyright i {
 }
 
 .login-register form {
-  padding: 20px 0;
+  padding: 2em;
   border: solid 2px hsl(var(--clr-neutral-900));
   border-radius: 5px;
   width: 60%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .login-register form input {
   border: solid 1px hsl(var(--clr-neutral-900));
-  width: 70%;
 }
 
 .login-register form label {
-  width: 70%;
   text-align: left;
   font-weight: bold;
   letter-spacing: 1px;
@@ -11701,6 +11702,11 @@ footer .container .footer-bottom .copyright i {
   padding: 5px;
 }
 
+.login-register form .form-edit-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .login-register .form-login {
   margin-bottom: 50px;
   width: 60%;
@@ -11724,10 +11730,6 @@ footer .container .footer-bottom .copyright i {
 @media screen and (max-width: 992px) {
   .loginRegister {
     width: 100%;
-  }
-
-  input {
-    max-width: 70%;
   }
 }
 
@@ -11765,6 +11767,13 @@ footer .container .footer-bottom .copyright i {
 
   #edit_form {
     width: 100%;
+    border: unset;
+  }
+}
+
+@media screen and (min-width: 577px) and (max-width: 1000px) {
+  .login-register {
+    width: 90%;
   }
 }
 
@@ -12314,11 +12323,12 @@ footer .container .footer-bottom .copyright i {
   color: hsl(var(--clr-neutral-100));
 }
 
-.login-register button:first-child {
+.login-register button:nth-child(odd) {
   background-color: hsl(var(--clr-secondary));
+  margin: 0 7px;
 }
 
-.login-register button:last-child {
+.login-register button:nth-child(even) {
   background-color: hsl(var(--clr-primary));
 }
 
