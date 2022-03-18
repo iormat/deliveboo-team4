@@ -5,30 +5,31 @@ use Illuminate\Support\Facades\DB;
 
 use App\Order;
 use App\Customer;
+use App\Dish;
 
-class OrderSeeder extends Seeder
-{
+class OrderSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
-        factory(Order::class, 2000) -> make() -> each(function($order) {
-
+    public function run() {
+        factory(Order::class, 10) -> make() -> each(function($order) {
+            // link customers to orders
             $customer = Customer::inRandomOrder() -> limit(1) -> first();
             $order -> customer() -> associate($customer);
 
             $order -> save();
+
+            // link dishes to order
+            $dishes = Dish::where('user_id', rand(1, 5)) -> limit(rand(1, 20)) -> get();
+            $order -> dishes() -> attach($dishes);
+            $order -> save(); 
+
+            // // get amount value
+            DB::table('dish_order') -> update([
+                'amount' => rand(1, 4)
+            ]);            
         });
-
-        for ($i = 1; $i < 2001; $i++) {
-            DB::table('dish_order')->insert([
-                ['dish_id' => rand(1, 45), 'order_id' => $i, 'amount' => rand(1,5)]
-            ]);
-        }
-
-
     }
 }

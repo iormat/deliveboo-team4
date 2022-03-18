@@ -14,9 +14,7 @@
         
         @yield('content')
         
-        @include('components.dashboard-footer')
+        @include('components.main-layout-footer')
     </div>
-    
-    
 </body>
 </html>

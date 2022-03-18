@@ -14,14 +14,15 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('customer_id')-> unsigned();
-            $table->date("date");
-            $table->decimal("total_price", 5,2) -> unsigned();
-            $table->boolean("confirmed");
-            $table->boolean("payment_confirmation");
-            $table->date("confirmation_date") -> nullable();
-            $table->timestamps();
+            $table -> id();
+            $table -> bigInteger('customer_id')-> unsigned();
+            $table -> date("date");
+            $table -> decimal("total_price", 5,2) -> unsigned();
+            $table -> boolean("confirmed");
+            $table -> boolean("payment_confirmation");
+            $table -> date("confirmation_date") -> nullable();
+            $table -> timestamps();
+            $table -> softDeletes();
         });
     }
 

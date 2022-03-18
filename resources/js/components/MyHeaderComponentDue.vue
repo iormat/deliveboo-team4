@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="header-nav">
-            <img src="/storage/assets/deliveboo-logo.png" alt="">
+            <img src="/storage/assets/deliveboo-logo.png" alt="page main logo">
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <nav class="nav-nav">
                 <ul class="ul-links">

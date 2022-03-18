@@ -8,13 +8,15 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import 'partials/_dashboardFooter';
-
-* {
+// GENERAL RULES --------------------
+*,
+*:before,
+*:after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-//Partials
+// PARTIALS ---------------------
 @import 'partials/_dashboardHeader';
 @import 'partials/_homepageHeader2.0';
 @import 'partials/restaurantDetails';
@@ -22,8 +24,14 @@
 @import 'partials/restaurants';
 @import 'partials/cartCheckout';
 @import 'partials/banners';
+// HOMEPAGE PARTIALS
+@import 'partials/homepage';
+// DASHBOARD PARTIALS
+@import 'partials/dashboard';
+// ORDER PAGE PARTIALS
+@import 'partials/orderPage';
 
-// palette
+// PALETTE
 :root {
     --clr-red:0, 100%, 50%;
     --clr-neutral-100:0, 0%, 100%;
@@ -45,24 +53,16 @@ select:focus {
     border: 1px solid hsl(var(--clr-primary)) !important;
     box-shadow: 0 0 10px hsl(var(--clr-primary)) !important;
 }
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+// SCROLLBAR
+html {
+    scrollbar-color: hsl(var(--clr-primary));
+    scrollbar-width: 5px;
 }
-
-// html{
-//     scrollbar-width: normal;
-//     scrollbar-color: aqua;
-// }
 
 ::-webkit-scrollbar{
     width: 5px;
     height: 5px;
-
 }
-
 
 ::-webkit-scrollbar-track{
     background-color: #f8fafc;
@@ -80,17 +80,6 @@ select:focus {
     flex-direction: column;
     justify-content: space-between;
 }
-
-// HOMEPAGE PARTIALS
-@import 'partials/homepage';
-
-
-// DASHBOARD PARTIALS
-@import 'partials/dashboard';
-
-// ORDER PAGE PARTIALS
-@import 'partials/orderPage';
-
 
 .charts {
     padding: 3rem 0;

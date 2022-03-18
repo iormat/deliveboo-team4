@@ -30,6 +30,7 @@
         "vue-braintree": "^2.1.0",
         "vue-chartjs": "^3.5.1",
         "vue-confetti": "^2.3.0",
+        "vue-date-fns": "^2.0.1",
         "vue-filter-date-format": "^1.3.1"
     }
 }
