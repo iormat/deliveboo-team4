@@ -1,23 +1,50 @@
 <template>
     <section id="restaurants">
+        <div id="home-jumbo">
+            <img src="/storage/assets/pexels-ray-piedra-1565982.jpg" alt="header jumbo">
+        </div>
+        <section class="container">
+            <h2>I nostri ristoranti consigliati</h2>
+            <div class="fav-restaurants">
+                <ul class="row flex-nowrap">
+                    <li v-for="favRes in favRestaurants" :key="favRes.id" class="col-sm-12 col-md-6 p-3">
+                        <div @click="goToRestaurant(favRes.id)">
+                            <div class="card flex-row">
+                                <div class="business-img">
+                                    <img v-if="favRes.img_rest" :src="'/storage/restaurants/' + favRes.img_rest" width="100px">
+                                    <p v-else>image</p>
+                                </div>
+                                <div class="card-body">
+                                    <h3>{{favRes.business_name}}</h3>
+                                    <p>{{favRes.business_description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <!-- search for restaurant  type -->
-        <div class="d-flex align-items-center justify-content-center h-25">
-            <div class=" container-select-type d-flex align-items-center justify-content-center">
-                <select name="" id="" v-model="selectType">
-                    <option value="Tutti" selected>Tutti</option>
-                    <option v-for="type in types" :key="type.id" :value="type.id">{{type.type_name}}</option>
-                </select>
+        <div class="container">
+            <h2>Quale cucina vorresti provare?</h2>
+            <div class="types_container">
+                <div class="type" v-for="type in types" :key="type.id"> 
+                    <input @click="getRestaurants($event, type.type_name)" :value="type.type_name" type="checkbox" :id="type.type_name">
+                    <label :for="type.type_name">{{type.type_name}}</label>
+                </div>
             </div>
         </div>
         
         <!-- get restaurant to display -->
         <div class="container">
             <ul class="row">
-                <li v-for="restaurant in showFiltered" :key="restaurant.id" class="col-sm-12 col-md-6 p-3">
+                <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-sm-12 col-md-6 p-3">
                     <div @click="goToRestaurant(restaurant.id)">
                         <div class="card flex-row">
                             <div class="business-img">
-                                <img src="https://picsum.photos/300/300" alt="">
+                                <img v-if="restaurant.img_rest" :src="'/storage/restaurants/' + restaurant.img_rest" width="100px">
+                                <p v-else>image</p>
                             </div>
                             <div class="card-body">
                                 <h3>{{restaurant.business_name}}</h3>
@@ -28,6 +55,7 @@
                 </li>
             </ul>
         </div>
+        <banner-component></banner-component>
     </section>
 </template>
 
@@ -38,12 +66,12 @@ export default {
         return {
             types : [],
             selectType : 'Tutti',
+
+            restaurants: [],
+
+            favRestaurants: [],
         }
     },
-
-    props: {
-            restaurants: Array,
-        },
     
     methods: {
         // redirect to restaurant details page
@@ -55,29 +83,42 @@ export default {
             .catch(err => {
                 console.log(err);
             })
-        }
+        },
+        // get selected restaurants types
+        getRestaurants(event, type) {
+            if(event.target.checked) {
+                axios.post('/api/user/chosen/restaurants', type)
+                    .then(res => {
+                        res.data.forEach(element => {
+                            const parsed = JSON.stringify(this.restaurants);
+                            if(!parsed.includes(`"id":${element.id}`)) {
+                                element.type = type;
+                                this.restaurants.push(element)
+                            }
+                        });
+                    })
+            }else {
+                // remove restaurants from list if type unchecked
+                this.restaurants = this.restaurants.filter(function(element){
+                    if(element.type != type) {
+                        return element
+                    }
+                })
+            }
+        },
     },
     mounted() {
         axios.get('/api/restaurants/types')
-        .then(res => {
-            this.types = res.data;
-        })
-    },
-    computed: {
-        // check array to get only related results
-        showFiltered() {
-            if(this.selectType === 'Tutti') {
-                return this.restaurants;
-            }
-            return this.restaurants.filter((restaurant) => {
-                for (let i = 0; i < restaurant.types.length; i++) {
-                    let type = restaurant.types[i];
-                    if(type.id === this.selectType){
-                        return this.restaurants;
-                    }
-                }   
+            .then(res => {
+                this.types = res.data;
             })
-        }
-    }
+
+        axios.get('/api/fav/restaurants')
+            .then(res => {
+                res.data.forEach(element => {
+                    this.favRestaurants.push(element);
+                });
+            })
+    },
 }
 </script>

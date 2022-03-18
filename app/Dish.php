@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dish extends Model
-{
+{   
+    use SoftDeletes;
+
     protected $fillable = [
 
         "dish_name",
@@ -24,6 +27,7 @@ class Dish extends Model
         return $this -> belongsTo(Category::class);
     }
     public function orders() {
-        return $this -> belongsToMany(Order::class);
+        return $this -> belongsToMany(Order::class)
+            -> withPivot('amount');
     }
 }

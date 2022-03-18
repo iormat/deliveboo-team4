@@ -17,7 +17,7 @@ $factory->define(Order::class, function (Faker $faker) {
 
     return [
         "date" => $dates[rand(0, count($dates)-1)],
-        "total_price" => $faker -> randomFloat(2, 1, 50),
+        "total_price" => 0,
         "confirmed" => $faker -> boolean(),
         "payment_confirmation" => $faker -> boolean(),
         "confirmation_date" => $faker -> date(),

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Category;
 
+use Illuminate\Support\Facades\DB;
 
 class CategorySeeder extends Seeder
 {
@@ -13,6 +14,16 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class, 10) -> create();
+
+        $categories = ['Antipasti', 'Primi', 'Secondi', 'Contorni','Dolci', 'Hosomaki', 'Uramaki', 'Temaki', 'Nigiri', 'Sashimi', 'Pollo', 'Pesce e Gamberi', 'Bevande', 'Pizze', 'Pancakes',
+                        'Waffles'
+    ];
+
+
+        for($i = 0; $i < count($categories); $i++) {
+            DB::table('categories') -> insert([
+                ['category_name' => $categories[$i]]
+            ]);
+        }
     }
 }

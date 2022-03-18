@@ -15,9 +15,9 @@ class CreateDishOrderTable extends Migration
     {
         Schema::create('dish_order', function (Blueprint $table) {
            
-            $table->bigInteger('dish_id')->unsigned();
-            $table->bigInteger('order_id')->unsigned();
-            $table->tinyInteger('amount')->unsigned();
+            $table -> bigInteger('dish_id')->unsigned();
+            $table -> bigInteger('order_id')->unsigned();
+            $table -> bigInteger('amount')->unsigned() -> nullable();
             // $table->timestamps();
         });
     }

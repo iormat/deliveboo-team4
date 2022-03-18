@@ -17,7 +17,6 @@ $factory->define(Dish::class, function (Faker $faker) {
         // "description" => $description[rand(0, count($description)-1)],
         "dish_name" => $faker -> word(),
         "description" => $faker -> text(),
-        "price" => $faker -> randomFloat(2, 1, 50),
         "dishes_img" => $faker->imageUrl(640, 480, 'animals', true),
         "available" => false,
         "ingredients" => $faker -> text(),

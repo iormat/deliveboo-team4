@@ -1,0 +1,80 @@
+#restaurants-list{
+    .jumbo-restaurants {
+        height: 60ch;
+        background-image: url(/storage/assets/pexels-negative-space-34650.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    .flex-row{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .card {
+            margin: 20px;
+            width: 45%;
+            cursor: pointer;
+            // height: 25ch;
+            display: flex;
+
+            
+            .card-body {
+                padding: 1em;
+                p {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 5;
+                    -webkit-box-orient: vertical;
+                }
+                .categories {
+                    height: 30px;
+                }
+                .space::after {
+                    content: " - ";
+                }
+                .space:nth-last-child(1)::after {
+                    content: "";
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                    -o-object-position: center;
+                    object-position: center;
+                }
+
+                .text {
+                    margin: 15px;
+                }
+            }
+    
+        }
+    }
+
+    
+    @media screen and (max-width: 996px) {
+                .flex-row{
+                    .card{
+                        width: 100%;
+                        // overflow: hidden;
+                    }
+                }
+        }
+    
+        @media screen and (max-width: 450px) {
+            .flex-row{
+                .card {
+                    .business-img {
+                        img{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+}

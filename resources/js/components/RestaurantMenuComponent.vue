@@ -1,36 +1,91 @@
 <template>
-    <section id="restaurants">
-        <div class="container">
-            <!-- menu list -->
-            <ul class="row">
-                <li class="col-sm-12 col-md-6 col-lg-4" v-for="dish in menu" :key="dish.id">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h3>Nome Piatto&colon; {{dish.dish_name}}</h3>
-                            <span>Id&colon; {{dish.id}}</span>
-                        </div>
-                        <div class="card-body">
-                            <p>Descrizione piatto&colon;</p>
-                            {{dish.description}}
-                        </div>
-                        <div class="card-footer">
-                            Prezzo piatto&colon;
-                            <mark>{{dish.price}} &euro;</mark>
-                            <div>
-                                <button class="btn btn-success my-3" @click="addToCart(dish)">Add to Cart</button>
+    <section id="ristoranti">
+        <div class="container-details">
+            
+            <div class="jumbo-details">
+                <div class="overlay"></div>
+                <h1>{{restaurant.business_name}}</h1>
+                <img src="https://cdn.create.vista.com/api/media/medium/218509368/stock-photo-salad-grated-pumpkin-scrambled-eggs?token=" alt="" >  
+            </div>
+            <!-- restaurant menu -->
+            <div class="restourant-container row">
+                <div class="menu-container col-sm-12 col-md-9 col-lg-9">
+                    <ul class="cards-container">
+                        <li class="col-sm-12" v-for="dish in menu" :key="dish.id">
+                            <h3>{{dish.dish_name}}</h3>
+                            <div class="card_body row">
+                                <p class="col-sm-12 col-md-8 col-lg-8 description-dish">
+                                    <span v-if="dish.description">Descrizione piatto&colon; {{dish.description}}</span>
+                                </p>
+                                <div class="imgdish col-md-4 col-lg-4">
+                                    <!-- <img src="https://picsum.photos/300/300" alt=""> -->
+                                    <img v-if="dish.dishes_img" :src="'/storage/dishes/' + dish.dishes_img" width="100px">
+                                    <p v-else>image</p>
+                                </div>
                             </div>
-                        </div>
+                            <div class="card_footer">
+                                Prezzo piatto&colon;
+                                <mark>{{dish.price}} &euro;</mark>
+                                <div @click="addToCart(dish)" class="add-to-cart" >
+                                    <i class="fas fa-plus"></i> <span>Aggiungi al carrello</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- chart container -->
+                <div class="chart-container-1 col-sm-12 col-md-3 col-lg-3">
+                    <div class="chart-container">
+                        <cart-component
+                        v-if="shoppingCart"
+                        :cart="cart"
+                        @removeDish="removeDish"
+                        ></cart-component>
+                        <!-- <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button> -->
                     </div>
-                </li>
-            </ul>
-            <cart-component
-            v-if="shoppingCart"
-            :cart="cart"
-            @removeDish="removeDish"
-            ></cart-component>
-            <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
-        </div>
+                </div>
 
+            </div>
+            
+            <!-- <div class="d-flex flexing">
+                <div class="container row p-5 cont-card">
+                    <ul class="row">
+                        <li class="col-sm-12" v-for="dish in menu" :key="dish.id">
+                            <div class="card mb-3 details-card">
+                                <div class="card-header">
+                                    <h3>Nome Piatto&colon; {{dish.dish_name}}</h3>
+                                    <span>Id&colon; {{dish.id}}</span>
+                                </div>
+                                <div class="card-body">
+                                    <p>Descrizione piatto&colon;</p>
+                                    {{dish.description}}
+                                   
+                                </div>
+                                 <div class="card-footer">
+                                    Prezzo piatto&colon;
+                                    <mark>{{dish.price}} &euro;</mark>
+                                    <div>
+                                        <button class="btn btn-success my-3" @click="addToCart(dish)">Add to Cart</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="chart-container">
+                        <cart-component
+                        v-if="shoppingCart"
+                        :cart="cart"
+                        @removeDish="removeDish"
+                        ></cart-component>
+                        <button class="btn btn-danger" @click="removeItemFromStorage">REMOVE ITEMS</button>
+                    </div>
+            </div> -->
+            
+            <!-- menu list -->
+            
+        </div>
     </section>
 </template>
 
@@ -44,8 +99,8 @@ export default {
         return {
             menu: [],
             cart:[],
-
             shoppingCart: false,
+            restaurant: []
         }
     },
 
@@ -115,6 +170,14 @@ export default {
         axios.get(`/api/get/restaurant/menu/${this.user.id}`)
             .then(res => {
                 this.menu = res.data;
+            })
+            .catch(err => {
+                console.error(err);
+            })
+
+             axios.get(`/api/get/restaurant/info/${this.user.id}`)
+            .then(res => {
+                this.restaurant = res.data;
             })
             .catch(err => {
                 console.error(err);

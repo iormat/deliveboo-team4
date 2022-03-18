@@ -1,44 +1,47 @@
 <template>
     <div id="dishes_menu">
-        <!-- button to toggle create - form -->
-        <div @click="createNewDish" class="mb-2 btn btn-success">Create</div>        
-
+    <!-- button to toggle create - form -->
+            <div v-if="!createForm && !changeForm" class="d-flex align-items-center m-3">
+                <h2 class="m-0">Aggiungi piatti al tuo menu</h2>
+                <div class="button-create d-flex align-items-center justify-content-center" @click="createNewDish"><i class="fas fa-plus"></i></div>
+            </div>
+        
         <!-- dish menu -->
         <section v-if="!createForm && !changeForm" id="menu">
-            <h2>I tuoi piatti</h2>
-            <div class="container">
-                <div class="row">
-                    <ul class="col-sm-12 col-md-6 col-lg-4" v-for="dish in dishes" :key="dish.id">
-                        <li class="card mycard">
-                            <div class="card-main-info">
-                                <h3>{{dish.dish_name}}</h3>
-                                <span>{{dish.price}} &euro;</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <div class="dish-img">
-                                        <img :src="'/storage/dishes/' + dish.dishes_img" :alt="dish.dish_name">
-                                    </div>
-                                    <div class="details">
-                                        <p>{{dish.description}}</p>
-                                        <p v-for="category in categories" :key="category.id">
-                                            <span v-if="category.id === dish.category_id"> Categoria: {{category.category_name}} </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="mod-container">
-                                    <span class="modifiers" @click="editDish(dish.id)">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </span>
-                                    <span class="modifiers" @click="deleteDish(dish.id)">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </span>
+            <h2>I tuoi piatti</h2>      
+            <ul v-for="dish in dishes" :key="dish.id">
+                <li class="mycard row m-0">
+                    <div class="container-card col-sm-10">
+                        <div class="dish-img">
+                            <img src="https://picsum.photos/200/200" alt="">
+                            <!-- <img v-if="dish.dishes_img" :src="'/storage/dishes/' + dish.dishes_img" width="100px">
+                            <p v-else>image</p> -->
+                        </div>
+                        <div class="card-body">
+                            <div class="card-content">
+             
+                                <div class="details"> 
+                                    <h3>{{dish.dish_name}}</h3>
+                                    
+                                    <p>{{dish.description}}</p>
+                                    <p v-for="category in categories" :key="category.id">
+                                        <span v-if="category.id === dish.category_id"> Categoria: {{category.category_name}} </span>
+                                    </p>
+                                    <span>{{dish.price}} &euro;</span>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                    <div class="mod-container col-sm-2">
+                        <div class="modifiers" @click="editDish(dish.id)">
+                            <i class="fas fa-pencil-alt"></i> 
+                        </div>
+                        <div class="modifiers" @click="deleteDish(dish.id)">
+                            <i class="fas fa-trash-alt"></i>        
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </section>
 
         <!-- create new dish component -->
@@ -122,12 +125,14 @@ export default {
         },
         // delete dish
         deleteDish(id) {
-            axios.get(`/api/dishDelete/${id}`)
-            .then(res => { 
-                const dish = res.data;
-                let dishInd = this.getDishIndById(dish.id);
-                this.dishes.splice(dishInd, 1); 
-            })
+            if(confirm('Sei sicuro di voler eliminare il piatto? Il processo è irreversibile!')) {
+                axios.get(`/api/dishDelete/${id}`)
+                .then(res => { 
+                    const dish = res.data;
+                    let dishInd = this.getDishIndById(dish.id);
+                    this.dishes.splice(dishInd, 1); 
+                })
+            }
         },
         // get dish index to delete
         getDishIndById(id){

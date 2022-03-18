@@ -10,6 +10,7 @@ class Customer extends Model
         
         "name",
         "surname",
+        "email",
         "address",
         "note",
         "cap",

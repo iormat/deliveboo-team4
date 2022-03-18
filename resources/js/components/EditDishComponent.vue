@@ -1,20 +1,26 @@
 <template>
-    <section id="edit" class="container">
+    <section id="edit" class="login-register" >
+
+        <FormErrorComponent
+        v-if="validationErrors"
+        :errors="validationErrors"
+        />
+
         <form id="edit_form" method="POST" enctype="multipart/form-data" @submit.prevent="updateDish">
             <!-- dish name - edit -->
             <label for="name">
                 Inserisci il nome&colon;
-                <input class="form-control" type="text" id="name" min="4" max="50" required v-model="editDish_name" name="dish_name">
+                <input class="form-control" type="text" id="name" min="4" maxlength="120" required v-model="editDish_name" name="dish_name">
             </label>
             <!-- dish description - edit -->
             <label for="desription">
                 Inserisci il una descrizione&colon;
-                <textarea class="form-control" v-model="editDescription" id="desription" cols="50" rows="3" required></textarea>
+                <textarea class="form-control" v-model="editDescription" id="desription" maxlenght="300" cols="50" rows="3" required></textarea>
             </label>
             <!-- dish price - edit -->
             <label for="price">
                 Inserisci il prezzo&colon;
-                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice">
+                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" required v-model="editPrice" onkeypress="return event.charCode>=48 && event.charCode<=57 && return '.' && return ','">
             </label>
             <!-- dish category - edit -->
             <label for="category">
@@ -26,35 +32,34 @@
                     </option>
                 </select>
             </label>
-            <!-- dish ingredients - edit -->
-            <label for="ingredients">
-                Aggiungi gli ingredienti&colon;
-                <textarea class="form-control" v-model="editIngredients" id="ingredients" cols="50" rows="3" required></textarea>
-            </label>
             <!-- dish image - edit -->
             <label for="img">
                 Aggiungi immagine&colon;
                 <input class="form-control" type="file" @change="saveUpdatedImg" id="img">
             </label> 
             <!-- dish availabiliy - edit -->
-            <div class="check-button">
-                <label for="available" class="check-btn" name="available">
+            <!-- <div class="check-button"> -->
+                <label for="available" class="check-btn check-width" name="available">
                     Disponibile&colon; 
                     <input type="checkbox" id="available" class="check-check" v-model="editAvailable">
                     <div class="check-after"></div>
                 </label>
-            </div>
+            <!-- </div> -->
             <!-- submit edit form -->
             <!-- close edit form -->
-            <div class="text-right">
-                <button  form="edit_form" class="btn">Modifica</button>
-                <button class="btn" @click="toggleForm">Chiudi</button>
+            <div class="form-edit-buttons">
+                <button form="edit_form" class="btn edit-button blocktonone modifica">Modifica</button>
+                <button form="edit_form" class="btn edit-button nonetoblock">Modifica</button>
+                <button class="btn edit-button nonetoblock" @click="toggleForm">Chiudi</button>
+                <button class="btn edit-button blocktonone chiudi" @click="toggleForm">Chiudi</button>
             </div>
         </form>
     </section>
+  
 </template>
 
 <script>
+import FormErrorComponent from "./FormErrorComponent.vue";
 export default {
     data: function() {
         return {
@@ -62,28 +67,34 @@ export default {
             editDish_name: '',
             editDescription: '',
             editPrice: 0,
-            editIngredients: '',
             editCategory: 0,
             editDishes_img: "",
 
+            validationErrors: '',
         }
     },
+
+    components: {
+        FormErrorComponent,
+    },
+
     props: {
         categories: Array,
         editDishArr: Object,
     },
+
     methods: {
         // save updated user img - useful format
         saveUpdatedImg(img) {
             this.editDishes_img = img.target.files[0];
         },
-                // update existing dish
+        // update existing dish
         updateDish(event) {
+            console.log('ci sono')
             let form = new FormData(event.target);
             form.append("dish_name", this.editDish_name);
             form.append("description", this.editDescription);
             form.append("price", this.editPrice);
-            form.append("ingredients", this.editIngredients);
             if(this.editDishes_img != ''){
                 form.append("dishes_img",this.editDishes_img);  
             };
@@ -95,26 +106,27 @@ export default {
             }
             form.append("available", this.editAvailable);
 
-            // post form 
+            // post form
             axios.post(`/api/updateDish/${this.editDishArr.id}`, form)
-            .then( response => {
-                this.$emit('updateDish', response.data)
-                this.$emit('toggleEditDish',)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+                .then((response) => {
+                    this.$emit("updateDish", response.data);
+                    this.$emit("toggleEditDish");
+                })
+                .catch(error => {
+                    if(error.response.status == 422) {
+                        this.validationErrors = error.response.data.errors
+                    }
+                });
         },
         toggleForm() {
-            this.$emit('toggleEditDish',)
-        }
+        this.$emit("toggleEditDish");
+        },
     },
     mounted() {
         this.editAvailable = this.editDishArr.available;
         this.editDish_name = this.editDishArr.dish_name;
         this.editDescription = this.editDishArr.description; 
         this.editPrice = this.editDishArr.price;
-        this.editIngredients = this.editDishArr.ingredients; 
         this.editCategory = this.editDishArr.category_id; 
         this.editDishes_img = this.editDishArr.dishes_img; 
     }

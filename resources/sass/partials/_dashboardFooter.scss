@@ -9,7 +9,7 @@ footer {
         text-decoration: none;
         color: hsl(var(--clr-accent));
     }
-    min-height: 300px;
+    // height: 300px;
     background-color: hsl(var(--clr-primary));
     .container {
         padding: 0;
@@ -48,7 +48,6 @@ footer {
             }
         }
         .footer-bottom {
-            margin: 20px 0;
           a {
             font-size: 20px;
             margin-right: 20px;

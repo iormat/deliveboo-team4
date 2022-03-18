@@ -15,7 +15,9 @@ class ApiController extends Controller
     // get all menu
     public function getMenu() {
         $user = Auth::user();
-        $menu = Dish::where('user_id', $user -> id) -> get();
+        $menu = Dish::where('user_id', $user -> id) 
+            -> orderBy('dish_name', 'asc')
+            -> get();
 
         return json_encode($menu);
     }
@@ -31,10 +33,9 @@ class ApiController extends Controller
     public function addDish(Request $request) {
         // validate required dish data
         $data = $request -> validate ([
-            'dish_name' => 'required | string | min:4 | max:50',
+            'dish_name' => 'required | string | min:4 | max:120',
             'description' => 'required | string',
             'price' => 'required',
-            'ingredients' => 'required | string',      
         ]);
         // validate dish img if present
         if ($request -> file('dishes_img') != '') {
@@ -68,10 +69,9 @@ class ApiController extends Controller
     public function updateDish(Request $request, $id) {
         //  validate required dish data
         $data = $request -> validate([
-            'dish_name' => 'required | string | min:4 | max:50',
+            'dish_name' => 'required | string | min:4 | max:120',
             'description' => 'required | string',
             'price' => 'required',
-            'ingredients' => 'required | string',
             // 'available' => 'boolean'
         ]);
         // validate dish img if present
@@ -129,12 +129,50 @@ class ApiController extends Controller
         return view('pages.cart-checkout');
     }
 
-    public function guestRestautanMenu($id) {
-        $restaurant = User::findOrFail($id);
-        return response() -> json($restaurant);
-    }
+    // public function guestRestautanMenu($id) {
+    //     $restaurant = User::findOrFail($id);
+    //     return response() -> json($restaurant);
+    // }
+
     public function getTypes() {
         $types = Type::All();
         return response() -> json($types);
+    }
+
+    // get user chosen restaurants types
+    public function chosenRestaurants(Request $request) {
+        
+        $type = key($request->all());
+
+        $restaurant = DB::table('users')
+                ->select('users.*')
+                ->join('type_user', 'users.id', '=', 'type_user.user_id')
+                ->join('types', 'type_user.type_id', '=', 'types.id')
+                ->where('types.type_name', $type)
+                ->get();
+        return response() -> json($restaurant);
+    }
+
+    // get fav restaurants
+    public function favRestaurants() {
+        $restaurants = User::inRandomOrder() -> limit(4) -> get();
+        return response() -> json($restaurants);
+    }
+
+    public function allRestaurants() {       
+        $restaurants = User::with('types')
+                           ->orderBy('business_name', 'asc')
+                           ->get();
+                           
+        return response() -> json($restaurants);
+    }
+
+    public function restaurants(){
+        return view('pages.restaurants');
+    }
+
+    public function restaurantInfo($id) {
+        $user = User::findOrFail($id);
+        return response() -> json($user);
     }
 }

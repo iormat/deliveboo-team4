@@ -1,11 +1,17 @@
 <template>
     <!-- <section> -->
-    <section id="create_dish">
+    <section class="login-register">
+        
+        <FormErrorComponent
+        v-if="validationErrors"
+        :errors="validationErrors"
+        />
+
         <form id="create_form" method="POST" enctype="multipart/form-data" @submit.prevent="submitDish">
             <!-- dish name - create -->
             <label for="name">
                 Inserisci il nome del piatto&colon;
-                <input class="form-control" type="text" id="name" v-model="dish_name" min="4" max="50" required>
+                <input class="form-control" type="text" id="name" v-model="dish_name" min="4" maxlength="120" required>
             </label>
             <!-- dish description - create -->
             <label for="desription">
@@ -15,12 +21,7 @@
             <!-- dish price - create -->
             <label for="price">
                 Inserisci il prezzo&colon;
-                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required>
-            </label>
-            <!-- dish ingredients - create -->
-            <label for="ingredients">
-                Aggiungi gli ingredienti&colon;
-                <textarea class="form-control" v-model="ingredients" id="ingredients" cols="50" rows="3" required></textarea>
+                <input class="form-control" type="number" min="0.00" max="999.99" step="0.01" id="price" v-model="price" required onkeypress="return event.charCode>=48 && event.charCode<=57 && return ',' &&  return '.' ">
             </label>
             <!-- dish img - create -->
             <label for="dish_img">
@@ -46,6 +47,7 @@
     </section>
 </template>
 <script>
+import FormErrorComponent from "./FormErrorComponent.vue";
 export default {
     data: function(){
         return{     
@@ -58,8 +60,13 @@ export default {
             dishes_img: "",
 
             newDishes: [],
+            validationErrors: '',
         };
     },
+    components: {
+        FormErrorComponent,
+    },
+
 
     props: {
         dishes: Array,
@@ -92,8 +99,10 @@ export default {
                 self.newDishes.push(response.data);
                 self.$emit("getNewDishes", self.newDishes);
             })
-            .catch(function (error) {
-                console.error(error);
+            .catch(error => {
+                if(error.response.status == 422) {
+                    this.validationErrors = error.response.data.errors
+                }
             });
 
             // reset all dish properties

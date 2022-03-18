@@ -14,14 +14,16 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string("name", 60);
-            $table->string("surname", 60);
-            $table->string("address", 60);
-            $table->string("note") -> nullable();
-            $table->string("cap", 5);
-            $table->string("telephone", 20);
-            $table->timestamps();
+            $table -> id();
+            $table -> string("name", 60);
+            $table -> string("surname", 60);
+            $table -> string("email", 60);
+            $table -> string("address", 60);
+            $table -> string("note") -> nullable();
+            $table -> string("cap", 5);
+            $table -> string("telephone", 20);
+            $table -> timestamps();
+            $table -> softDeletes();
         });
     }
 

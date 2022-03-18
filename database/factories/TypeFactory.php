@@ -6,7 +6,9 @@ use App\Type;
 use Faker\Generator as Faker;
 
 $factory->define(Type::class, function (Faker $faker) {
+    $types = ['Cinese', 'Giapponese', 'Italiano', 'Gelato','Pizza',];
+
     return [
-        "type_name" => $faker -> word(),
+        "type_name" => $types[rand(0, count($types)-1)],
     ];
 });

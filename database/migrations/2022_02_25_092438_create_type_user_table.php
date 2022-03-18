@@ -15,8 +15,8 @@ class CreateTypeUserTable extends Migration
     {
         Schema::create('type_user', function (Blueprint $table) {
             // $table->id();
-            $table->bigInteger('type_id') -> unsigned();
-            $table->bigInteger('user_id') -> unsigned();
+            $table -> bigInteger('type_id') -> unsigned();
+            $table -> bigInteger('user_id') -> unsigned();
         });
     }
 

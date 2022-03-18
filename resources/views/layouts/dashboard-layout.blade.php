@@ -19,6 +19,6 @@
        
     </div>
     
-    @include('components.dashboard-footer')
+    {{-- @include('components.dashboard-footer') --}}
 </body>
 </html>
