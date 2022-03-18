@@ -26,6 +26,7 @@
     "dependencies": {
         "chart.js": "2.9",
         "vue-braintree": "^2.1.0",
-        "vue-chartjs": "^3.5.1"
+        "vue-chartjs": "^3.5.1",
+        "vue-confetti": "^2.3.0"
     }
 }
